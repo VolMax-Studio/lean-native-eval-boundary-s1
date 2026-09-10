@@ -1,10 +1,10 @@
 {
   "status": "gate-repair-n3; pre-gate; HALT; not frozen; scientific verdict null",
-  "manifest_created_at_utc": "2026-09-10T20:20:09.523006+00:00",
+  "manifest_created_at_utc": "2026-09-10T20:25:02.591362+00:00",
   "previous_review_commit": "e599d55343ab0b1168cb9edc61a4355f928499b0",
   "previous_review_zip_sha256": "5b293daef542caefcb275990f424d05124883b658fc33b249c9f5119a2d162cc",
   "repository": "VolMax-Studio/lean-native-eval-boundary-s1",
-  "note": "Self excluded to avoid recursion. Review exact containing Git commit. Existing history preserved. Public transfer explicitly authorized by Operator; external/ is outside claim-bearing instance.",
+  "note": "Self excluded to avoid recursion. Identify review ZIP by its external SHA-256; exact Git commit is an additional review route. Existing history preserved. Public transfer authorized by Operator; external/ is outside claim-bearing instance.",
   "files": [
     {
       "path": ".gitignore",
@@ -40,6 +40,11 @@
       "path": "PRE_GATE_CLOSURE.md",
       "bytes": 2641,
       "sha256": "77b7912680702e0e31ccca687b9b567aaf163dce0833f1b9edfa1953fb8f2a17"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5304,
+      "sha256": "3464de767e72d54a51206c0370b79c409c988c0881e82fc07c11dba7d02c06ea"
     },
     {
       "path": "RESOURCE_PLAN.md",
