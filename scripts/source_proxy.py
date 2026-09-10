@@ -23,7 +23,6 @@ def classify(lean,cpp):
         tail=lean[a.end():]
         h=re.match(r'def (?:Pos(?:\.Raw)?\.)?extract : \(@& String\) → \(@& Pos(?:\.Raw)?\) → \(@& Pos(?:\.Raw)?\) → String\n',tail)
         if not h: continue
-        end=re.search(r'^\S',tail[h.end():],re.M)
         # `where` is part of this declaration; next column-zero line after it ends the block.
         rest=tail[h.end():]
         lines=rest.splitlines(keepends=True); kept=[]

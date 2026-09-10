@@ -1,8 +1,9 @@
 {
-  "status": "DRAFT 2 VALIDATION EVIDENCE SUPPLEMENT; NOT FROZEN",
-  "manifest_created_at_utc": "2026-09-10T17:02:01.371151+00:00",
-  "previous_review_commit": "f254bdb8623704500fb7a23f8631784446b91e21",
-  "note": "Self excluded to avoid recursive hashing. Git commit identifies this manifest. external/ is outside the claim-bearing instance. validation/ records a new synthetic run, not historical backfill.",
+  "status": "N-1/N-2 REPAIR REVIEW PACKAGE; NOT FROZEN; last formal Gate result remains BLOCKED on prior ZIP",
+  "manifest_created_at_utc": "2026-09-10T20:00:12.366547+00:00",
+  "previous_review_commit": "581b0a4c70aac1cf4f74ca284af003034ca4b80d",
+  "previous_review_zip_sha256": "d52989959cbbfe28f7e84efe378f53659b6a10d21002fc4be0672ec60c672b9a",
+  "note": "Self excluded to avoid recursive hashing. Git commit identifies this manifest. external/ is outside the claim-bearing instance. Source snapshots are raw evidence, not adjudication of unrelated content. INTERNAL REVIEW ONLY.",
   "files": [
     {
       "path": ".gitignore",
@@ -11,23 +12,33 @@
     },
     {
       "path": "CLAIM_OF_RECORD.md",
-      "bytes": 3974,
-      "sha256": "a41cc56a8e234e1b4d6858976ad127831da4c5a319d9eeda3df182c2421d7fd7"
+      "bytes": 4083,
+      "sha256": "d9c8190fdb448b85e748db03b67e7588c6d53fbb4d7f2bebbc03050c48bd2a72"
+    },
+    {
+      "path": "DIAGNOSTIC_PROFILE.json",
+      "bytes": 477,
+      "sha256": "06166952bae3e89be2336ed8c8f99859ffa231519a62ec73283c4facd25320a7"
+    },
+    {
+      "path": "DIAGNOSTIC_PROFILE.md",
+      "bytes": 7358,
+      "sha256": "8247ea8d1e8135181779878fe9c92217dfa4b360ed41c520b4c64868f2d61ed8"
     },
     {
       "path": "FAILURES.md",
-      "bytes": 3904,
-      "sha256": "7bc69f2431298ed8f50283571bc2a9b7856c1bd28119a6137783433332a12607"
+      "bytes": 6780,
+      "sha256": "4253105edde3af5122242c0b249bc03fd6538c5b9d5dd3d36592fa73b69a520b"
     },
     {
       "path": "INSTANCE_RULES.md",
-      "bytes": 11323,
-      "sha256": "d7c71701bd06ddb8b9236f9f398396c8d7cd48914db1640e98b9cecffce9ea16"
+      "bytes": 12533,
+      "sha256": "70e23441f0d30e2e0895867a9f9231751412468b5a9b6712e1469a12b168dd3a"
     },
     {
       "path": "PRE_GATE_CLOSURE.md",
-      "bytes": 3519,
-      "sha256": "0ccfc2d47487dcee0571deabf2eb108797c14d04895146563140046a911fb1b5"
+      "bytes": 3394,
+      "sha256": "6a9149e1ff6d5b9f6686f10f19318b0437ec65d0a98b1e9b55d0807192b1d809"
     },
     {
       "path": "RESOURCE_PLAN.md",
@@ -40,14 +51,24 @@
       "sha256": "b618b65927de0c671cd60a339e867a9bfeeda0b315eb3d72aec057967ff404ae"
     },
     {
+      "path": "external/DISTRIBUTION.md",
+      "bytes": 994,
+      "sha256": "90fd9063e500e2b2e27bfa67876698e84828c5d4ae6838959a8f8b45f96bd96e"
+    },
+    {
       "path": "external/EXPOSURE_LEDGER.md",
-      "bytes": 4721,
-      "sha256": "7db1b3ef8c928d9cf93b54ef4a2fe94cad8524ed66584a434bb921b4636920cd"
+      "bytes": 7295,
+      "sha256": "8ba295580f448b4e922ffbbb4d171f661254b45249a7b86a4d20103abf6eb89c"
     },
     {
       "path": "external/GOVERNANCE.md",
-      "bytes": 3058,
-      "sha256": "1a9c618cfaa6a9872f7d6193efe046647592de3f97d52a0a7f7dbe0b377b6255"
+      "bytes": 4565,
+      "sha256": "6293de3f30b3fda83c25f9897cf006e50c4890882c8ad502471528f5c6973385"
+    },
+    {
+      "path": "external/claude-gate-validation-supplement.txt",
+      "bytes": 7217,
+      "sha256": "54de05841028fb6a322828547ce75ac6ab0bd5e97cddcd1f6bf01840717292fd"
     },
     {
       "path": "external/supplied-review-1.txt",
@@ -61,8 +82,8 @@
     },
     {
       "path": "scripts/behavior_matcher.py",
-      "bytes": 1565,
-      "sha256": "d20c223f3f9e6fe06a5f27acb842076b54d827b170b096cff67a1e599aa4dbdb"
+      "bytes": 2661,
+      "sha256": "6601ad44118c22fb77357de53e0e6ddba2bdd9089d3cef6bb919102b19e4217e"
     },
     {
       "path": "scripts/extract_poc.py",
@@ -71,8 +92,8 @@
     },
     {
       "path": "scripts/source_proxy.py",
-      "bytes": 2534,
-      "sha256": "cd5bae4ff86177e589a0feaba0d0b97972889578e6390517eeb38bb889bc48f7"
+      "bytes": 2484,
+      "sha256": "ee84636dfce4b2eaa1eda8ea76b410f21b3d4effba8804ccca169ae3bd2ab6a6"
     },
     {
       "path": "sources/PoC.lean",
@@ -88,6 +109,101 @@
       "path": "sources/connector-provenance.json",
       "bytes": 1487,
       "sha256": "bd5950dc422d6baeb08d0070e827bcbbce30c7e4d6942d4f7fe1625ed2d969f9"
+    },
+    {
+      "path": "sources/diagnostics/retrieval.json",
+      "bytes": 10590,
+      "sha256": "5f22153677b57b252571ba9aefb2486266fa70352f3d54be512779619f8ee1f2"
+    },
+    {
+      "path": "sources/diagnostics/v4.32.2/Frontend.lean",
+      "bytes": 17608,
+      "sha256": "2616fef6e97c0a898d4b0c0e2207675c23396233748e5bf94b38fd72cf76733d"
+    },
+    {
+      "path": "sources/diagnostics/v4.32.2/Language-Basic.lean",
+      "bytes": 17170,
+      "sha256": "71e9a288c9732223af39b3159c5c24433fb3375aa0a8b6a4cb1a2635a6f42e0e"
+    },
+    {
+      "path": "sources/diagnostics/v4.32.2/Message.lean",
+      "bytes": 39015,
+      "sha256": "bee50b5c2a0e0baeb33966c6b8944143e12d47ed5617aadb94bd27711c8889aa"
+    },
+    {
+      "path": "sources/diagnostics/v4.32.2/Shell.lean",
+      "bytes": 22896,
+      "sha256": "6ffb68a347815e43fe5771205bd02236e1508132b9197c27a3d805fe1cad7ab7"
+    },
+    {
+      "path": "sources/diagnostics/v4.32.2/shell-lean.cpp",
+      "bytes": 588,
+      "sha256": "b311e6363d689e7b6d2e717c53981c59c63104892dc1d0cb308d977d6c6d943a"
+    },
+    {
+      "path": "sources/diagnostics/v4.32.2/util-shell.cpp",
+      "bytes": 12127,
+      "sha256": "c103e3b51bc402527c52d7b6dc1624e33038a2db8180615d952287ca3f3f2a9e"
+    },
+    {
+      "path": "sources/diagnostics/v4.33.1/Frontend.lean",
+      "bytes": 19531,
+      "sha256": "e3e9037222c00308edc4fed589da83a80620bf5b35108779564fc485d8c17774"
+    },
+    {
+      "path": "sources/diagnostics/v4.33.1/Language-Basic.lean",
+      "bytes": 21537,
+      "sha256": "a6aca4bca50ae1477eeab77696a199c029ae41a8d178fc86dc5d83767dea3236"
+    },
+    {
+      "path": "sources/diagnostics/v4.33.1/Message.lean",
+      "bytes": 39073,
+      "sha256": "09277320b843288e7a51b98c794e4440cfd0e3c71e18eb777105414751a1004f"
+    },
+    {
+      "path": "sources/diagnostics/v4.33.1/Shell.lean",
+      "bytes": 22984,
+      "sha256": "4f584ae4d4cc859f39cdbb550df8e09417d1fd8e95046829ef821c2c95e2f940"
+    },
+    {
+      "path": "sources/diagnostics/v4.33.1/shell-lean.cpp",
+      "bytes": 588,
+      "sha256": "b311e6363d689e7b6d2e717c53981c59c63104892dc1d0cb308d977d6c6d943a"
+    },
+    {
+      "path": "sources/diagnostics/v4.33.1/util-shell.cpp",
+      "bytes": 12425,
+      "sha256": "502eaa752396cdff5bb448833a63be54cbbcbb3d36881eb10e235c04c64c0832"
+    },
+    {
+      "path": "sources/diagnostics/v4.34.0-rc1/Frontend.lean",
+      "bytes": 19531,
+      "sha256": "e3e9037222c00308edc4fed589da83a80620bf5b35108779564fc485d8c17774"
+    },
+    {
+      "path": "sources/diagnostics/v4.34.0-rc1/Language-Basic.lean",
+      "bytes": 21537,
+      "sha256": "a6aca4bca50ae1477eeab77696a199c029ae41a8d178fc86dc5d83767dea3236"
+    },
+    {
+      "path": "sources/diagnostics/v4.34.0-rc1/Message.lean",
+      "bytes": 39073,
+      "sha256": "09277320b843288e7a51b98c794e4440cfd0e3c71e18eb777105414751a1004f"
+    },
+    {
+      "path": "sources/diagnostics/v4.34.0-rc1/Shell.lean",
+      "bytes": 22984,
+      "sha256": "4f584ae4d4cc859f39cdbb550df8e09417d1fd8e95046829ef821c2c95e2f940"
+    },
+    {
+      "path": "sources/diagnostics/v4.34.0-rc1/shell-lean.cpp",
+      "bytes": 588,
+      "sha256": "b311e6363d689e7b6d2e717c53981c59c63104892dc1d0cb308d977d6c6d943a"
+    },
+    {
+      "path": "sources/diagnostics/v4.34.0-rc1/util-shell.cpp",
+      "bytes": 12425,
+      "sha256": "502eaa752396cdff5bb448833a63be54cbbcbb3d36881eb10e235c04c64c0832"
     },
     {
       "path": "sources/issue-14684.connector.json",
@@ -115,9 +231,14 @@
       "sha256": "e716a4daca2ff35b9d718e43453b3a45edcc25d85bed91afcef4ed4d425750a9"
     },
     {
+      "path": "tests/CONDITION_COVERAGE.md",
+      "bytes": 3149,
+      "sha256": "387222b5bb9de675c65d72de591837c2af07b8583f94508a29db5f2ea589589e"
+    },
+    {
       "path": "tests/README.md",
-      "bytes": 2029,
-      "sha256": "265565f96678f74dfa47fe5c2345e56f7773bd751cdf98880eb1161fad04dc2d"
+      "bytes": 2812,
+      "sha256": "21b9d1df48ad2f3f8dcdc0b0f4dec3991833acbe49115bfeec2eb2478a9733a4"
     },
     {
       "path": "tests/command.sh",
@@ -125,14 +246,29 @@
       "sha256": "0c318a2e34263a8d28a8782080dfba17e445ccaed091c62b9439bb7bcf110949"
     },
     {
+      "path": "tests/mutation-command.sh",
+      "bytes": 81,
+      "sha256": "d11f2699e5d84f1d938e6ad6498581d724773d6e90e8a422d87af259d60dda57"
+    },
+    {
+      "path": "tests/mutations.json",
+      "bytes": 4026,
+      "sha256": "acbb3531cc2a9005c7d06a9d16658dd57c6ae48f11a405129609ca8e771f1d51"
+    },
+    {
+      "path": "tests/run_mutations.py",
+      "bytes": 2576,
+      "sha256": "36466cfe72f4d52adcb913e44947c1dc59b5b5dfe37855c8e30c3b0f3123955a"
+    },
+    {
       "path": "tests/run_synthetic.py",
-      "bytes": 1650,
-      "sha256": "8bd588932ec78b8fd36c91742ec21ab45e0cdfc5906a244e8178499a8a7c691a"
+      "bytes": 1653,
+      "sha256": "b3b023c8fe393f79b48992a50a7a58334e7352f202a0681c4bdf3cfca01c1afa"
     },
     {
       "path": "tests/synthetic_cases.json",
-      "bytes": 4389,
-      "sha256": "24074a1fccaa568fceb0d4fada8c844298a174e1126809db92c2b76138481f44"
+      "bytes": 20667,
+      "sha256": "2d3133c2509b2ef9ee157cf48c3dbe1673cfdd6ef8193675a9239dc6dc3ab6c6"
     },
     {
       "path": "validation/exit-code.txt",
@@ -140,9 +276,29 @@
       "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
     },
     {
+      "path": "validation/mutation-exit-code.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "validation/mutation-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/mutation-stdout.log",
+      "bytes": 13452,
+      "sha256": "067992a816c5d36fe8ca9cf10bbccdd4d62e376e68193b3c1ef8dd830ed98338"
+    },
+    {
+      "path": "validation/provenance-checks.json",
+      "bytes": 838,
+      "sha256": "18bc271b6e39c9c2a37e35d2199450a98e9ed447a8b1f3b0fe80b7ffae55a1b4"
+    },
+    {
       "path": "validation/run.json",
-      "bytes": 1782,
-      "sha256": "914fa41e5a0eb6a513e83edb57853f2c4b071df4c91949a1f32bb49085358d0b"
+      "bytes": 3144,
+      "sha256": "bde33c897432681db8b38b74197a4600a017fced3eb2e59c6943550bd741e6ba"
     },
     {
       "path": "validation/stderr.log",
@@ -151,8 +307,8 @@
     },
     {
       "path": "validation/stdout.log",
-      "bytes": 773,
-      "sha256": "f85b6aec156d5f2718361eb356798ebc57af466ae4c75ab800807b4155ba27ed"
+      "bytes": 4546,
+      "sha256": "0c2f0437f1d07e02b16150adc97195abfdeafacdcdad6129f745a4f322130867"
     }
   ]
 }

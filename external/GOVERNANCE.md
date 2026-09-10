@@ -4,7 +4,7 @@ This record carries scope rationale, authority provenance and role disclosures. 
 
 The Operator excluded T-C: the Anthropic FLT artifact and every claim about its validity, dependencies, or exposure to the disclosed bug. The instance body must not name or evaluate that artifact. Immutable source bytes can contain such references without making them adjudicated claims.
 
-The Operator explicitly designated Claude as Gate in the direct reply: “Pa Claude ko ili čupko jbg”. Ivan remains final Ratifier. The current assistant is Creator of draft 1 and draft 2. Ananke appears as proposed Executor in earlier supplied correspondence; explicit confirmation is pending. Do not infer that any external task has received instructions or executed work.
+The Operator designated Claude as Gate and has now explicitly confirmed: “Potvrđujem Claudeov formalni Gate nad tekstom”. Ivan remains final Ratifier. The current assistant is Creator of draft 1 and draft 2. Ananke appears as proposed Executor in earlier supplied correspondence; explicit confirmation is pending. Do not infer that any external task has received instructions or executed work.
 
 Conflict acceptability is an Operator decision, not a Gate self-certification. The supplied correspondence states acceptance of Claude as Gate for T-A/T-B with the strict scope boundary. Claude must disclose exposure; model-family identity alone does not establish independence. The issue and blog report GPT-5.6 involvement in discovery, which is recorded as a claimant self-report, not independently verified discovery provenance.
 
@@ -15,8 +15,18 @@ Authority is reported as “VolMax Observatory — Operating Rules (P10, v2026-0
 - Local command: `rg -n -i --glob '*.md' --glob '!**/node_modules/**' 'VolMax Observatory|Operating Rules|P10, v2026-08' /home/volmax-studio/Documents/Codex`. Exit 1, no matches. This only bounds that Markdown search, not existence elsewhere.
 - Connected tool: `mcp__codex_apps__github_search`, query `"VolMax Observatory" "Operating Rules"`, topn=5, no repository filter. Tool completed, isError=false, results=[]. No HTTP status exposed. Search is not proof of absence from inaccessible or unindexed repositories. Precise unresolved fact: location and bytes/SHA of the named canonical document.
 
-## Review provenance
+## Review provenance — corrected by explicit Operator confirmation
 
-Supplied review 2 explicitly reviewed pasted draft-1 text, not local commit 5e48b587c24e685db25524b0102114187c03e69b, and did not review FAILURES.md. It reported only a truncated hash of that pasted text. Do not transfer its review status to commit bytes or infer reviewer identity from its heading. Supplied review 1 directs treatment as PRE-GATE/adversarial review, reserving formal Gate to Claude. This task does not issue formal GATE_BLOCKED/PASS/NEEDS_EVIDENCE.
+supplied-review-2.txt was issued by Claude and is his formal draft-1 Gate over pasted INSTANCE_RULES text. The Operator explicitly confirmed that status in this task. It did not review local commit 5e48b587c24e685db25524b0102114187c03e69b or FAILURES.md. Do not transfer its text-only scope to commit bytes. supplied-review-1.txt misattributed that reviewer to Astra and proposed an incorrect pre-gate reclassification; it is retained unchanged as historical correspondence, not operative provenance.
 
-Current packaging provides files, SHA-256 manifest and a local Git commit plus portable archive. The old pasted-text hash has not been equated to any of these bytes. No remote publication or message to Claude has been performed.
+The latest formal Gate is external/claude-gate-validation-supplement.txt, targeting ZIP SHA-256 d52989959cbbfe28f7e84efe378f53659b6a10d21002fc4be0672ec60c672b9a (97022 bytes, 36 ZIP entries). It records BLOCKED for N-1/N-2. Its replay claims are Gate-reported observations; the current assistant independently checked the local ZIP size/hash and issue-body hash but does not turn that into independent reproduction of every Gate action.
+
+Use one formal Gate vocabulary: BLOCKED / FIXES-PENDING / SURVIVES-REVIEW, as specified in the supplied correction. Scientific outcome vocabulary is separate. The Creator's repair checklist is a self-check, never a formal Gate result. The last recorded formal verdict remains BLOCKED until Claude reviews the repaired concrete object.
+
+The ZIP comment identifies a local commit but is not by itself proof of Git-tree identity to the Gate. Local archive/tree verification may be recorded as an OBSERVED custody check with its scope, without claiming that the Gate could inspect the local repository. No remote publication, upload or message to Claude has been performed by this task.
+
+## Additional Operator decisions in this repair
+
+T-B1 is explicitly designated “Deskriptivno merenje T-B1”. Report per-member syntactic outcomes and coverage, with no Verified/Not Verified scientific verdict. This change is an Operator-authorized scope-of-interpretation decision, not an outcome-driven modification.
+
+Executor confirmation, complete participant disclosure and canonical-original pin or explicit adoption of the local authority chain remain pending. These are separate from N-1/N-2 repairs.

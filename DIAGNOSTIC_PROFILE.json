@@ -1,0 +1,18 @@
+{
+  "status": "draft repair; not execution authorization",
+  "format": "plain text",
+  "argv_after_pinned_lean_executable": [
+    "-D",
+    "printMessageEndPos=false",
+    "-D",
+    "maxErrors=0",
+    "PoC.lean"
+  ],
+  "json": false,
+  "severity_override_flags": [],
+  "printMessageEndPos": false,
+  "maxErrors": 0,
+  "encoding": "UTF-8",
+  "stream_handling": "literal separate stdout/stderr; no normalization",
+  "executable_and_environment": "pending final execution pins"
+}

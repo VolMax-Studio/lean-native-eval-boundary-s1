@@ -73,5 +73,355 @@
     "stderr": "PoC.lean:2:4: error: native_decide evaluated to false\nPoC.lean:3:0: error: unknown constant",
     "exitcode": 1,
     "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "B07_sorry_with_valid_native",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "'flt' depends on axioms: [propext, demo.native_decide.ax_1, sorryAx]",
+    "stderr": "",
+    "exitcode": 0,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "B08_native_axiom_nonzero_exit",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "'flt' depends on axioms: [propext, demo.native_decide.ax_1]",
+    "stderr": "",
+    "exitcode": 1,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "B09_other_nonstandard_axiom",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "'flt' depends on axioms: [propext, extra.axiom]",
+    "stderr": "",
+    "exitcode": 0,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "B10_wrong_filename",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "",
+    "stderr": "Other.lean:2:4: error: native_decide evaluated to false",
+    "exitcode": 1,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "B11_native_without_false",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "",
+    "stderr": "PoC.lean:2:4: error: native_decide did not finish",
+    "exitcode": 1,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "B12_rejection_zero_exit",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "",
+    "stderr": "PoC.lean:2:4: error: native_decide evaluated to false",
+    "exitcode": 0,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "B13_duplicate_axiom_records",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "'flt' depends on axioms: [propext, demo.native_decide.ax_1]\n'flt' depends on axioms: [propext, demo.native_decide.ax_1]",
+    "stderr": "",
+    "exitcode": 0,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "B14_false_without_native_name",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "",
+    "stderr": "PoC.lean:2:4: error: proposition is false",
+    "exitcode": 1,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "B15_two_native_locations",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n    native_decide\n#print axioms flt\n",
+    "stdout": "",
+    "stderr": "PoC.lean:2:4: error: native_decide evaluated to false",
+    "exitcode": 1,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "B16_unparsed_extra_named_error",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "",
+    "stderr": "PoC.lean:2:4: error: native_decide evaluated to false\nerror(extra): orphan",
+    "exitcode": 1,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "B17_false_word_boundary",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "",
+    "stderr": "PoC.lean:2:4: error: native_decide falsehood",
+    "exitcode": 1,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "B18_warning_then_expected_error",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "",
+    "stderr": "PoC.lean:1:0: warning(note): unrelated\nPoC.lean:2:4: error: native_decide evaluated to false",
+    "exitcode": 1,
+    "expected": "EXPECTED_NATIVE_REJECTION"
+  },
+  {
+    "id": "B19_warning_does_not_supply_false",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "",
+    "stderr": "PoC.lean:2:4: error: native_decide unfinished\nPoC.lean:3:0: warning(note): false",
+    "exitcode": 1,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "B20_cross_stream_not_one_diagnostic",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "PoC.lean:2:4: error: native_decide",
+    "stderr": "false",
+    "exitcode": 1,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "B21_no_axiom_record",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "",
+    "stderr": "",
+    "exitcode": 0,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "B22_standard_axioms_only",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "'flt' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "stderr": "",
+    "exitcode": 0,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "B23_no_native_source_location",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    decide\n#print axioms flt\n",
+    "stdout": "",
+    "stderr": "PoC.lean:2:4: error: native_decide evaluated to false",
+    "exitcode": 1,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "N1_reject_plain_stdout",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "PoC.lean:2:4: error: native_decide evaluated to false",
+    "stderr": "",
+    "exitcode": 1,
+    "expected": "EXPECTED_NATIVE_REJECTION"
+  },
+  {
+    "id": "N1_block_accept_plain_stdout",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "'flt' depends on axioms: [propext, demo.native_decide.ax_1]\nPoC.lean:2:4: error: native_decide evaluated to false",
+    "stderr": "",
+    "exitcode": 0,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "N1_reject_plain_stderr",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "",
+    "stderr": "PoC.lean:2:4: error: native_decide evaluated to false",
+    "exitcode": 1,
+    "expected": "EXPECTED_NATIVE_REJECTION"
+  },
+  {
+    "id": "N1_block_accept_plain_stderr",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "'flt' depends on axioms: [propext, demo.native_decide.ax_1]",
+    "stderr": "PoC.lean:2:4: error: native_decide evaluated to false",
+    "exitcode": 0,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "N1_reject_named_stdout",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "PoC.lean:2:4: error(tactic.native): native_decide evaluated to false",
+    "stderr": "",
+    "exitcode": 1,
+    "expected": "EXPECTED_NATIVE_REJECTION"
+  },
+  {
+    "id": "N1_block_accept_named_stdout",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "'flt' depends on axioms: [propext, demo.native_decide.ax_1]\nPoC.lean:2:4: error(tactic.native): native_decide evaluated to false",
+    "stderr": "",
+    "exitcode": 0,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "N1_reject_named_stderr",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "",
+    "stderr": "PoC.lean:2:4: error(tactic.native): native_decide evaluated to false",
+    "exitcode": 1,
+    "expected": "EXPECTED_NATIVE_REJECTION"
+  },
+  {
+    "id": "N1_block_accept_named_stderr",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "'flt' depends on axioms: [propext, demo.native_decide.ax_1]",
+    "stderr": "PoC.lean:2:4: error(tactic.native): native_decide evaluated to false",
+    "exitcode": 0,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "N1_reject_range_stdout",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "PoC.lean:2:4-2:17: error: native_decide evaluated to false",
+    "stderr": "",
+    "exitcode": 1,
+    "expected": "EXPECTED_NATIVE_REJECTION"
+  },
+  {
+    "id": "N1_block_accept_range_stdout",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "'flt' depends on axioms: [propext, demo.native_decide.ax_1]\nPoC.lean:2:4-2:17: error: native_decide evaluated to false",
+    "stderr": "",
+    "exitcode": 0,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "N1_reject_range_stderr",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "",
+    "stderr": "PoC.lean:2:4-2:17: error: native_decide evaluated to false",
+    "exitcode": 1,
+    "expected": "EXPECTED_NATIVE_REJECTION"
+  },
+  {
+    "id": "N1_block_accept_range_stderr",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "'flt' depends on axioms: [propext, demo.native_decide.ax_1]",
+    "stderr": "PoC.lean:2:4-2:17: error: native_decide evaluated to false",
+    "exitcode": 0,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "N1_reject_named_range_stdout",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "PoC.lean:2:4-2:17: error(tactic.native): native_decide evaluated to false",
+    "stderr": "",
+    "exitcode": 1,
+    "expected": "EXPECTED_NATIVE_REJECTION"
+  },
+  {
+    "id": "N1_block_accept_named_range_stdout",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "'flt' depends on axioms: [propext, demo.native_decide.ax_1]\nPoC.lean:2:4-2:17: error(tactic.native): native_decide evaluated to false",
+    "stderr": "",
+    "exitcode": 0,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "N1_reject_named_range_stderr",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "",
+    "stderr": "PoC.lean:2:4-2:17: error(tactic.native): native_decide evaluated to false",
+    "exitcode": 1,
+    "expected": "EXPECTED_NATIVE_REJECTION"
+  },
+  {
+    "id": "N1_block_accept_named_range_stderr",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "'flt' depends on axioms: [propext, demo.native_decide.ax_1]",
+    "stderr": "PoC.lean:2:4-2:17: error(tactic.native): native_decide evaluated to false",
+    "exitcode": 0,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "S04_changed_logical_body",
+    "kind": "source_proxy",
+    "lean": "@[extern \"lean_string_utf8_extract\", expose]\ndef Pos.Raw.extract : (@& String) → (@& Pos.Raw) → (@& Pos.Raw) → String\n  | s, b, e => if b.byteIdx ≥ e.byteIdx then \"\" else ofList (go₁ s.toList 0 b e)\nwhere\n  go₁ : List Char → Pos → Pos → Pos → List Char\n    | [], _, _, _ => ['x']\n    | s@(c::cs), i, b, e => if i = b then go₂ s i e else go₁ cs (i + c) b e\n  go₂ : List Char → Pos → Pos → List Char\n    | [], _, _ => []\n    | c::cs, i, e => if i = e then [] else c :: go₂ cs (i + c) e\n\ndef next := 0\n",
+    "cpp": "extern \"C\" LEAN_EXPORT obj_res lean_string_utf8_extract(b_obj_arg s, b_obj_arg b0, b_obj_arg e0) {\nif (!lean_is_scalar(b0) || !lean_is_scalar(e0)) { return s; }\n}\n",
+    "expected": "PREDICATE_INAPPLICABLE"
+  },
+  {
+    "id": "S05_duplicate_logical_signature",
+    "kind": "source_proxy",
+    "lean": "@[extern \"lean_string_utf8_extract\", expose]\ndef Pos.Raw.extract : (@& String) → (@& Pos.Raw) → (@& Pos.Raw) → String\n  | s, b, e => if b.byteIdx ≥ e.byteIdx then \"\" else ofList (go₁ s.toList 0 b e)\nwhere\n  go₁ : List Char → Pos → Pos → Pos → List Char\n    | [], _, _, _ => []\n    | s@(c::cs), i, b, e => if i = b then go₂ s i e else go₁ cs (i + c) b e\n  go₂ : List Char → Pos → Pos → List Char\n    | [], _, _ => []\n    | c::cs, i, e => if i = e then [] else c :: go₂ cs (i + c) e\n\ndef next := 0\n\n@[extern \"lean_string_utf8_extract\", expose]\ndef Pos.Raw.extract : (@& String) → (@& Pos.Raw) → (@& Pos.Raw) → String\n  | s, b, e => if b.byteIdx ≥ e.byteIdx then \"\" else ofList (go₁ s.toList 0 b e)\nwhere\n  go₁ : List Char → Pos → Pos → Pos → List Char\n    | [], _, _, _ => []\n    | s@(c::cs), i, b, e => if i = b then go₂ s i e else go₁ cs (i + c) b e\n  go₂ : List Char → Pos → Pos → List Char\n    | [], _, _ => []\n    | c::cs, i, e => if i = e then [] else c :: go₂ cs (i + c) e\n\ndef next := 0\n",
+    "cpp": "extern \"C\" LEAN_EXPORT obj_res lean_string_utf8_extract(b_obj_arg s, b_obj_arg b0, b_obj_arg e0) {\nif (!lean_is_scalar(b0) || !lean_is_scalar(e0)) { return s; }\n}\n",
+    "expected": "PREDICATE_INAPPLICABLE"
+  },
+  {
+    "id": "S06_duplicate_native_definition",
+    "kind": "source_proxy",
+    "lean": "@[extern \"lean_string_utf8_extract\", expose]\ndef Pos.Raw.extract : (@& String) → (@& Pos.Raw) → (@& Pos.Raw) → String\n  | s, b, e => if b.byteIdx ≥ e.byteIdx then \"\" else ofList (go₁ s.toList 0 b e)\nwhere\n  go₁ : List Char → Pos → Pos → Pos → List Char\n    | [], _, _, _ => []\n    | s@(c::cs), i, b, e => if i = b then go₂ s i e else go₁ cs (i + c) b e\n  go₂ : List Char → Pos → Pos → List Char\n    | [], _, _ => []\n    | c::cs, i, e => if i = e then [] else c :: go₂ cs (i + c) e\n\ndef next := 0\n",
+    "cpp": "extern \"C\" LEAN_EXPORT obj_res lean_string_utf8_extract(b_obj_arg s, b_obj_arg b0, b_obj_arg e0) {\nif (!lean_is_scalar(b0) || !lean_is_scalar(e0)) { return s; }\n}\n\nextern \"C\" LEAN_EXPORT obj_res lean_string_utf8_extract(b_obj_arg s, b_obj_arg b0, b_obj_arg e0) {\nif (!lean_is_scalar(b0) || !lean_is_scalar(e0)) { return s; }\n}\n",
+    "expected": "PREDICATE_INAPPLICABLE"
+  },
+  {
+    "id": "S07_missing_native_definition",
+    "kind": "source_proxy",
+    "lean": "@[extern \"lean_string_utf8_extract\", expose]\ndef Pos.Raw.extract : (@& String) → (@& Pos.Raw) → (@& Pos.Raw) → String\n  | s, b, e => if b.byteIdx ≥ e.byteIdx then \"\" else ofList (go₁ s.toList 0 b e)\nwhere\n  go₁ : List Char → Pos → Pos → Pos → List Char\n    | [], _, _, _ => []\n    | s@(c::cs), i, b, e => if i = b then go₂ s i e else go₁ cs (i + c) b e\n  go₂ : List Char → Pos → Pos → List Char\n    | [], _, _ => []\n    | c::cs, i, e => if i = e then [] else c :: go₂ cs (i + c) e\n\ndef next := 0\n",
+    "cpp": "",
+    "expected": "PREDICATE_INAPPLICABLE"
+  },
+  {
+    "id": "S08_native_prefix_is_not_contains",
+    "kind": "source_proxy",
+    "lean": "@[extern \"lean_string_utf8_extract\", expose]\ndef Pos.Raw.extract : (@& String) → (@& Pos.Raw) → (@& Pos.Raw) → String\n  | s, b, e => if b.byteIdx ≥ e.byteIdx then \"\" else ofList (go₁ s.toList 0 b e)\nwhere\n  go₁ : List Char → Pos → Pos → Pos → List Char\n    | [], _, _, _ => []\n    | s@(c::cs), i, b, e => if i = b then go₂ s i e else go₁ cs (i + c) b e\n  go₂ : List Char → Pos → Pos → List Char\n    | [], _, _ => []\n    | c::cs, i, e => if i = e then [] else c :: go₂ cs (i + c) e\n\ndef next := 0\n",
+    "cpp": "extern \"C\" LEAN_EXPORT obj_res lean_string_utf8_extract(b_obj_arg s, b_obj_arg b0, b_obj_arg e0) {\nnoop();\nif (!lean_is_scalar(b0) || !lean_is_scalar(e0)) { return s; }\n}\n",
+    "expected": "NO_MISMATCH"
+  },
+  {
+    "id": "N1_block_nested_name",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "'flt' depends on axioms: [propext, demo.native_decide.ax_1]",
+    "stderr": "PoC.lean:2:4: error(foo(bar)): failed",
+    "exitcode": 0,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "N1_block_malformed_position",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "'flt' depends on axioms: [propext, demo.native_decide.ax_1]",
+    "stderr": "PoC.lean:bad:position: error(tactic.native): failed",
+    "exitcode": 0,
+    "expected": "EVIDENCE_INSUFFICIENT"
   }
 ]

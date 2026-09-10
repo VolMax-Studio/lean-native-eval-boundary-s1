@@ -1,17 +1,20 @@
-# Synthetic validation evidence supplement to draft 2
+# Synthetic and mutation validation — N-1/N-2 repair
 
 Run from the extracted package root:
 
 ```sh
 sh tests/command.sh
+sh tests/mutation-command.sh
 ```
 
-Requires Python 3 standard library and a POSIX shell. The runner loads nine explicit input/expected-output fixtures from synthetic_cases.json and the two existing predicate modules. It exits nonzero on any mismatch or exception. It does not invoke Lean, access the network, read real source snapshots, or modify the recorded logs. These synthetic strings are parser fixtures, not Lean programs asserted to compile.
+Python 3 standard library and a POSIX shell are sufficient. Both commands exit nonzero on failure. They do not invoke Lean, access the network, or read real source snapshots. These fixture strings are parser inputs, not asserted compilable Lean programs.
 
-The three source cases check the registered signature pair, its native-side absence, and changed extern key. The six behavioral cases check the acceptance conjunction, error despite exit zero, replacement of native evidence by sorryAx, expected diagnostic location, wrong location, and an additional error. The sorryAx case combines two conditions and does not separately establish every acceptance guard. These nine cases are limited examples, not exhaustive validation or a proof of matcher correctness.
+The 49 explicit fixtures include the original nine plus independent negative cases for acceptance exit status, sorryAx alongside valid native evidence, a non-native nonstandard axiom, duplicate axiom records, rejection filename/line/exit/keywords, duplicate native locations, extra errors and malformed error records. Named labels and optional end positions are tested in both stdout and stderr, for expected rejection and prevention of acceptance. Source cases cover changed extern key, changed logical body, duplicate/missing definitions and prefix versus mere containment.
 
-The fixture content preserves the nine cases previously run inline in this task, now materialized as independent literal inputs rather than importing the expected logical signature from the implementation. This packaging and the recorded execution are new. They do not retroactively turn the old unbundled run into archived evidence.
+mutations.json specifies 24 uniquely located single-change mutants. run_mutations.py first checks the unmodified baseline, then compiles each altered Python module in memory and runs applicable fixtures. A mutant is KILLED only by an explicit changed classification against a fixture's expected outcome. Exceptions are listed separately and never count as a kill. The log preserves all witnesses and each mutated source SHA-256. A compile error or non-unique mutation site fails the harness rather than improving the score.
 
-validation/stdout.log and stderr.log are literal bytes from the new command execution; exit-code.txt records its process exit code. validation/run.json records UTC start/end, interpreter identity, command, input hashes and output hashes. MANIFEST.json includes fixtures, runner, command and validation artifacts. A fresh replay should produce byte-identical stdout/stderr and the same exit code; wall-clock metadata is not expected to repeat.
+The first nine mutants cover the Gate's nine reported mutations, including the central logical-body equality. Remaining mutants cover additional independent guards and diagnostic grammar. This is a declared mutation set, not an exhaustive proof. The `not in STD` subcondition is redundant with native_decide substring matching for the three fixed STD names; deleting that redundant subcondition alone is not counted as a meaningful killable mutant. No claim is made that every possible parser bug or equivalent mutant is covered.
 
-Existing source_proxy.py, behavior_matcher.py and scientific criteria are unchanged. The evidence is a Creator self-check, not a formal Gate result, independent replication or evidence of Lean behavior.
+validation/stdout.log, stderr.log and exit-code.txt preserve the new fixture run. validation/mutation-stdout.log, mutation-stderr.log and mutation-exit-code.txt preserve the new mutation run. validation/run.json records commands, UTC intervals, interpreter identity and input/output hashes. Fresh replay must reproduce both commands' literal stdout/stderr and exit codes; time metadata is separate. The earlier nine-case record remains in the preserved prior commit/archive and is not overwritten historically.
+
+This is Creator self-check evidence. Claude's BLOCKED finding applies to the prior reviewed ZIP; only Claude may issue the next formal Gate result over the repaired bytes. No scientific run, behavioral evidence or independence is inferred from these tests.

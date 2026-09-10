@@ -1,0 +1,17 @@
+{
+  "observed_at_utc": "2026-09-10T19:59:19.275748+00:00",
+  "scope": "local custody and identity checks only; not an assertion that the Gate accessed the local repository",
+  "reviewed_zip_sha256": "d52989959cbbfe28f7e84efe378f53659b6a10d21002fc4be0672ec60c672b9a",
+  "reviewed_zip_bytes": 97022,
+  "zip_entries": 36,
+  "zip_comment": "581b0a4c70aac1cf4f74ca284af003034ca4b80d",
+  "local_commit": "581b0a4c70aac1cf4f74ca284af003034ca4b80d",
+  "git_tree_file_comparisons": 31,
+  "all_file_bytes_match_local_commit": true,
+  "issue_body_sha256": "b089432223ed0dc23b52200ab080d429381d2766f61f33383386fceeecceb0f0",
+  "PoC_sha256": "ed8e65ccf56fc10509b59a047101bb1c76426ae1fd8ee4d501fb29781e54049b",
+  "commands": [
+    "git show <reviewed-commit>:<each non-directory ZIP path>",
+    "SHA-256 of decoded issue JSON body encoded UTF-8"
+  ]
+}

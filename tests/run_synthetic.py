@@ -1,4 +1,4 @@
-"""Replay the nine packaged synthetic cases; no Lean or source snapshot reads."""
+"""Replay the packaged synthetic cases; no Lean or source snapshot reads."""
 import importlib.util
 import json
 from pathlib import Path
@@ -15,8 +15,8 @@ def module(name):
 
 def main():
     cases = json.loads((ROOT / 'tests/synthetic_cases.json').read_text(encoding='utf-8'))
-    if len(cases) != 9 or len({c['id'] for c in cases}) != 9:
-        raise ValueError('Expected nine uniquely identified cases')
+    if not cases or len({c['id'] for c in cases}) != len(cases):
+        raise ValueError('Expected nonempty, uniquely identified cases')
     proxy, behavior = module('source_proxy'), module('behavior_matcher')
     passed = 0
     for case in cases:

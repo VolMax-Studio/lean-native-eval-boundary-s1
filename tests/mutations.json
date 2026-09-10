@@ -1,0 +1,146 @@
+[
+  {
+    "id": "M01_drop_sorry_guard",
+    "kind": "behavior_matcher",
+    "find": "and 'sorryAx' not in names",
+    "replace": "and True"
+  },
+  {
+    "id": "M02_drop_no_error",
+    "kind": "behavior_matcher",
+    "find": "and no_error and required",
+    "replace": "and True and required"
+  },
+  {
+    "id": "M03_drop_accept_zero_exit",
+    "kind": "behavior_matcher",
+    "find": "exitcode == 0 and len(ax)",
+    "replace": "True and len(ax)"
+  },
+  {
+    "id": "M04_drop_native_axiom_name",
+    "kind": "behavior_matcher",
+    "find": "name not in STD and 'native_decide' in name",
+    "replace": "name not in STD and True"
+  },
+  {
+    "id": "M05_drop_filename",
+    "kind": "behavior_matcher",
+    "find": "Path(errors[0]['file']).name == 'PoC.lean'",
+    "replace": "True"
+  },
+  {
+    "id": "M06_drop_false",
+    "kind": "behavior_matcher",
+    "find": "re.search(r'\\bfalse\\b', errors[0]['body']) is not None",
+    "replace": "True"
+  },
+  {
+    "id": "M07_drop_reject_nonzero_exit",
+    "kind": "behavior_matcher",
+    "find": "and exitcode != 0 and len(errors)",
+    "replace": "and True and len(errors)"
+  },
+  {
+    "id": "M08_drop_logical_signature_count",
+    "kind": "source_proxy",
+    "find": "if len(logical)!=1 or len(fs)!=1:",
+    "replace": "if False or len(fs)!=1:"
+  },
+  {
+    "id": "M09_accept_any_logical_body",
+    "kind": "source_proxy",
+    "find": "if norm(c)==norm(LOGICAL)",
+    "replace": "if True"
+  },
+  {
+    "id": "M10_drop_unique_axiom_record",
+    "kind": "behavior_matcher",
+    "find": "and len(ax) == 1 and no_error",
+    "replace": "and True and no_error"
+  },
+  {
+    "id": "M11_drop_unique_native_location",
+    "kind": "behavior_matcher",
+    "find": "len(loc) == 1 and exitcode",
+    "replace": "True and exitcode"
+  },
+  {
+    "id": "M12_drop_unique_error",
+    "kind": "behavior_matcher",
+    "find": "and len(errors) == 1",
+    "replace": "and True"
+  },
+  {
+    "id": "M13_drop_unparsed_error_guard",
+    "kind": "behavior_matcher",
+    "find": "marker_count == len(errors)",
+    "replace": "True"
+  },
+  {
+    "id": "M14_drop_error_location",
+    "kind": "behavior_matcher",
+    "find": "int(errors[0]['line']) == loc[0]",
+    "replace": "True"
+  },
+  {
+    "id": "M15_drop_diagnostic_native_name",
+    "kind": "behavior_matcher",
+    "find": "'native_decide' in errors[0]['body']",
+    "replace": "True"
+  },
+  {
+    "id": "M16_ignore_stdout_errors",
+    "kind": "behavior_matcher",
+    "find": "not ERROR_MARKER.search(stdout) and not ERROR_MARKER.search(stderr)",
+    "replace": "True and not ERROR_MARKER.search(stderr)"
+  },
+  {
+    "id": "M17_ignore_stderr_errors",
+    "kind": "behavior_matcher",
+    "find": "not ERROR_MARKER.search(stdout) and not ERROR_MARKER.search(stderr)",
+    "replace": "not ERROR_MARKER.search(stdout) and True"
+  },
+  {
+    "id": "M18_drop_native_definition_count",
+    "kind": "source_proxy",
+    "find": "if len(logical)!=1 or len(fs)!=1:",
+    "replace": "if len(logical)!=1 or False:"
+  },
+  {
+    "id": "M19_prefix_becomes_contains",
+    "kind": "source_proxy",
+    "find": "norm(native).startswith(signature)",
+    "replace": "signature in norm(native)"
+  },
+  {
+    "id": "M20_drop_named_header",
+    "kind": "behavior_matcher",
+    "find": "(?:\\((?P<name>[^()\\r\\n]*)\\))?",
+    "replace": ""
+  },
+  {
+    "id": "M21_drop_end_range_header",
+    "kind": "behavior_matcher",
+    "find": "(?:-(?P<end_line>\\d+):(?P<end_column>\\d+))?",
+    "replace": ""
+  },
+  {
+    "id": "M22_drop_named_error_marker",
+    "kind": "behavior_matcher",
+    "find": "ERROR_MARKER = re.compile(r'(?<!\\w)error(?:\\([^\\r\\n]*\\))?:')",
+    "replace": "ERROR_MARKER = re.compile(r'(?<!\\w)error:')"
+  },
+  {
+    "id": "M23_ignore_severity",
+    "kind": "behavior_matcher",
+    "find": "if record['severity'] == 'error'",
+    "replace": "if True"
+  },
+  {
+    "id": "M24_false_substring_only",
+    "kind": "behavior_matcher",
+    "find": "re.search(r'\\bfalse\\b', errors[0]['body']) is not None",
+    "replace": "'false' in errors[0]['body']"
+  }
+]
