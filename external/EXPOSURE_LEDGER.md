@@ -42,3 +42,11 @@ PoC discrepancy resolution: Claude corrected his earlier label: b089432223ed0dc2
 Claude reports his saved raw-source downloads match reference-Basic.lean and reference-object.cpp byte-for-byte and his independent issue-body extraction matches the connector body. Attribute those comparisons to the Gate; do not rewrite the original connector capture as if it had included that independent check at capture time. Likewise, repeated identical tag snapshots are observations at reported retrieval times, not independent replications of the scientific claim.
 
 Operator confirmed Claude's formal draft-1 text review and selected descriptive-only T-B1. The error of treating that formal text review as a pre-gate review is corrected in external/GOVERNANCE.md; immutable supplied correspondence is retained.
+
+## N-3 review and repair exposure
+
+Claude's supplied review reports reading the full N-1/N-2 package, all 18 diagnostic files, Print.lean, ElabTerm.lean, Native.lean and Decide.lean at all three matrix commits; a sparse v4.33.1 clone limited to src/Lean/Elab/Tactic and src/Lean/Meta; and the source proxy over the already exposed reference with and without mutations. It reports no Lean invocation and no new T-B1 denominator member inspection. These are attributed Gate self-reports.
+
+Creator read that supplied review and directly retrieved Print.lean, Meta/Native.lean and Elab/Tactic/Decide.lean at the three full pinned commit SHAs; sources/diagnostics/n3-retrieval.json preserves URL/capture provenance. No additional T-B1 predicate source or Lean execution was used. The three N-3 synthetic fixtures and validation inventory are developed after exposure to the Gate's counterexamples. Their recorded runs remain instrument validation, not scientific measurements.
+
+The Operator instructed preservation and push of the existing Git history to VolMax-Studio/lean-native-eval-boundary-s1, explicitly retaining instance files, manifests, fixtures, validation and external governance. Connected repository metadata identifies the target as public; direct git ls-remote returned exit 0 with no refs before the initial push. This authorizes the requested public repository transfer and supersedes the earlier internal-review distribution restriction for this repository/history. It does not authorize messaging, Lean execution or prereg freeze.

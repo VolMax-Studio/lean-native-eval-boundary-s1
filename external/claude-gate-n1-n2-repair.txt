@@ -1,0 +1,86 @@
+```
+GATE RESULT — lean-ta-tb-gate-repair-n1-n2.zip
+sha256 5b293daef542caefcb275990f424d05124883b658fc33b249c9f5119a2d162cc (229926 B)
+ZIP comment: e599d55343ab0b1168cb9edc61a4355f928499b0
+```
+Kao i prošli put, pregledao sam bajtove ZIP-a. Da ZIP odgovara HEAD-u commita ne mogu da proverim jer je commit lokalan.
+
+---
+
+**Provere koje drže**
+
+```
+manifest entries: 61 | mismatches: [] | files on disk: 62 | unlisted: ['MANIFEST.json'] | listed-but-missing: []
+IDENTICAL validation/stdout.log / stderr.log / exit-code.txt
+IDENTICAL validation/mutation-stdout.log / mutation-stderr.log / mutation-exit-code.txt
+SUMMARY passed=49 failed=0 total=49
+SUMMARY killed=24 survived=0 total=24
+```
+
+**N-1 je zatvoren.** Formatter i CLI izvori, koje sam sam preuzeo po commit SHA, poklapaju se sa tabelom i paketom: `18 / 18`.
+- `maxErrors=0` znači bez ograničenja: `descr := "maximum number of errors to report (0 for no limit)"` i `maxErrors.get opts != 0 && ...` (`Language-Basic.lean@v4.33.1` L403–L406, L424).
+- Izlaz se ispisuje sa `msg.toString includeEndPos` i `IO.print`, dakle sve ide na stdout.
+
+Proverio sam i ono što paket nije pinovao, a matcher od toga zavisi. Na sva tri commita:
+```
+Print.lean     : logInfo m!"'{constName}' depends on axioms: {axioms.qsort Name.lt |>.map MessageData.ofConstName |>.toList}"
+Native.lean:75 : let auxAxiomName ← mkAuxDeclName <| `_native ++ tacticName ++ `ax
+Decide.lean    : evalDecideCore `native_decide cfg
+rc1 Decide.lean: | .notTrue => throwError m!"Tactic `{tacticName}` evaluated that the proposition ... is false"
+named-error API in Decide/Native (rc1, v4.32.2): 0 0 0 0
+```
+[L2] Oblik `AX`, podstring `native_decide` u imenu aksioma i ključne reči `native_decide` i `false` u neimenovanoj grešci slažu se sa izvorom. Da li konkretan run proizvodi baš ovu putanju, ostaje neizmereno.
+
+**Ispravke iz prošlog kruga (F-A do F-H) su provedene:**
+- F-C: u aktivnom `GOVERNANCE.md` preostalo je 0 pojavljivanja starog rečnika.
+- F-F: `DISTRIBUTION.md` postoji, a Apache 2.0 zaglavlje je potvrđeno u `Message.lean`.
+- F-H: dead code je uklonjen.
+- F-D i F-E: upisani u pravila i mapiranje.
+- F-008 i F-009: tačno opisuju moju grešku sa hashom i pogrešnu atribuciju recenzije.
+
+---
+
+**BLOCKER**
+
+**N-3. Za tri uslova i dalje nema fixture-a koji bi otkrio njihovo uklanjanje. Dva od njih menjaju ishod na jedinoj stvarnoj referenci.** Mutacije van deklarisanog skupa:
+```
+SURVIVED | U1 axiom record no longer truncates diagnostic body | failing: []
+SURVIVED | U6 drop Pos.Raw/Pos normalization | failing: []
+          reference under mutant -> { "outcome": "PREDICATE_INAPPLICABLE", "logical_signature_matches": 0, ...
+SURVIVED | U8 drop C comment stripping | failing: []
+          reference under mutant -> { "outcome": "NO_MISMATCH", ...
+--- unmutated proxy on reference pair:
+{ "outcome": "MISMATCH", ... }
+```
+- **U8, stripping komentara, nosi ishod na referenci.** Uzrok je u samom tekstu reference:
+  ```
+      if (!lean_is_scalar(b0) || !lean_is_scalar(e0)) {
+          /* See comment at string_utf8_get */
+          return s;
+  ```
+  Bez stripping-a referenca postaje NO_MISMATCH. To pravilo pritom nije ni registrovano: `INSTANCE_RULES.md` na L33 nabraja samo whitespace i `Pos.Raw/Pos`, a grep za "comment" u pravilima nema pogodaka.
+- **U6** je registrovana normalizacija bez fixture-a.
+- **U1** je uslov iz koda ("must not supply diagnostic keywords") bez fixture-a.
+
+Popravka je mehanička: tri fixture-a, pri čemu sintetički ulazi oponašaju `Pos.Raw` pravopis i komentar unutar native tela, i jedna rečenica u pravilima o stripping-u komentara.
+
+Da ovo ne bi otvorilo beskonačnu petlju mutacija, predlažem kriterijum zaustavljanja [L3]: inventar svih uslova i transformacija u oba skripta, izveden iz koda, i za svaku stavku imenovan fixture koji je ubija. U3 (lookbehind) i U5 (telo uključuje header) takođe preživljavaju, ali U3 greši samo u konzervativnom smeru, a U5 je praktično ekvivalentan mutant, pa ih ne računam.
+
+---
+
+**FIXES**
+
+- **F-I. Neke izvore matcher koristi, a paket ih ne pinuje.** `Print.lean`, `Meta/Native.lean` i `Elab/Tactic/Decide.lean` na tri commita nisu u `sources/diagnostics/`, pa `AX` i kriterijumi imena aksioma i ključnih reči nemaju zapis porekla u paketu (`grep 'Print.lean|depends on axioms'` u md fajlovima: prazno). Treba ih pinovati kao i N-1 izvore.
+- **F-J. "valid direct contrary result" nije definisan.** Ako rc1 u prvom run-u vrati ACCEPT, a recreation se bajtovski razlikuje, nije rečeno da li prednost ima kontrarni rezultat ili EVIDENCE_INSUFFICIENT. Treba definisati: validan znači recreation identičan i bez klasa neuspeha.
+- **F-K. Moja izloženost u ovom krugu, za ledger:**
+  - ceo paket;
+  - 18 dijagnostičkih fajlova;
+  - `Print.lean`, `ElabTerm.lean`, `Native.lean` i `Decide.lean` na sva tri commita;
+  - sparse klon v4.33.1 samo za `src/Lean/Elab/Tactic` i `src/Lean/Meta`, bez predikatskih fajlova T-B1;
+  - proxy nad referencom, i nemutiran i pod mutantima.
+
+  Lean nije pokretan i nijedan novi član denominatora nije čitan.
+
+```
+VERDICT: BLOCKED   (N-3)
+```

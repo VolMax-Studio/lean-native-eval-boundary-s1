@@ -55,3 +55,13 @@ Claude acknowledged that b089432223ed0dc23b52200ab080d429381d2766f61f33383386fce
 ## F-009 — formal text review misattributed and reclassified (F-B)
 
 supplied-review-1.txt attributed Claude's draft-1 review to Astra and used that attribution to call it pre-gate. The package's provenance record carried that reclassification. The Operator now explicitly confirms Claude's authorship and formal Gate status over the pasted text. Correct the active record while retaining both supplied reviews unchanged. This does not extend the historical review to the local commit or unseen FAILURES file. Can this instance still carry a verdict? Yes, conditionally after review of the actual execution package; historical review scopes remain bounded.
+
+## F-010 — untested outcome-relevant transformations (N-3)
+
+Claude reported that removing axiom-record diagnostic truncation (U1), Pos.Raw/Pos normalization (U6), or C comment stripping (U8) survived the prior declared suite. U6/U8 also changed the output on the already exposed reference. Comment stripping existed in code but had not been explicitly registered in INSTANCE_RULES.
+
+Correction: add one explicit fixture for each U1/U6/U8, declare their mutants, register the exact comment-removal transformation and preserve a code-derived inventory and finite stopping criterion. Add boundary/whitespace transformation mutants for the inventory using existing fixtures. Do not relabel the reference as outcome-blind or count exceptions as mutation kills. Can this instance still carry a verdict? Yes, conditionally after Gate review and freeze; T-B1 remains descriptive and no Lean execution has occurred.
+
+## F-011 — recreated validity not explicit in contrary-result precedence (F-J)
+
+The earlier phrase “valid direct contrary result” did not explicitly resolve rc1 ACCEPT followed by byte-different recreation. Correction: validity requires successful identical recreation, verified evidence pins/provenance, and absence of applicable failure classes. A differing recreation leads to EVIDENCE_INSUFFICIENT / Not Demonstrated, not a contrary-result Not Verified. This is defined before execution. Can this instance still carry a verdict? Yes, conditionally after the remaining Gate/freeze requirements.

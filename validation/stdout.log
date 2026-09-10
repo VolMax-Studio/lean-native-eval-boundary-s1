@@ -47,4 +47,9 @@ PASS S07_missing_native_definition expected=PREDICATE_INAPPLICABLE actual=PREDIC
 PASS S08_native_prefix_is_not_contains expected=NO_MISMATCH actual=NO_MISMATCH
 PASS N1_block_nested_name expected=EVIDENCE_INSUFFICIENT actual=EVIDENCE_INSUFFICIENT
 PASS N1_block_malformed_position expected=EVIDENCE_INSUFFICIENT actual=EVIDENCE_INSUFFICIENT
-SUMMARY passed=49 failed=0 total=49
+PASS N3_U1_axiom_cannot_supply_false expected=EVIDENCE_INSUFFICIENT actual=EVIDENCE_INSUFFICIENT
+PASS N3_U6_raw_spelling_in_body expected=MISMATCH actual=MISMATCH
+PASS N3_U8_comment_in_native_guard expected=MISMATCH actual=MISMATCH
+PASS I04_other_theorem_axioms expected=EVIDENCE_INSUFFICIENT actual=EVIDENCE_INSUFFICIENT
+PASS I05_absolute_PoC_path expected=EXPECTED_NATIVE_REJECTION actual=EXPECTED_NATIVE_REJECTION
+SUMMARY passed=54 failed=0 total=54

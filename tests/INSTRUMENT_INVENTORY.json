@@ -1,0 +1,457 @@
+{
+  "scope": "mechanical AST condition/attribute-call inventory; grouped outcome mapping and justified exclusions in INSTRUMENT_INVENTORY.md",
+  "scripts": [
+    {
+      "path": "scripts/source_proxy.py",
+      "sha256": "ee84636dfce4b2eaa1eda8ea76b410f21b3d4effba8804ccca169ae3bd2ab6a6",
+      "ast_items": [
+        {
+          "kind": "comprehension",
+          "line": null,
+          "code": " for c in candidates if norm(c) == norm(LOGICAL)"
+        },
+        {
+          "kind": "Call",
+          "line": 17,
+          "code": "re.sub(r'\\s+','',s.replace('Pos.Raw','Pos'))"
+        },
+        {
+          "kind": "Call",
+          "line": 17,
+          "code": "s.replace('Pos.Raw','Pos')"
+        },
+        {
+          "kind": "Call",
+          "line": 20,
+          "code": "re.finditer(r'^@\\[extern \"lean_string_utf8_extract\"(?:, expose)?\\]\\n',lean,re.M)"
+        },
+        {
+          "kind": "Call",
+          "line": 23,
+          "code": "a.end()"
+        },
+        {
+          "kind": "Call",
+          "line": 24,
+          "code": "re.match(r'def (?:Pos(?:\\.Raw)?\\.)?extract : \\(@& String\\) → \\(@& Pos(?:\\.Raw)?\\) → \\(@& Pos(?:\\.Raw)?\\) → String\\n',tail)"
+        },
+        {
+          "kind": "If",
+          "line": 25,
+          "code": "if not h: continue"
+        },
+        {
+          "kind": "Call",
+          "line": 27,
+          "code": "h.end()"
+        },
+        {
+          "kind": "Call",
+          "line": 28,
+          "code": "rest.splitlines(keepends=True)"
+        },
+        {
+          "kind": "BoolOp",
+          "line": 30,
+          "code": "line.strip() and not line[0].isspace() and line.rstrip()!='where'"
+        },
+        {
+          "kind": "Call",
+          "line": 30,
+          "code": "line.strip()"
+        },
+        {
+          "kind": "Call",
+          "line": 30,
+          "code": "line[0].isspace()"
+        },
+        {
+          "kind": "Call",
+          "line": 30,
+          "code": "line.rstrip()"
+        },
+        {
+          "kind": "Compare",
+          "line": 30,
+          "code": "line.rstrip()!='where'"
+        },
+        {
+          "kind": "If",
+          "line": 30,
+          "code": "if line.strip() and not line[0].isspace() and line.rstrip()!='where': break"
+        },
+        {
+          "kind": "Call",
+          "line": 31,
+          "code": "kept.append(line)"
+        },
+        {
+          "kind": "Call",
+          "line": 32,
+          "code": "candidates.append(''.join(kept))"
+        },
+        {
+          "kind": "Call",
+          "line": 32,
+          "code": "''.join(kept)"
+        },
+        {
+          "kind": "Compare",
+          "line": 33,
+          "code": "norm(c)==norm(LOGICAL)"
+        },
+        {
+          "kind": "Call",
+          "line": 34,
+          "code": "re.finditer(r'^extern \"C\" LEAN_EXPORT obj_res lean_string_utf8_extract\\(b_obj_arg s, b_obj_arg b0, b_obj_arg e0\\) \\{\\n(.*?)^\\}',cpp,re.M|re.S)"
+        },
+        {
+          "kind": "BoolOp",
+          "line": 35,
+          "code": "len(logical)!=1 or len(fs)!=1"
+        },
+        {
+          "kind": "Compare",
+          "line": 35,
+          "code": "len(logical)!=1"
+        },
+        {
+          "kind": "Compare",
+          "line": 35,
+          "code": "len(fs)!=1"
+        },
+        {
+          "kind": "If",
+          "line": 35,
+          "code": "if len(logical)!=1 or len(fs)!=1:\n        return {'outcome':'PREDICATE_INAPPLICABLE','logical_signature_matches':len(logical),'native_definition_matches':len(fs)}"
+        },
+        {
+          "kind": "Call",
+          "line": 37,
+          "code": "re.sub(r'/\\*.*?\\*/|//[^\\n]*','',fs[0][1],flags=re.S)"
+        },
+        {
+          "kind": "Call",
+          "line": 39,
+          "code": "norm(native).startswith(signature)"
+        },
+        {
+          "kind": "IfExp",
+          "line": 39,
+          "code": "'MISMATCH' if norm(native).startswith(signature) else 'NO_MISMATCH'"
+        },
+        {
+          "kind": "Compare",
+          "line": 41,
+          "code": "__name__=='__main__'"
+        },
+        {
+          "kind": "If",
+          "line": 41,
+          "code": "if __name__=='__main__':\n    print(json.dumps(classify(Path(sys.argv[1]).read_text(),Path(sys.argv[2]).read_text()),indent=2))"
+        },
+        {
+          "kind": "Call",
+          "line": 42,
+          "code": "json.dumps(classify(Path(sys.argv[1]).read_text(),Path(sys.argv[2]).read_text()),indent=2)"
+        },
+        {
+          "kind": "Call",
+          "line": 42,
+          "code": "Path(sys.argv[1]).read_text()"
+        },
+        {
+          "kind": "Call",
+          "line": 42,
+          "code": "Path(sys.argv[2]).read_text()"
+        }
+      ]
+    },
+    {
+      "path": "scripts/behavior_matcher.py",
+      "sha256": "6601ad44118c22fb77357de53e0e6ddba2bdd9089d3cef6bb919102b19e4217e",
+      "ast_items": [
+        {
+          "kind": "comprehension",
+          "line": null,
+          "code": " for i, line in enumerate(poc.splitlines()) if line.strip() == 'native_decide'"
+        },
+        {
+          "kind": "comprehension",
+          "line": null,
+          "code": " for record in records if record['severity'] == 'error'"
+        },
+        {
+          "kind": "comprehension",
+          "line": null,
+          "code": " for name in ax[0].split(',')"
+        },
+        {
+          "kind": "comprehension",
+          "line": null,
+          "code": " for name in names"
+        },
+        {
+          "kind": "Call",
+          "line": 10,
+          "code": "re.compile(r'(?<!\\w)error(?:\\([^\\r\\n]*\\))?:')"
+        },
+        {
+          "kind": "Call",
+          "line": 11,
+          "code": "re.compile(\n    r'(?m)^(?P<file>[^\\r\\n]+?):(?P<line>\\d+):(?P<column>\\d+)'\n    r'(?:-(?P<end_line>\\d+):(?P<end_column>\\d+))?: '\n    r'(?P<severity>error|warning)(?:\\((?P<name>[^()\\r\\n]*)\\))?: ?'\n)"
+        },
+        {
+          "kind": "Call",
+          "line": 16,
+          "code": "re.compile(r\"(?m)^'flt' depends on axioms:\\s*\\[([^\\]]*)\\]\")"
+        },
+        {
+          "kind": "Call",
+          "line": 20,
+          "code": "HEADER.finditer(stream)"
+        },
+        {
+          "kind": "Call",
+          "line": 23,
+          "code": "starts[i + 1].start()"
+        },
+        {
+          "kind": "Compare",
+          "line": 23,
+          "code": "i + 1 < len(starts)"
+        },
+        {
+          "kind": "IfExp",
+          "line": 23,
+          "code": "starts[i + 1].start() if i + 1 < len(starts) else len(stream)"
+        },
+        {
+          "kind": "Call",
+          "line": 25,
+          "code": "AX.search(stream, match.end(), end)"
+        },
+        {
+          "kind": "Call",
+          "line": 25,
+          "code": "match.end()"
+        },
+        {
+          "kind": "Compare",
+          "line": 26,
+          "code": "ax is not None"
+        },
+        {
+          "kind": "If",
+          "line": 26,
+          "code": "if ax is not None:\n            end = ax.start()"
+        },
+        {
+          "kind": "Call",
+          "line": 27,
+          "code": "ax.start()"
+        },
+        {
+          "kind": "Call",
+          "line": 28,
+          "code": "records.append({**match.groupdict(), 'body': stream[match.end():end]})"
+        },
+        {
+          "kind": "Call",
+          "line": 28,
+          "code": "match.groupdict()"
+        },
+        {
+          "kind": "Call",
+          "line": 28,
+          "code": "match.end()"
+        },
+        {
+          "kind": "Call",
+          "line": 32,
+          "code": "AX.findall(stdout)"
+        },
+        {
+          "kind": "Call",
+          "line": 33,
+          "code": "name.strip()"
+        },
+        {
+          "kind": "Call",
+          "line": 33,
+          "code": "ax[0].split(',')"
+        },
+        {
+          "kind": "IfExp",
+          "line": 33,
+          "code": "[name.strip() for name in ax[0].split(',')] if ax else []"
+        },
+        {
+          "kind": "BoolOp",
+          "line": 34,
+          "code": "name not in STD and 'native_decide' in name"
+        },
+        {
+          "kind": "Compare",
+          "line": 34,
+          "code": "name not in STD"
+        },
+        {
+          "kind": "Compare",
+          "line": 34,
+          "code": "'native_decide' in name"
+        },
+        {
+          "kind": "BoolOp",
+          "line": 35,
+          "code": "not ERROR_MARKER.search(stdout) and not ERROR_MARKER.search(stderr)"
+        },
+        {
+          "kind": "Call",
+          "line": 35,
+          "code": "ERROR_MARKER.search(stdout)"
+        },
+        {
+          "kind": "Call",
+          "line": 35,
+          "code": "ERROR_MARKER.search(stderr)"
+        },
+        {
+          "kind": "BoolOp",
+          "line": 36,
+          "code": "exitcode == 0 and len(ax) == 1 and no_error and required\n            and 'sorryAx' not in names"
+        },
+        {
+          "kind": "Compare",
+          "line": 36,
+          "code": "exitcode == 0"
+        },
+        {
+          "kind": "Compare",
+          "line": 36,
+          "code": "len(ax) == 1"
+        },
+        {
+          "kind": "If",
+          "line": 36,
+          "code": "if (exitcode == 0 and len(ax) == 1 and no_error and required\n            and 'sorryAx' not in names):\n        return 'ACCEPT'"
+        },
+        {
+          "kind": "Compare",
+          "line": 37,
+          "code": "'sorryAx' not in names"
+        },
+        {
+          "kind": "Call",
+          "line": 39,
+          "code": "poc.splitlines()"
+        },
+        {
+          "kind": "Call",
+          "line": 39,
+          "code": "line.strip()"
+        },
+        {
+          "kind": "Compare",
+          "line": 39,
+          "code": "line.strip() == 'native_decide'"
+        },
+        {
+          "kind": "Compare",
+          "line": 41,
+          "code": "record['severity'] == 'error'"
+        },
+        {
+          "kind": "Call",
+          "line": 42,
+          "code": "ERROR_MARKER.findall(stdout)"
+        },
+        {
+          "kind": "Call",
+          "line": 42,
+          "code": "ERROR_MARKER.findall(stderr)"
+        },
+        {
+          "kind": "BoolOp",
+          "line": 44,
+          "code": "len(loc) == 1 and exitcode != 0 and len(errors) == 1\n        and marker_count == len(errors)\n        and int(errors[0]['line']) == loc[0]\n        and Path(errors[0]['file']).name == 'PoC.lean'\n        and 'native_decide' in errors[0]['body']\n        and re.search(r'\\bfalse\\b', errors[0]['body']) is not None"
+        },
+        {
+          "kind": "Compare",
+          "line": 44,
+          "code": "len(loc) == 1"
+        },
+        {
+          "kind": "Compare",
+          "line": 44,
+          "code": "exitcode != 0"
+        },
+        {
+          "kind": "Compare",
+          "line": 44,
+          "code": "len(errors) == 1"
+        },
+        {
+          "kind": "Compare",
+          "line": 45,
+          "code": "marker_count == len(errors)"
+        },
+        {
+          "kind": "Compare",
+          "line": 46,
+          "code": "int(errors[0]['line']) == loc[0]"
+        },
+        {
+          "kind": "Compare",
+          "line": 47,
+          "code": "Path(errors[0]['file']).name == 'PoC.lean'"
+        },
+        {
+          "kind": "Compare",
+          "line": 48,
+          "code": "'native_decide' in errors[0]['body']"
+        },
+        {
+          "kind": "Call",
+          "line": 49,
+          "code": "re.search(r'\\bfalse\\b', errors[0]['body'])"
+        },
+        {
+          "kind": "Compare",
+          "line": 49,
+          "code": "re.search(r'\\bfalse\\b', errors[0]['body']) is not None"
+        },
+        {
+          "kind": "If",
+          "line": 51,
+          "code": "if expected:\n        return 'EXPECTED_NATIVE_REJECTION'"
+        },
+        {
+          "kind": "Compare",
+          "line": 55,
+          "code": "__name__ == '__main__'"
+        },
+        {
+          "kind": "If",
+          "line": 55,
+          "code": "if __name__ == '__main__':\n    print(classify(\n        Path(sys.argv[1]).read_text(encoding='utf-8'),\n        Path(sys.argv[2]).read_text(encoding='utf-8'),\n        Path(sys.argv[3]).read_text(encoding='utf-8'),\n        int(sys.argv[4]),\n    ))"
+        },
+        {
+          "kind": "Call",
+          "line": 57,
+          "code": "Path(sys.argv[1]).read_text(encoding='utf-8')"
+        },
+        {
+          "kind": "Call",
+          "line": 58,
+          "code": "Path(sys.argv[2]).read_text(encoding='utf-8')"
+        },
+        {
+          "kind": "Call",
+          "line": 59,
+          "code": "Path(sys.argv[3]).read_text(encoding='utf-8')"
+        }
+      ]
+    }
+  ]
+}

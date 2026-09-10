@@ -1,9 +1,10 @@
 {
-  "status": "N-1/N-2 REPAIR REVIEW PACKAGE; NOT FROZEN; last formal Gate result remains BLOCKED on prior ZIP",
-  "manifest_created_at_utc": "2026-09-10T20:00:12.366547+00:00",
-  "previous_review_commit": "581b0a4c70aac1cf4f74ca284af003034ca4b80d",
-  "previous_review_zip_sha256": "d52989959cbbfe28f7e84efe378f53659b6a10d21002fc4be0672ec60c672b9a",
-  "note": "Self excluded to avoid recursive hashing. Git commit identifies this manifest. external/ is outside the claim-bearing instance. Source snapshots are raw evidence, not adjudication of unrelated content. INTERNAL REVIEW ONLY.",
+  "status": "gate-repair-n3; pre-gate; HALT; not frozen; scientific verdict null",
+  "manifest_created_at_utc": "2026-09-10T20:20:09.523006+00:00",
+  "previous_review_commit": "e599d55343ab0b1168cb9edc61a4355f928499b0",
+  "previous_review_zip_sha256": "5b293daef542caefcb275990f424d05124883b658fc33b249c9f5119a2d162cc",
+  "repository": "VolMax-Studio/lean-native-eval-boundary-s1",
+  "note": "Self excluded to avoid recursion. Review exact containing Git commit. Existing history preserved. Public transfer explicitly authorized by Operator; external/ is outside claim-bearing instance.",
   "files": [
     {
       "path": ".gitignore",
@@ -22,28 +23,33 @@
     },
     {
       "path": "DIAGNOSTIC_PROFILE.md",
-      "bytes": 7358,
-      "sha256": "8247ea8d1e8135181779878fe9c92217dfa4b360ed41c520b4c64868f2d61ed8"
+      "bytes": 10226,
+      "sha256": "1bc33079d4d7d0cb11824ca6ddb3a5f7e18a31c7dbff7d559a66d28c4c4ff137"
     },
     {
       "path": "FAILURES.md",
-      "bytes": 6780,
-      "sha256": "4253105edde3af5122242c0b249bc03fd6538c5b9d5dd3d36592fa73b69a520b"
+      "bytes": 8295,
+      "sha256": "721f6bc993583e2a13590b9da65caad5784d9b4b08e32cc5dddd735fcca199b3"
     },
     {
       "path": "INSTANCE_RULES.md",
-      "bytes": 12533,
-      "sha256": "70e23441f0d30e2e0895867a9f9231751412468b5a9b6712e1469a12b168dd3a"
+      "bytes": 14053,
+      "sha256": "6d973955d51c2159b6f8439b6c8752daae2ada27fc398dc9b7dafa916718eb33"
     },
     {
       "path": "PRE_GATE_CLOSURE.md",
-      "bytes": 3394,
-      "sha256": "6a9149e1ff6d5b9f6686f10f19318b0437ec65d0a98b1e9b55d0807192b1d809"
+      "bytes": 2641,
+      "sha256": "77b7912680702e0e31ccca687b9b567aaf163dce0833f1b9edfa1953fb8f2a17"
     },
     {
       "path": "RESOURCE_PLAN.md",
       "bytes": 960,
       "sha256": "ea23dbddd2607baa0917279dec1afdb50996a54fd0cf951090a6472c41f481ab"
+    },
+    {
+      "path": "STATUS.md",
+      "bytes": 841,
+      "sha256": "bb99e18366de7a0d4d6961cac9e0345d427ecc5645caf08f609cf8d8dc9b49f6"
     },
     {
       "path": "TAG_MANIFEST.json",
@@ -52,18 +58,23 @@
     },
     {
       "path": "external/DISTRIBUTION.md",
-      "bytes": 994,
-      "sha256": "90fd9063e500e2b2e27bfa67876698e84828c5d4ae6838959a8f8b45f96bd96e"
+      "bytes": 1049,
+      "sha256": "ead1d72d7e7421916c80ab3b9143ac47cc79b3742d572c166e3b074eca35fcfb"
     },
     {
       "path": "external/EXPOSURE_LEDGER.md",
-      "bytes": 7295,
-      "sha256": "8ba295580f448b4e922ffbbb4d171f661254b45249a7b86a4d20103abf6eb89c"
+      "bytes": 8842,
+      "sha256": "c6cf3c9cc4f4798d8675ef64b6757e210d8be169457e68bdd78b01fe75939bf1"
     },
     {
       "path": "external/GOVERNANCE.md",
-      "bytes": 4565,
-      "sha256": "6293de3f30b3fda83c25f9897cf006e50c4890882c8ad502471528f5c6973385"
+      "bytes": 5452,
+      "sha256": "31398e0c3de66ca28588dbaa9192099f48046867dbf56e54a11165c580272cb8"
+    },
+    {
+      "path": "external/claude-gate-n1-n2-repair.txt",
+      "bytes": 5110,
+      "sha256": "59821074f4b443d6d21c996ebf5e7e661ff2e830f378d087c2458080950e2303"
     },
     {
       "path": "external/claude-gate-validation-supplement.txt",
@@ -111,9 +122,19 @@
       "sha256": "bd5950dc422d6baeb08d0070e827bcbbce30c7e4d6942d4f7fe1625ed2d969f9"
     },
     {
+      "path": "sources/diagnostics/n3-retrieval.json",
+      "bytes": 5664,
+      "sha256": "cb24a71b8c1d8c26c83d968b24dabf5be39c39ae19970da4037df7247b9aaf35"
+    },
+    {
       "path": "sources/diagnostics/retrieval.json",
       "bytes": 10590,
       "sha256": "5f22153677b57b252571ba9aefb2486266fa70352f3d54be512779619f8ee1f2"
+    },
+    {
+      "path": "sources/diagnostics/v4.32.2/Decide.lean",
+      "bytes": 8955,
+      "sha256": "4cbd21f448eb8afbd81daee71bed7ce3f272af0fe916621b1e56b506c29a5c7b"
     },
     {
       "path": "sources/diagnostics/v4.32.2/Frontend.lean",
@@ -131,6 +152,16 @@
       "sha256": "bee50b5c2a0e0baeb33966c6b8944143e12d47ed5617aadb94bd27711c8889aa"
     },
     {
+      "path": "sources/diagnostics/v4.32.2/Native.lean",
+      "bytes": 3207,
+      "sha256": "e1d0c6b5be42f492810a12281fc0d8ff4c981e421397c3ec00e165a255ed09c1"
+    },
+    {
+      "path": "sources/diagnostics/v4.32.2/Print.lean",
+      "bytes": 12636,
+      "sha256": "e0639698983533b4f48adc93a53feea2ce129364518b58ea09e8c97748bdd6e6"
+    },
+    {
       "path": "sources/diagnostics/v4.32.2/Shell.lean",
       "bytes": 22896,
       "sha256": "6ffb68a347815e43fe5771205bd02236e1508132b9197c27a3d805fe1cad7ab7"
@@ -144,6 +175,11 @@
       "path": "sources/diagnostics/v4.32.2/util-shell.cpp",
       "bytes": 12127,
       "sha256": "c103e3b51bc402527c52d7b6dc1624e33038a2db8180615d952287ca3f3f2a9e"
+    },
+    {
+      "path": "sources/diagnostics/v4.33.1/Decide.lean",
+      "bytes": 9135,
+      "sha256": "99e84ce67778157e77d7261aa25b64ed72da16e9d1f60031cf2aa26f5ea6ee68"
     },
     {
       "path": "sources/diagnostics/v4.33.1/Frontend.lean",
@@ -161,6 +197,16 @@
       "sha256": "09277320b843288e7a51b98c794e4440cfd0e3c71e18eb777105414751a1004f"
     },
     {
+      "path": "sources/diagnostics/v4.33.1/Native.lean",
+      "bytes": 3207,
+      "sha256": "e1d0c6b5be42f492810a12281fc0d8ff4c981e421397c3ec00e165a255ed09c1"
+    },
+    {
+      "path": "sources/diagnostics/v4.33.1/Print.lean",
+      "bytes": 12705,
+      "sha256": "459b4ecda77dc07c346b6cb48be0f8941c9aa30e2729ffb8f339f604052140a3"
+    },
+    {
       "path": "sources/diagnostics/v4.33.1/Shell.lean",
       "bytes": 22984,
       "sha256": "4f584ae4d4cc859f39cdbb550df8e09417d1fd8e95046829ef821c2c95e2f940"
@@ -176,6 +222,11 @@
       "sha256": "502eaa752396cdff5bb448833a63be54cbbcbb3d36881eb10e235c04c64c0832"
     },
     {
+      "path": "sources/diagnostics/v4.34.0-rc1/Decide.lean",
+      "bytes": 9135,
+      "sha256": "99e84ce67778157e77d7261aa25b64ed72da16e9d1f60031cf2aa26f5ea6ee68"
+    },
+    {
       "path": "sources/diagnostics/v4.34.0-rc1/Frontend.lean",
       "bytes": 19531,
       "sha256": "e3e9037222c00308edc4fed589da83a80620bf5b35108779564fc485d8c17774"
@@ -189,6 +240,16 @@
       "path": "sources/diagnostics/v4.34.0-rc1/Message.lean",
       "bytes": 39073,
       "sha256": "09277320b843288e7a51b98c794e4440cfd0e3c71e18eb777105414751a1004f"
+    },
+    {
+      "path": "sources/diagnostics/v4.34.0-rc1/Native.lean",
+      "bytes": 3207,
+      "sha256": "e1d0c6b5be42f492810a12281fc0d8ff4c981e421397c3ec00e165a255ed09c1"
+    },
+    {
+      "path": "sources/diagnostics/v4.34.0-rc1/Print.lean",
+      "bytes": 12705,
+      "sha256": "459b4ecda77dc07c346b6cb48be0f8941c9aa30e2729ffb8f339f604052140a3"
     },
     {
       "path": "sources/diagnostics/v4.34.0-rc1/Shell.lean",
@@ -232,13 +293,23 @@
     },
     {
       "path": "tests/CONDITION_COVERAGE.md",
-      "bytes": 3149,
-      "sha256": "387222b5bb9de675c65d72de591837c2af07b8583f94508a29db5f2ea589589e"
+      "bytes": 4410,
+      "sha256": "9b1e98ee0b9deca12a59e58607c21f5804927a7fa52c49678a59ffa2413e3988"
+    },
+    {
+      "path": "tests/INSTRUMENT_INVENTORY.json",
+      "bytes": 12672,
+      "sha256": "9dd6fa81bbe38b90cb09eb765192fcd55c0dca92bf7ef377e3c2f992e6465716"
+    },
+    {
+      "path": "tests/INSTRUMENT_INVENTORY.md",
+      "bytes": 5489,
+      "sha256": "8a4abfa741ea93a464e0d7cdae8feb8e9bcd3b8110378b3f8a29bb744201860a"
     },
     {
       "path": "tests/README.md",
-      "bytes": 2812,
-      "sha256": "21b9d1df48ad2f3f8dcdc0b0f4dec3991833acbe49115bfeec2eb2478a9733a4"
+      "bytes": 3117,
+      "sha256": "8d4852285ad383ad8a5cf13107ba664c449e566de425df4921b5faf6722a7fee"
     },
     {
       "path": "tests/command.sh",
@@ -252,8 +323,8 @@
     },
     {
       "path": "tests/mutations.json",
-      "bytes": 4026,
-      "sha256": "acbb3531cc2a9005c7d06a9d16658dd57c6ae48f11a405129609ca8e771f1d51"
+      "bytes": 6390,
+      "sha256": "f61d6e4be1e6ee8c277c8b1c08987aed66e22e6e72315eae08d18e7df5340f88"
     },
     {
       "path": "tests/run_mutations.py",
@@ -267,8 +338,8 @@
     },
     {
       "path": "tests/synthetic_cases.json",
-      "bytes": 20667,
-      "sha256": "2d3133c2509b2ef9ee157cf48c3dbe1673cfdd6ef8193675a9239dc6dc3ab6c6"
+      "bytes": 23411,
+      "sha256": "04b8b33a391f94502fe3c455798d7abb366dfb039e533b0a236145c01179e097"
     },
     {
       "path": "validation/exit-code.txt",
@@ -287,8 +358,8 @@
     },
     {
       "path": "validation/mutation-stdout.log",
-      "bytes": 13452,
-      "sha256": "067992a816c5d36fe8ca9cf10bbccdd4d62e376e68193b3c1ef8dd830ed98338"
+      "bytes": 21862,
+      "sha256": "881deaf0b650fa7cfe6f38d4c547da1629377d565b327ad911721a37f0912cac"
     },
     {
       "path": "validation/provenance-checks.json",
@@ -297,8 +368,8 @@
     },
     {
       "path": "validation/run.json",
-      "bytes": 3144,
-      "sha256": "bde33c897432681db8b38b74197a4600a017fced3eb2e59c6943550bd741e6ba"
+      "bytes": 3142,
+      "sha256": "757c98e2d090962fe8996cc175bf33fe16b234c19918fd10340c2f2ed818e350"
     },
     {
       "path": "validation/stderr.log",
@@ -307,8 +378,8 @@
     },
     {
       "path": "validation/stdout.log",
-      "bytes": 4546,
-      "sha256": "0c2f0437f1d07e02b16150adc97195abfdeafacdcdad6129f745a4f322130867"
+      "bytes": 4963,
+      "sha256": "82eb12222e0262ccba2eb2fbd72ab9df2eccf120b57045f420e2298c9ed2db3e"
     }
   ]
 }

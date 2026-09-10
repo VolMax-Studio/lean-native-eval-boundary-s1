@@ -1,7 +1,5 @@
-# L0 distribution status — internal review object
+# L0 distribution status — Operator-authorized public repository transfer
 
-This package is designated INTERNAL REVIEW ONLY for the Operator and appointed Gate. It has not been publicly published by this task. The ZIP's inclusion of third-party source snapshots does not imply a blanket redistribution license or clearance for public release.
+The Operator explicitly instructed pushing the existing history and complete research object to VolMax-Studio/lean-native-eval-boundary-s1, including sources, manifests, fixtures, validation and external governance. The connected repository metadata returned visibility=public, and the remote was empty before transfer. This current instruction supersedes the earlier INTERNAL REVIEW ONLY designation for the requested repository transfer; old commits preserve that historical designation without retroactive editing.
 
-Lean source files retain their original copyright/license headers. Their headers state release under Apache 2.0 with reference to the repository LICENSE. This is an observation of the supplied source notice, not a complete license-compliance determination. The blog HTML and issue JSON are archived as evidence with URL, capture provenance and hashes; no public redistribution permission is asserted here.
-
-Any public derivative must be separately prepared and reviewed, with a hash manifest and explicit handling of third-party raw data. The current internal evidence bundle is not the public derivative. This record authorizes no upload, publication or external message.
+Public repository packaging includes the hash manifest for raw source evidence. Source copyright/license headers are retained. Lean files identify Apache 2.0 in their original headers; no blanket license for third-party blog/issue content is asserted. This distribution record preserves the Operator's authorization and provenance, not a legal determination about every source. No unrelated publication or external message is authorized by this record.

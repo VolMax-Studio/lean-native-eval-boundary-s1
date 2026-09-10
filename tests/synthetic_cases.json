@@ -423,5 +423,46 @@
     "stderr": "PoC.lean:bad:position: error(tactic.native): failed",
     "exitcode": 0,
     "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "N3_U1_axiom_cannot_supply_false",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "PoC.lean:2:4: error: native_decide unfinished\n'flt' depends on axioms: [extra.false]",
+    "stderr": "",
+    "exitcode": 1,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "N3_U6_raw_spelling_in_body",
+    "kind": "source_proxy",
+    "lean": "@[extern \"lean_string_utf8_extract\", expose]\ndef Pos.Raw.extract : (@& String) → (@& Pos.Raw) → (@& Pos.Raw) → String\n  | s, b, e => if b.byteIdx ≥ e.byteIdx then \"\" else ofList (go₁ s.toList 0 b e)\nwhere\n  go₁ : List Char → Pos.Raw → Pos.Raw → Pos.Raw → List Char\n    | [], _, _, _ => []\n    | s@(c::cs), i, b, e => if i = b then go₂ s i e else go₁ cs (i + c) b e\n  go₂ : List Char → Pos.Raw → Pos.Raw → List Char\n    | [], _, _ => []\n    | c::cs, i, e => if i = e then [] else c :: go₂ cs (i + c) e\n\ndef next := 0\n",
+    "cpp": "extern \"C\" LEAN_EXPORT obj_res lean_string_utf8_extract(b_obj_arg s, b_obj_arg b0, b_obj_arg e0) {\nif (!lean_is_scalar(b0) || !lean_is_scalar(e0)) { return s; }\n}\n",
+    "expected": "MISMATCH"
+  },
+  {
+    "id": "N3_U8_comment_in_native_guard",
+    "kind": "source_proxy",
+    "lean": "@[extern \"lean_string_utf8_extract\", expose]\ndef Pos.Raw.extract : (@& String) → (@& Pos.Raw) → (@& Pos.Raw) → String\n  | s, b, e => if b.byteIdx ≥ e.byteIdx then \"\" else ofList (go₁ s.toList 0 b e)\nwhere\n  go₁ : List Char → Pos → Pos → Pos → List Char\n    | [], _, _, _ => []\n    | s@(c::cs), i, b, e => if i = b then go₂ s i e else go₁ cs (i + c) b e\n  go₂ : List Char → Pos → Pos → List Char\n    | [], _, _ => []\n    | c::cs, i, e => if i = e then [] else c :: go₂ cs (i + c) e\n\ndef next := 0\n",
+    "cpp": "extern \"C\" LEAN_EXPORT obj_res lean_string_utf8_extract(b_obj_arg s, b_obj_arg b0, b_obj_arg e0) {\nif (!lean_is_scalar(b0) || !lean_is_scalar(e0)) { /* See comment at string_utf8_get */\n// synthetic line comment\n return s; }\n}\n",
+    "expected": "MISMATCH"
+  },
+  {
+    "id": "I04_other_theorem_axioms",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "'other' depends on axioms: [propext, demo.native_decide.ax_1]",
+    "stderr": "",
+    "exitcode": 0,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "I05_absolute_PoC_path",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "",
+    "stderr": "/isolated/work/PoC.lean:2:4: error: native_decide evaluated to false",
+    "exitcode": 1,
+    "expected": "EXPECTED_NATIVE_REJECTION"
   }
 ]

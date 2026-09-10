@@ -142,5 +142,89 @@
     "kind": "behavior_matcher",
     "find": "re.search(r'\\bfalse\\b', errors[0]['body']) is not None",
     "replace": "'false' in errors[0]['body']"
+  },
+  {
+    "id": "U1_drop_axiom_boundary",
+    "kind": "behavior_matcher",
+    "find": "        if ax is not None:\n            end = ax.start()",
+    "replace": "        if ax is not None:\n            pass"
+  },
+  {
+    "id": "U6_drop_Pos_Raw_normalization",
+    "kind": "source_proxy",
+    "find": "s.replace('Pos.Raw','Pos')",
+    "replace": "s"
+  },
+  {
+    "id": "U8_drop_C_comment_stripping",
+    "kind": "source_proxy",
+    "find": "re.sub(r'/\\*.*?\\*/|//[^\\n]*','',fs[0][1],flags=re.S)",
+    "replace": "fs[0][1]"
+  },
+  {
+    "id": "I01_drop_whitespace_normalization",
+    "kind": "source_proxy",
+    "find": "return re.sub(r'\\s+','',s.replace('Pos.Raw','Pos'))",
+    "replace": "return s.replace('Pos.Raw','Pos')"
+  },
+  {
+    "id": "I02_drop_declaration_stop",
+    "kind": "source_proxy",
+    "find": "and line.rstrip()!='where': break",
+    "replace": "and line.rstrip()!='where': pass"
+  },
+  {
+    "id": "I03_stop_at_where",
+    "kind": "source_proxy",
+    "find": " and line.rstrip()!='where'",
+    "replace": ""
+  },
+  {
+    "id": "I04_accept_other_theorem_axioms",
+    "kind": "behavior_matcher",
+    "find": "^'flt' depends on axioms:",
+    "replace": "^'[^']+' depends on axioms:"
+  },
+  {
+    "id": "I05_drop_axiom_name_strip",
+    "kind": "behavior_matcher",
+    "find": "[name.strip() for name in ax[0].split(',')]",
+    "replace": "[name for name in ax[0].split(',')]"
+  },
+  {
+    "id": "I06_drop_source_line_strip",
+    "kind": "behavior_matcher",
+    "find": "if line.strip() == 'native_decide'",
+    "replace": "if line == 'native_decide'"
+  },
+  {
+    "id": "I07_merge_streams_before_parse",
+    "kind": "behavior_matcher",
+    "find": "diagnostics(stdout) + diagnostics(stderr)",
+    "replace": "diagnostics(stdout + '\\n' + stderr)"
+  },
+  {
+    "id": "I08_drop_path_basename",
+    "kind": "behavior_matcher",
+    "find": "Path(errors[0]['file']).name",
+    "replace": "errors[0]['file']"
+  },
+  {
+    "id": "I09_zero_based_line",
+    "kind": "behavior_matcher",
+    "find": "[i + 1 for i, line",
+    "replace": "[i for i, line"
+  },
+  {
+    "id": "I10_drop_block_comment_alternative",
+    "kind": "source_proxy",
+    "find": "/\\*.*?\\*/|//[^\\n]*",
+    "replace": "//[^\\n]*"
+  },
+  {
+    "id": "I11_drop_line_comment_alternative",
+    "kind": "source_proxy",
+    "find": "/\\*.*?\\*/|//[^\\n]*",
+    "replace": "/\\*.*?\\*/"
   }
 ]

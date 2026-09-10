@@ -30,3 +30,19 @@ The registered parser accepts `FILE:L:C[-EL:EC]: error[(NAME)]: BODY` and equiva
 | v4.34.0-rc1 | shell-lean.cpp | `b311e6363d689e7b6d2e717c53981c59c63104892dc1d0cb308d977d6c6d943a` | `3447a668783dbce1a8fdb97101dd067687b2b418` | [source](https://raw.githubusercontent.com/leanprover/lean4/3447a668783dbce1a8fdb97101dd067687b2b418/src/shell/lean.cpp) |
 | v4.34.0-rc1 | util-shell.cpp | `502eaa752396cdff5bb448833a63be54cbbcbb3d36881eb10e235c04c64c0832` | `3447a668783dbce1a8fdb97101dd067687b2b418` | [source](https://raw.githubusercontent.com/leanprover/lean4/3447a668783dbce1a8fdb97101dd067687b2b418/src/util/shell.cpp) |
 | v4.34.0-rc1 | Shell.lean | `4f584ae4d4cc859f39cdbb550df8e09417d1fd8e95046829ef821c2c95e2f940` | `3447a668783dbce1a8fdb97101dd067687b2b418` | [source](https://raw.githubusercontent.com/leanprover/lean4/3447a668783dbce1a8fdb97101dd067687b2b418/src/Lean/Shell.lean) |
+
+## F-I: axiom and native-decision source dependencies
+
+The additional Print.lean, Meta/Native.lean and Elab/Tactic/Decide.lean files are saved for all three matrix commits. Print.lean emits the quoted constant name followed by `depends on axioms:` and a list. Native.lean constructs the auxiliary axiom name from `_native`, tacticName and `ax`; Decide.lean passes native_decide into evalDecideCore and its .notTrue branch emits the registered false-proposition diagnostic. These static sources justify the structural AX/name/keyword criteria; they do not establish which path an actual run will take.
+
+| Tag | Source | SHA-256 | Pinned URL |
+| --- | --- | --- | --- |
+| v4.32.2 | src/Lean/Elab/Print.lean | `e0639698983533b4f48adc93a53feea2ce129364518b58ea09e8c97748bdd6e6` | [source](https://raw.githubusercontent.com/leanprover/lean4/f3b06c705e6c85f5314019d5d3baab0fec5b580c/src/Lean/Elab/Print.lean) |
+| v4.32.2 | src/Lean/Meta/Native.lean | `e1d0c6b5be42f492810a12281fc0d8ff4c981e421397c3ec00e165a255ed09c1` | [source](https://raw.githubusercontent.com/leanprover/lean4/f3b06c705e6c85f5314019d5d3baab0fec5b580c/src/Lean/Meta/Native.lean) |
+| v4.32.2 | src/Lean/Elab/Tactic/Decide.lean | `4cbd21f448eb8afbd81daee71bed7ce3f272af0fe916621b1e56b506c29a5c7b` | [source](https://raw.githubusercontent.com/leanprover/lean4/f3b06c705e6c85f5314019d5d3baab0fec5b580c/src/Lean/Elab/Tactic/Decide.lean) |
+| v4.33.1 | src/Lean/Elab/Print.lean | `459b4ecda77dc07c346b6cb48be0f8941c9aa30e2729ffb8f339f604052140a3` | [source](https://raw.githubusercontent.com/leanprover/lean4/819816b2e0a3bf405af45ae5c7af2491d8f5bee6/src/Lean/Elab/Print.lean) |
+| v4.33.1 | src/Lean/Meta/Native.lean | `e1d0c6b5be42f492810a12281fc0d8ff4c981e421397c3ec00e165a255ed09c1` | [source](https://raw.githubusercontent.com/leanprover/lean4/819816b2e0a3bf405af45ae5c7af2491d8f5bee6/src/Lean/Meta/Native.lean) |
+| v4.33.1 | src/Lean/Elab/Tactic/Decide.lean | `99e84ce67778157e77d7261aa25b64ed72da16e9d1f60031cf2aa26f5ea6ee68` | [source](https://raw.githubusercontent.com/leanprover/lean4/819816b2e0a3bf405af45ae5c7af2491d8f5bee6/src/Lean/Elab/Tactic/Decide.lean) |
+| v4.34.0-rc1 | src/Lean/Elab/Print.lean | `459b4ecda77dc07c346b6cb48be0f8941c9aa30e2729ffb8f339f604052140a3` | [source](https://raw.githubusercontent.com/leanprover/lean4/3447a668783dbce1a8fdb97101dd067687b2b418/src/Lean/Elab/Print.lean) |
+| v4.34.0-rc1 | src/Lean/Meta/Native.lean | `e1d0c6b5be42f492810a12281fc0d8ff4c981e421397c3ec00e165a255ed09c1` | [source](https://raw.githubusercontent.com/leanprover/lean4/3447a668783dbce1a8fdb97101dd067687b2b418/src/Lean/Meta/Native.lean) |
+| v4.34.0-rc1 | src/Lean/Elab/Tactic/Decide.lean | `99e84ce67778157e77d7261aa25b64ed72da16e9d1f60031cf2aa26f5ea6ee68` | [source](https://raw.githubusercontent.com/leanprover/lean4/3447a668783dbce1a8fdb97101dd067687b2b418/src/Lean/Elab/Tactic/Decide.lean) |

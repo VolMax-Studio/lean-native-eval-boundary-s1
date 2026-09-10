@@ -1,8 +1,8 @@
-# Declared mutation witnesses
+# Declared mutation witnesses — N-3
 
-OBSERVED from the literal validation/mutation-stdout.log. Each row is one declared single-change mutant and a fixture that produces a wrong classification after that mutation. This table is an index, not a substitute for literal results. Exceptions are not counted as kills; additional witness and exception records are retained in the log.
+Derived index of literal validation/mutation-stdout.log; exceptions never count as kills.
 
-| Mutant | Result | First distinguishing fixture | Expected | Mutant result |
+| Mutant | Result | First witness | Expected | Mutant result |
 | --- | --- | --- | --- | --- |
 | M01_drop_sorry_guard | KILLED | B07_sorry_with_valid_native | EVIDENCE_INSUFFICIENT | ACCEPT |
 | M02_drop_no_error | KILLED | B02_error_despite_zero | EVIDENCE_INSUFFICIENT | ACCEPT |
@@ -28,3 +28,17 @@ OBSERVED from the literal validation/mutation-stdout.log. Each row is one declar
 | M22_drop_named_error_marker | KILLED | B16_unparsed_extra_named_error | EVIDENCE_INSUFFICIENT | EXPECTED_NATIVE_REJECTION |
 | M23_ignore_severity | KILLED | B18_warning_then_expected_error | EXPECTED_NATIVE_REJECTION | EVIDENCE_INSUFFICIENT |
 | M24_false_substring_only | KILLED | B17_false_word_boundary | EVIDENCE_INSUFFICIENT | EXPECTED_NATIVE_REJECTION |
+| U1_drop_axiom_boundary | KILLED | N3_U1_axiom_cannot_supply_false | EVIDENCE_INSUFFICIENT | EXPECTED_NATIVE_REJECTION |
+| U6_drop_Pos_Raw_normalization | KILLED | N3_U6_raw_spelling_in_body | MISMATCH | PREDICATE_INAPPLICABLE |
+| U8_drop_C_comment_stripping | KILLED | N3_U8_comment_in_native_guard | MISMATCH | NO_MISMATCH |
+| I01_drop_whitespace_normalization | KILLED | S01_signature_pair | MISMATCH | PREDICATE_INAPPLICABLE |
+| I02_drop_declaration_stop | KILLED | S01_signature_pair | MISMATCH | PREDICATE_INAPPLICABLE |
+| I03_stop_at_where | KILLED | S01_signature_pair | MISMATCH | PREDICATE_INAPPLICABLE |
+| I04_accept_other_theorem_axioms | KILLED | I04_other_theorem_axioms | EVIDENCE_INSUFFICIENT | ACCEPT |
+| I05_drop_axiom_name_strip | KILLED | B07_sorry_with_valid_native | EVIDENCE_INSUFFICIENT | ACCEPT |
+| I06_drop_source_line_strip | KILLED | B04_native_false_correct_line | EXPECTED_NATIVE_REJECTION | EVIDENCE_INSUFFICIENT |
+| I07_merge_streams_before_parse | KILLED | B20_cross_stream_not_one_diagnostic | EVIDENCE_INSUFFICIENT | EXPECTED_NATIVE_REJECTION |
+| I08_drop_path_basename | KILLED | I05_absolute_PoC_path | EXPECTED_NATIVE_REJECTION | EVIDENCE_INSUFFICIENT |
+| I09_zero_based_line | KILLED | B04_native_false_correct_line | EXPECTED_NATIVE_REJECTION | EVIDENCE_INSUFFICIENT |
+| I10_drop_block_comment_alternative | KILLED | N3_U8_comment_in_native_guard | MISMATCH | NO_MISMATCH |
+| I11_drop_line_comment_alternative | KILLED | N3_U8_comment_in_native_guard | MISMATCH | NO_MISMATCH |

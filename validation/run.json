@@ -1,5 +1,5 @@
 {
-  "kind": "new N-1/N-2 repair validation; no Lean execution",
+  "kind": "N-3 repair validation; no Lean execution",
   "python_version": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
   "python_executable": "/home/volmax-studio/volmax-projects/IoT/volmax_env/bin/python3",
   "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
@@ -9,9 +9,9 @@
         "sh",
         "tests/command.sh"
       ],
-      "cwd": "package root",
-      "started_at_utc": "2026-09-10T19:59:19.134476+00:00",
-      "completed_at_utc": "2026-09-10T19:59:19.165528+00:00",
+      "cwd": "repository root",
+      "started_at_utc": "2026-09-10T20:19:40.144194+00:00",
+      "completed_at_utc": "2026-09-10T20:19:40.172799+00:00",
       "exit_code": 0,
       "output_prefix": "validation/"
     },
@@ -20,9 +20,9 @@
         "sh",
         "tests/mutation-command.sh"
       ],
-      "cwd": "package root",
-      "started_at_utc": "2026-09-10T19:59:19.165732+00:00",
-      "completed_at_utc": "2026-09-10T19:59:19.211561+00:00",
+      "cwd": "repository root",
+      "started_at_utc": "2026-09-10T20:19:40.173064+00:00",
+      "completed_at_utc": "2026-09-10T20:19:40.230459+00:00",
       "exit_code": 0,
       "output_prefix": "validation/mutation-"
     }
@@ -50,8 +50,8 @@
     },
     {
       "path": "tests/mutations.json",
-      "bytes": 4026,
-      "sha256": "acbb3531cc2a9005c7d06a9d16658dd57c6ae48f11a405129609ca8e771f1d51"
+      "bytes": 6390,
+      "sha256": "f61d6e4be1e6ee8c277c8b1c08987aed66e22e6e72315eae08d18e7df5340f88"
     },
     {
       "path": "tests/run_mutations.py",
@@ -65,8 +65,8 @@
     },
     {
       "path": "tests/synthetic_cases.json",
-      "bytes": 20667,
-      "sha256": "2d3133c2509b2ef9ee157cf48c3dbe1673cfdd6ef8193675a9239dc6dc3ab6c6"
+      "bytes": 23411,
+      "sha256": "04b8b33a391f94502fe3c455798d7abb366dfb039e533b0a236145c01179e097"
     },
     {
       "path": "validation/exit-code.txt",
@@ -85,8 +85,8 @@
     },
     {
       "path": "validation/mutation-stdout.log",
-      "bytes": 13452,
-      "sha256": "067992a816c5d36fe8ca9cf10bbccdd4d62e376e68193b3c1ef8dd830ed98338"
+      "bytes": 21862,
+      "sha256": "881deaf0b650fa7cfe6f38d4c547da1629377d565b327ad911721a37f0912cac"
     },
     {
       "path": "validation/stderr.log",
@@ -95,8 +95,8 @@
     },
     {
       "path": "validation/stdout.log",
-      "bytes": 4546,
-      "sha256": "0c2f0437f1d07e02b16150adc97195abfdeafacdcdad6129f745a4f322130867"
+      "bytes": 4963,
+      "sha256": "82eb12222e0262ccba2eb2fbd72ab9df2eccf120b57045f420e2298c9ed2db3e"
     }
   ]
 }

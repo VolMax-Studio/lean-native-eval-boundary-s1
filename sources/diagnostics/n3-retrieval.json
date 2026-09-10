@@ -1,0 +1,155 @@
+[
+  {
+    "tag": "v4.32.2",
+    "ref": "f3b06c705e6c85f5314019d5d3baab0fec5b580c",
+    "path": "src/Lean/Elab/Print.lean",
+    "url": "https://raw.githubusercontent.com/leanprover/lean4/f3b06c705e6c85f5314019d5d3baab0fec5b580c/src/Lean/Elab/Print.lean",
+    "start": {
+      "current_time": "2026-09-10 20:14:18 UTC"
+    },
+    "end": {
+      "current_time": "2026-09-10 20:14:29 UTC"
+    },
+    "file": "Print.lean",
+    "tool": "mcp__codex_apps__github_fetch",
+    "http_status": "not exposed",
+    "saved_path": "sources/diagnostics/v4.32.2/Print.lean",
+    "representation": "connector UTF-8 text, one final LF"
+  },
+  {
+    "tag": "v4.32.2",
+    "ref": "f3b06c705e6c85f5314019d5d3baab0fec5b580c",
+    "path": "src/Lean/Meta/Native.lean",
+    "url": "https://raw.githubusercontent.com/leanprover/lean4/f3b06c705e6c85f5314019d5d3baab0fec5b580c/src/Lean/Meta/Native.lean",
+    "start": {
+      "current_time": "2026-09-10 20:14:18 UTC"
+    },
+    "end": {
+      "current_time": "2026-09-10 20:14:29 UTC"
+    },
+    "file": "Native.lean",
+    "tool": "mcp__codex_apps__github_fetch",
+    "http_status": "not exposed",
+    "saved_path": "sources/diagnostics/v4.32.2/Native.lean",
+    "representation": "connector UTF-8 text, one final LF"
+  },
+  {
+    "tag": "v4.32.2",
+    "ref": "f3b06c705e6c85f5314019d5d3baab0fec5b580c",
+    "path": "src/Lean/Elab/Tactic/Decide.lean",
+    "url": "https://raw.githubusercontent.com/leanprover/lean4/f3b06c705e6c85f5314019d5d3baab0fec5b580c/src/Lean/Elab/Tactic/Decide.lean",
+    "start": {
+      "current_time": "2026-09-10 20:14:18 UTC"
+    },
+    "end": {
+      "current_time": "2026-09-10 20:14:29 UTC"
+    },
+    "file": "Decide.lean",
+    "tool": "mcp__codex_apps__github_fetch",
+    "http_status": "not exposed",
+    "saved_path": "sources/diagnostics/v4.32.2/Decide.lean",
+    "representation": "connector UTF-8 text, one final LF"
+  },
+  {
+    "tag": "v4.33.1",
+    "ref": "819816b2e0a3bf405af45ae5c7af2491d8f5bee6",
+    "path": "src/Lean/Elab/Print.lean",
+    "url": "https://raw.githubusercontent.com/leanprover/lean4/819816b2e0a3bf405af45ae5c7af2491d8f5bee6/src/Lean/Elab/Print.lean",
+    "start": {
+      "current_time": "2026-09-10 20:14:18 UTC"
+    },
+    "end": {
+      "current_time": "2026-09-10 20:14:29 UTC"
+    },
+    "file": "Print.lean",
+    "tool": "mcp__codex_apps__github_fetch",
+    "http_status": "not exposed",
+    "saved_path": "sources/diagnostics/v4.33.1/Print.lean",
+    "representation": "connector UTF-8 text, one final LF"
+  },
+  {
+    "tag": "v4.33.1",
+    "ref": "819816b2e0a3bf405af45ae5c7af2491d8f5bee6",
+    "path": "src/Lean/Meta/Native.lean",
+    "url": "https://raw.githubusercontent.com/leanprover/lean4/819816b2e0a3bf405af45ae5c7af2491d8f5bee6/src/Lean/Meta/Native.lean",
+    "start": {
+      "current_time": "2026-09-10 20:14:18 UTC"
+    },
+    "end": {
+      "current_time": "2026-09-10 20:14:29 UTC"
+    },
+    "file": "Native.lean",
+    "tool": "mcp__codex_apps__github_fetch",
+    "http_status": "not exposed",
+    "saved_path": "sources/diagnostics/v4.33.1/Native.lean",
+    "representation": "connector UTF-8 text, one final LF"
+  },
+  {
+    "tag": "v4.33.1",
+    "ref": "819816b2e0a3bf405af45ae5c7af2491d8f5bee6",
+    "path": "src/Lean/Elab/Tactic/Decide.lean",
+    "url": "https://raw.githubusercontent.com/leanprover/lean4/819816b2e0a3bf405af45ae5c7af2491d8f5bee6/src/Lean/Elab/Tactic/Decide.lean",
+    "start": {
+      "current_time": "2026-09-10 20:14:18 UTC"
+    },
+    "end": {
+      "current_time": "2026-09-10 20:14:29 UTC"
+    },
+    "file": "Decide.lean",
+    "tool": "mcp__codex_apps__github_fetch",
+    "http_status": "not exposed",
+    "saved_path": "sources/diagnostics/v4.33.1/Decide.lean",
+    "representation": "connector UTF-8 text, one final LF"
+  },
+  {
+    "tag": "v4.34.0-rc1",
+    "ref": "3447a668783dbce1a8fdb97101dd067687b2b418",
+    "path": "src/Lean/Elab/Print.lean",
+    "url": "https://raw.githubusercontent.com/leanprover/lean4/3447a668783dbce1a8fdb97101dd067687b2b418/src/Lean/Elab/Print.lean",
+    "start": {
+      "current_time": "2026-09-10 20:14:18 UTC"
+    },
+    "end": {
+      "current_time": "2026-09-10 20:14:29 UTC"
+    },
+    "file": "Print.lean",
+    "tool": "mcp__codex_apps__github_fetch",
+    "http_status": "not exposed",
+    "saved_path": "sources/diagnostics/v4.34.0-rc1/Print.lean",
+    "representation": "connector UTF-8 text, one final LF"
+  },
+  {
+    "tag": "v4.34.0-rc1",
+    "ref": "3447a668783dbce1a8fdb97101dd067687b2b418",
+    "path": "src/Lean/Meta/Native.lean",
+    "url": "https://raw.githubusercontent.com/leanprover/lean4/3447a668783dbce1a8fdb97101dd067687b2b418/src/Lean/Meta/Native.lean",
+    "start": {
+      "current_time": "2026-09-10 20:14:18 UTC"
+    },
+    "end": {
+      "current_time": "2026-09-10 20:14:29 UTC"
+    },
+    "file": "Native.lean",
+    "tool": "mcp__codex_apps__github_fetch",
+    "http_status": "not exposed",
+    "saved_path": "sources/diagnostics/v4.34.0-rc1/Native.lean",
+    "representation": "connector UTF-8 text, one final LF"
+  },
+  {
+    "tag": "v4.34.0-rc1",
+    "ref": "3447a668783dbce1a8fdb97101dd067687b2b418",
+    "path": "src/Lean/Elab/Tactic/Decide.lean",
+    "url": "https://raw.githubusercontent.com/leanprover/lean4/3447a668783dbce1a8fdb97101dd067687b2b418/src/Lean/Elab/Tactic/Decide.lean",
+    "start": {
+      "current_time": "2026-09-10 20:14:18 UTC"
+    },
+    "end": {
+      "current_time": "2026-09-10 20:14:29 UTC"
+    },
+    "file": "Decide.lean",
+    "tool": "mcp__codex_apps__github_fetch",
+    "http_status": "not exposed",
+    "saved_path": "sources/diagnostics/v4.34.0-rc1/Decide.lean",
+    "representation": "connector UTF-8 text, one final LF"
+  }
+]

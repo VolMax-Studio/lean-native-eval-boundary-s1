@@ -1,24 +1,20 @@
-# Creator repair self-check — response to formal Gate N-1/N-2
+# Creator self-check — gate-repair-n3
 
-NOT FROZEN. The last formal Gate result is BLOCKED for the reviewed validation-supplement ZIP. This file records implementation repairs and evidence for re-review; it does not change Claude's formal verdict.
+phase: pre-gate; execution_state: HALT; scientific verdict: null. The last formal Gate result is BLOCKED (N-3) over the N-1/N-2 repair ZIP. This is a repair record for review of the next exact GitHub commit; it is not a passing Gate result or a freeze.
 
-Reviewed object: lean-ta-tb-draft2-validation-supplement.zip, SHA-256 d52989959cbbfe28f7e84efe378f53659b6a10d21002fc4be0672ec60c672b9a. The supplied formal review is preserved in external/claude-gate-validation-supplement.txt. The repaired archive is a new object requiring its own review.
-
-| Finding | Repair/evidence | Status of this self-check |
+| Finding | Concrete change/evidence | Creator check |
 | --- | --- | --- |
-| N-1 | Formatter and CLI source from all three pinned commits; text option profile; parser for named labels/end ranges; both-stream error guard; grammar fixtures | Implemented; formal re-review pending |
-| N-2 | 49 explicit fixtures and 24 declared mutants, with separate guards, literal logs, mutation witnesses and replay commands | Implemented; formal re-review pending |
-| F-A | Decoded full issue body hashes to b089…; PoC stays ed8e…; FAILURES F-008 | Hash-label discrepancy resolved locally and acknowledged by Gate |
-| F-B | Operator explicitly confirms Claude's formal draft-1 Gate over pasted text; active provenance corrected | Recorded; no scope transfer to commit |
-| F-C | One formal vocabulary: BLOCKED / FIXES-PENDING / SURVIVES-REVIEW | Active governance corrected |
-| F-D | v4.32.2 identified as reference/development-exposed member and Gate-reported positive control | Ledger and rules updated |
-| F-E | Operator selects descriptive-only T-B1; per-member outcomes and completeness replace scientific proxy verdicts | Rules and mapping updated |
-| F-F | Internal-review-only distribution designation, source-notice observations, no public release authorization | external/DISTRIBUTION.md added |
-| F-G | Gate's new reported exposure and Creator's new diagnostic-source/test exposure distinguished | Ledger appended |
-| F-H | Unused end regex lookup removed from source_proxy.py | Removed before freeze; new hash required |
+| N-3 / U1 | N3_U1_axiom_cannot_supply_false and U1 mutant | Wrong diagnostic-boundary classification detected |
+| N-3 / U6 | N3_U6_raw_spelling_in_body and U6 mutant | Dropped Pos.Raw normalization detected |
+| N-3 / U8 | N3_U8_comment_in_native_guard and U8/I10/I11 mutants | Dropped block/line comment stripping detected; exact regex registered |
+| Stopping criterion | Code-derived AST inventory, grouped condition/transform table, named witnesses and explicit conservative/equivalent exclusions | Finite declared inventory; no claim of exhaustive correctness |
+| F-I | Print.lean, Meta/Native.lean, Elab/Tactic/Decide.lean at all three commits; capture metadata and hashes | Nine missing source dependencies pinned |
+| F-J | Contrary-result validity requires identical recreation and no applicable evidence failure | rc1 ACCEPT followed by differing recreation is EVIDENCE_INSUFFICIENT / Not Demonstrated |
+| F-K | Gate-reported exposure and Creator's new source/test exposure recorded separately | Ledger appended |
+| Repository custody | Existing local history retained; target VolMax-Studio/lean-native-eval-boundary-s1 | Exact remote SHA becomes primary review identifier after push |
 
-The original nine-fixture validation evidence remains in the preserved previous commit/archive. Current validation artifacts record new executions of the repaired code and expanded suite, not historical backfill. Tests use synthetic strings only. Each mutant must produce a wrong classification against an explicit fixture to count as killed; exceptions are not kills. A finite suite is not proof that all possible defects have been found.
+Recorded validation: 54/54 synthetic fixtures pass; all 38 declared non-equivalent mutants are killed by explicit wrong-classification witnesses. Literal logs, commands, input/output hashes and witness table are included. The instrument scripts and PoC are byte-unchanged from the prior reviewed commit; N-3 repairs registration and test coverage, not outcome tuning. Only synthetic validation was run here; no Lean invocation or new full-denominator source scan occurred.
 
-Draft-1 closure is retained with corrected attribution: B-1/B-2/B-6 were closed by Claude's supplied formal review; B-3 was closed at design level. B-4/B-5 require the present N-1 implementation repair to survive formal re-review. T-B1 now has no scientific verdict by Operator decision, so its descriptive completeness reporting supersedes the former proxy-verdict table without promoting any source claim.
+The Gate has closed N-1 and confirmed the previous archive's manifest/replay checks. Its latest result remains BLOCKED until the current exact commit is reviewed. The earlier ZIP identity limitations are historical; publishing the same Git history permits direct review of commits without silently treating ZIP comments as proof.
 
-Remaining before freeze: Claude's review of repaired bytes; Executor confirmation and participant disclosures; canonical authority pin or explicit local-rule adoption; direct object-type/commit resolution; toolchain/userland/harness/cleanup/resource pins. The PoC-hash discrepancy is no longer listed as unresolved. No Lean invocation or full-denominator source-proxy scan has been performed in this task. No remote publication or message has been sent.
+Remaining before freeze: passing formal Gate, Executor confirmation and disclosures, authority pin/adoption, tag object/commit resolution, toolchain/userland/harness/cleanup/resource pins. Freeze must be a separate later commit. No external message is sent by this work.

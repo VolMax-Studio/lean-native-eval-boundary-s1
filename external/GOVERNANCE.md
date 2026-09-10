@@ -30,3 +30,9 @@ The ZIP comment identifies a local commit but is not by itself proof of Git-tree
 T-B1 is explicitly designated “Deskriptivno merenje T-B1”. Report per-member syntactic outcomes and coverage, with no Verified/Not Verified scientific verdict. This change is an Operator-authorized scope-of-interpretation decision, not an outcome-driven modification.
 
 Executor confirmation, complete participant disclosure and canonical-original pin or explicit adoption of the local authority chain remain pending. These are separate from N-1/N-2 repairs.
+
+## Repository transition and latest Gate
+
+The latest supplied Claude Gate, external/claude-gate-n1-n2-repair.txt, closes N-1 and records BLOCKED for N-3 over ZIP SHA-256 5b293daef542caefcb275990f424d05124883b658fc33b249c9f5119a2d162cc. It does not yet review the present repair commit. The Operator now requires the existing history to be pushed to VolMax-Studio/lean-native-eval-boundary-s1 and the exact remote commit to become the primary review object. No history rewrite or new copied-file root is permitted.
+
+STATUS.md records pre-gate, HALT and null scientific verdict. The Operator's requested GATE_PASS means a passing formal review; the active canonical-style vocabulary remains BLOCKED / FIXES-PENDING / SURVIVES-REVIEW, with SURVIVES-REVIEW as the passing result. Any prereg freeze must be a later separate commit after the passing review and remaining freeze requirements.
