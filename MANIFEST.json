@@ -1,0 +1,117 @@
+{
+  "status": "DRAFT 2 REVIEW PACKAGE; NOT FROZEN; pending entries are not complete execution pins",
+  "manifest_created_at_utc": "2026-09-10T16:31:39.271384+00:00",
+  "note": "Self excluded to avoid recursive hashing. Git commit identifies this manifest. external/ is outside the claim-bearing instance; sources/ is unadjudicated raw/reference material.",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 19,
+      "sha256": "862263fa1f46c20f0d1e4dac5ffcc75abd55c08211b2c3864c5f8764b9d87793"
+    },
+    {
+      "path": "CLAIM_OF_RECORD.md",
+      "bytes": 3974,
+      "sha256": "a41cc56a8e234e1b4d6858976ad127831da4c5a319d9eeda3df182c2421d7fd7"
+    },
+    {
+      "path": "FAILURES.md",
+      "bytes": 2897,
+      "sha256": "4d62048e0d4c1ddd46ecb64450a9f3f683dfa4123fc8e70ff7f21ecb978c4e9a"
+    },
+    {
+      "path": "INSTANCE_RULES.md",
+      "bytes": 11323,
+      "sha256": "d7c71701bd06ddb8b9236f9f398396c8d7cd48914db1640e98b9cecffce9ea16"
+    },
+    {
+      "path": "PRE_GATE_CLOSURE.md",
+      "bytes": 3171,
+      "sha256": "9ca9bd8203464961fd5ec6daffc1a5fe324db57552e6af1bcfd1923ed4abb1c9"
+    },
+    {
+      "path": "RESOURCE_PLAN.md",
+      "bytes": 960,
+      "sha256": "ea23dbddd2607baa0917279dec1afdb50996a54fd0cf951090a6472c41f481ab"
+    },
+    {
+      "path": "TAG_MANIFEST.json",
+      "bytes": 11116,
+      "sha256": "b618b65927de0c671cd60a339e867a9bfeeda0b315eb3d72aec057967ff404ae"
+    },
+    {
+      "path": "external/EXPOSURE_LEDGER.md",
+      "bytes": 3971,
+      "sha256": "cd8f1b2674990aa2eff36862515f2cf47202d83e052d00e7c4499ffc5096315a"
+    },
+    {
+      "path": "external/GOVERNANCE.md",
+      "bytes": 3058,
+      "sha256": "1a9c618cfaa6a9872f7d6193efe046647592de3f97d52a0a7f7dbe0b377b6255"
+    },
+    {
+      "path": "external/supplied-review-1.txt",
+      "bytes": 8167,
+      "sha256": "d5b1af7b98d83e822ff1229f04531539acb2147ec5f8f656a80efbf3c649084d"
+    },
+    {
+      "path": "external/supplied-review-2.txt",
+      "bytes": 7396,
+      "sha256": "51c1321f6b4454769f48c89e1c0f863e617a4d7e8f9fcb2d8f389f5c016de41f"
+    },
+    {
+      "path": "scripts/behavior_matcher.py",
+      "bytes": 1565,
+      "sha256": "d20c223f3f9e6fe06a5f27acb842076b54d827b170b096cff67a1e599aa4dbdb"
+    },
+    {
+      "path": "scripts/extract_poc.py",
+      "bytes": 594,
+      "sha256": "5721c63b3d213565f53f1bbc5cc1b41b1039e60c2ae46dd30a3f1a14f3db32b2"
+    },
+    {
+      "path": "scripts/source_proxy.py",
+      "bytes": 2534,
+      "sha256": "cd5bae4ff86177e589a0feaba0d0b97972889578e6390517eeb38bb889bc48f7"
+    },
+    {
+      "path": "sources/PoC.lean",
+      "bytes": 724,
+      "sha256": "ed8e65ccf56fc10509b59a047101bb1c76426ae1fd8ee4d501fb29781e54049b"
+    },
+    {
+      "path": "sources/blog.html",
+      "bytes": 19613,
+      "sha256": "f395f4710e237d2a12b44a253e36517838c71cdbdb4368a9dae1d3c8f7b1a079"
+    },
+    {
+      "path": "sources/connector-provenance.json",
+      "bytes": 1487,
+      "sha256": "bd5950dc422d6baeb08d0070e827bcbbce30c7e4d6942d4f7fe1625ed2d969f9"
+    },
+    {
+      "path": "sources/issue-14684.connector.json",
+      "bytes": 7274,
+      "sha256": "2b66fc0b1f9123e93e22cbf9772604ed562124c3ac44de224edfa9e582ea836f"
+    },
+    {
+      "path": "sources/lsremote_tags.txt",
+      "bytes": 12491,
+      "sha256": "565d84d4c16b3db514dc46935c8c60cb7a96af6ec45a68adb0bd50af1fa70414"
+    },
+    {
+      "path": "sources/reference-Basic.lean",
+      "bytes": 130871,
+      "sha256": "e506c9300ac508cc1391b9de50c7eaf2dc32cda3fa114ef809d4c9bcc870379e"
+    },
+    {
+      "path": "sources/reference-object.cpp",
+      "bytes": 97470,
+      "sha256": "897613d0ebe9d612daa5a09c13366cf21eaec2e1c3c0b4e0d35891770fedac29"
+    },
+    {
+      "path": "sources/retrieval.json",
+      "bytes": 785,
+      "sha256": "e716a4daca2ff35b9d718e43453b3a45edcc25d85bed91afcef4ed4d425750a9"
+    }
+  ]
+}

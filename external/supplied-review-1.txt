@@ -1,0 +1,59 @@
+Da. Ovo je ozbiljniji review, ali ga **ne bih prihvatio 1:1**. Astra je uhvatila nekoliko stvarnih rupa, ali je na tri mesta sama napravila novu metodološku grešku.
+
+Najvažnije: ovo što je Astra uradila treba tretirati kao **pre-gate/adversarial review**, ne kao formalni P10 Gate, ako je formalni Gate za ovu instancu i dalje Claude. U našem operativnom rasporedu Astra High i Claude nisu ista uloga: Astra radi prethodni tehnički/adversarial review, a Claude formalni Gate. Zato `GATE RESULT — ... VERDICT: BLOCKED` nije dobra oznaka za Astrin dokument; preciznije je `PRE-GATE REVIEW — BLOCKED`. Formalni `GATE_BLOCKED/PASS/NEEDS_EVIDENCE` ostaje za imenovanog Gate-a nad zamrznutim predmetom. To je u skladu sa pravilom Creator ≠ Gate ≠ Ratifier. 
+
+Evo šta bih zaključao iz njenog nalaza:
+
+1. **B-1 prihvatam potpuno, i on je najvažniji blocker.** Mora postojati `CLAIM_OF_RECORD`: doslovna tvrdnja, pinovani izvor i semantička tabela `claim-as-stated → operational test → semantic fidelity → permitted verdict wording`. To rešava najveći trenutni problem: T-B1 ne sme krišom postati tvrdnja koju izvor nikada nije izneo.
+
+   Ovde bih išao još dalje od Astre: ako je izvorna tvrdnja **“affects all stable versions up to 4.33.1”**, source-level `MISMATCH` nije automatski isto što i behavioral **“affects”**. To je najviše proksi dok se ne dokaže ekvivalencija. P10 već ima upravo odgovarajući rubric: `EQUIVALENT / WEAKER / STRONGER / DIFFERENT / UNDERDETERMINED`.  Ako T-B1 meri samo odnos dve implementacije, mapping prema “affects” će vrlo verovatno biti `WEAKER` ili `UNDERDETERMINED`, ne `EQUIVALENT`. U tom slučaju **T-B1 ne može sam dati Verified/Not Verified za originalnu univerzalnu behavioral tvrdnju**.
+
+2. **B-2 je stvaran problem, ali Astrino rešenje je pogrešno.** Tvoja prethodna L3 odluka bila je stroga: sama instanca ne sme da govori o isključenom predmetu. Zato ne možemo “popraviti” scope klauzulu tako što ćemo ga eksplicitno imenovati unutar instance — time bismo prekršili upravo pravilo koje popravljamo.
+
+   Rešenje je dvonivojsko. Instance prose kaže samo otprilike:
+
+   > `The scientific scope is exhausted by the explicitly registered T-A and T-B claims. Material outside those claim families is non-adjudicated and cannot contribute to any instance verdict.`
+
+   A **spoljašnji governance/gate zapis**, koji nije deo claim-bearing instance, identifikuje tačno šta je isključeno i zašto. Raw source snapshot sme sadržati druge rečenice jer su to pinovani izvorni bajtovi, a ne tvrdnje instance. Manifest ga identifikuje hashom bez reprodukovanja ili adjudikacije sporednog sadržaja.
+
+   Zbog toga Astrin **F-8 odbacujem**: external governance record ovde ima stvarnu funkciju. Bez njega ili kontaminiraš instancu ili izgubiš evidenciju konflikta.
+
+3. **B-3 prihvatam, ali vodi do promene statusa T-B1, ne nužno do njegovog izbacivanja.** Najčistija varijanta je da T-B1 ostane kao **pun denominator source-structure test**, ali njegov claim bude tačno ono što meri. Na primer: za svaki frozen stable tag proverava se unapred definisana relacija između dve source-level reprezentacije vezane mehaničkim extern ključem.
+
+   To onda može imati svojih 45 ishoda `MISMATCH / NO_MISMATCH / INAPPLICABLE`, ali ne smemo rezultate prevesti u “all versions are behaviorally affected” bez dodatnog dokaza semantičke ekvivalencije.
+
+   T-B2 ostaje behavioral test samo za tri unapred izabrane verzije. Tako više nema lažnog obećanja da tri izvršenja dokazuju kvantifikator `all`.
+
+4. **B-4 prihvatam potpuno.** Nema exploratory Lean run-a kojim bismo prvo saznali izlaz pa zatim napisali acceptance kriterijum. To bi bila klasična post-hoc zamena preregistracije.
+
+   Kriterijum zato mora biti **strukturni**, a ne vezan za unapred viđenu tačnu poruku greške. Isto važi za axiom-output matcher. Konkretna sintaksa matchera mora biti frozen pre izvršenja, a prereg mora eksplicitno reći:
+
+   > `No output from any pre-freeze Lean invocation may be used to define, refine, or relax acceptance, rejection, diagnostic, or axiom-matching criteria.`
+
+   Pošto Lean još nije pokrenut, još imamo čistu proceduralnu granicu.
+
+5. **B-5 prihvatam.** Tu sam ja u prethodnoj formulaciji promenio Operatorovu odluku. Ako je acceptance definisan konjunktivno kao `exit=0 AND no diagnostic error AND required axiom evidence`, onda tako mora ostati dok Operator eksplicitno ne promeni L3 odluku. Nema “supplementary” preformulisanja iza leđa odluci.
+
+6. **B-6 je dobar nalaz i treba ga rešiti tipizacijom neuspeha pre run-a.** Ne treba da isti događaj može posle rezultata postati `Not Demonstrated` ili `Deferred` prema tome šta lepše izgleda. Pre freeze-a razdvojiti makar: `EVIDENCE_INSUFFICIENT`, `PREDICATE_INAPPLICABLE` i `EXTERNAL_EXECUTION_BLOCKER`.
+
+   Tek treća unapred nabrojana klasa može voditi u `Deferred`. Prve dve ne. Time nestaje preklapanje redova 35/36.
+
+7. **F-1 prihvatam samo delimično.** Komanda + očekivani hash nisu zamena za snapshot. Remote Git reference mogu se promeniti. Pravi frozen dokaz je **sačuvani `lsremote_tags.txt` kao artefakt + njegov SHA-256 + komanda + timestamp**. Ponovljeni isti hash je odličan dokaz da je stanje u ta dva trenutka bilo isto, ali prereg ne sme zavisiti od toga da GitHub kasnije zauvek vraća iste bajtove.
+
+   Astrino novo merenje da su snapshotovi identični takođe sada ulazi u **exposure ledger**. Ne treba se pretvarati da to još nije viđeno.
+
+8. **F-2 ne prihvatam kao opšte P10 pravilo.** Nema kanonskog zahteva “jedan run mora hraniti tačno jednu podtvrdnju”. Jedan frozen evidentiary run može legitimno proizvesti više unapred definisanih izlaza za više targeta, ako je mapping eksplicitan i nijedan target ne menja pravila drugog. Standardni P10 paket identifikuje jedno izvršenje i njegove artefakte; ne zahteva one-run-one-claim. 
+
+   Dakle isti behavioral execution može hraniti T-A i T-B2 **ako prereg pre izvršenja kaže tačno koji output ide kojoj tvrdnji i kakvu semantičku snagu nosi**. Nema potrebe duplirati izvršenje samo zbog administrativnog target broja.
+
+9. **F-3, F-4, F-5, F-6, F-7 i F-9 prihvatam.** Neočekivano rc1 odbijanje mora imati unapred definisan ishod; recreation treba da prati stvarno P10 `remove/rename → recreate → compare`, a ne samo “pokreni dva procesa”; exposure ledger treba da bude kompletan za svakog učesnika; Gate ne sme sam sebi izmišljati independence; Executor mora biti imenovan; i authority chain mora biti vezan za stvarni versioned governance artefakt, ne za našu memoriju. Kanonski P10 upravo zahteva recreation/determinism kao zasebnu fazu i literalni evidentiary package. 
+
+Tu bih dodao još jednu stvar koju Astra nije dovoljno jako izgovorila: **“jedan potvrđeni NO_MISMATCH je kontraprimer univerzalnoj tvrdnji” važi samo ako je predikat semantički EQUIVALENT originalnom `affects` predikatu.** Ako je T-B1 samo source proxy, onda `NO_MISMATCH` ruši univerzalnu **source-proxy tvrdnju**, ali ne nužno originalnu behavioral tvrdnju. Ovo mora biti rešeno u `CLAIM_MAPPING` pre nego što decision table dobije pravo da proizvodi `Not Verified`.
+
+Zato je trenutni status po meni:
+
+**PRE-GATE: BLOCKED, ali dizajn nije u krizi.** Blokada se svodi na četiri stvari: claim-of-record i semantic-fidelity mapping; precizan T-B1 predikat; outcome-blind acceptance/rejection pravila; i kompletan frozen manifest/exposure ledger.
+
+Posle toga **ne bih radio draft 3, draft 4, draft 5**. Napraviti `INSTANCE_RULES draft 2`, dati Astri samo proveru zatvaranja njenih B-1…B-6, zatim predmet ide formalnom Gate-u. Counterweight je baš za ovakvu situaciju: višestruki metodološki krugovi ne smeju postati cilj sami sebi; treći review treba da vodi u terminalnu odluku, ne novu filozofiju. 
+
+Drugim rečima: ovo nije “ponovo smo na početku”. Naprotiv — sada smo prvi put jasno odvojili **šta je izvor stvarno tvrdio**, **šta source scan stvarno meri** i **šta tri Lean izvršenja stvarno mogu da pokažu**. To je poslednja velika konceptualna rupa koju bih zatvorio pre freeze-a.

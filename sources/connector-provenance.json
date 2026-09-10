@@ -1,0 +1,38 @@
+{
+  "issue": {
+    "tool": "mcp__codex_apps__github_fetch",
+    "url": "https://api.github.com/repos/leanprover/lean4/issues/14684",
+    "isError": false,
+    "http_status_exposed": false,
+    "capture_time": "Exact tool-completion UTC timestamp was not recorded; received before the tag retrieval began at 2026-09-10T16:24:18.358058+00:00. See retrieval.json for subsequent local capture intervals.",
+    "updated_at": "2026-08-10T07:40:26Z"
+  },
+  "references": [
+    {
+      "tool": "mcp__codex_apps__github_fetch",
+      "url": "https://github.com/leanprover/lean4/blob/f3b06c705e6c85f5314019d5d3baab0fec5b580c/src/Init/Data/String/Basic.lean",
+      "commit": "f3b06c705e6c85f5314019d5d3baab0fec5b580c",
+      "isError": false,
+      "representation": "Connector-returned source text saved as UTF-8 with one final LF; not independently checked as Git blob bytes."
+    },
+    {
+      "tool": "mcp__codex_apps__github_fetch",
+      "url": "https://github.com/leanprover/lean4/blob/f3b06c705e6c85f5314019d5d3baab0fec5b580c/src/runtime/object.cpp",
+      "commit": "f3b06c705e6c85f5314019d5d3baab0fec5b580c",
+      "isError": false,
+      "representation": "Connector-returned source text saved as UTF-8 with one final LF; not independently checked as Git blob bytes."
+    }
+  ],
+  "governance_search": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "results": []
+    },
+    "isError": false
+  }
+}

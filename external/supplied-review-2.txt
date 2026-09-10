@@ -1,0 +1,88 @@
+Gejt se odnosi na tekst koji si nalepio, a ne na commit `5e48b587`. Taj commit je lokalan i ne mogu da ga otvorim. Svoju kopiju nalepljenog teksta sam heširao (`b6df60e72ee21665…`), ali ona nije vezana za bajtove commita. Sledeći krug zato traži fajl (upload ili push grane). `FAILURES.md` nisam video, pa ga ne gejtujem.
+
+```
+GATE RESULT — INSTANCE_RULES.md draft 1 (T-A/T-B), pasted text
+```
+
+**BLOCKERS**
+
+**B-1. Nema claim-of-record ni mapiranja tvrdnje na test.** Nijedna sekcija ne imenuje tvrdnju, njenog autora, izvor, issue ni repo.
+```
+Trail of Bits 0 | trailofbits 0 | 14684 0 | leanprover 0 | lean4 0 | github 0 | blog 0 | verbatim 0
+```
+Formulacija "T-B1 concerns the source-level universal claim" pripisuje ToB-u izvornu tvrdnju koju oni nisu izneli. Njihova tvrdnja glasi "affects all stable versions up to 4.33.1". Obrnuto važi za "patch is incorporated in v4.34.0-rc1": to je izvorna tvrdnja, a T-B2 je testira kroz ponašanje.
+
+Potrebno je dvoje: doslovan tekst tvrdnje, pinovan hashom, i tabela *claim-as-stated → operacionalizacija → na šta se verdikt odnosi*. Bez toga će se "Verified" za proxy čitati kao "ToB verified".
+
+**B-2. Klauzulu opsega krši sam PoC.** Pravilo "No other … external subject may appear in … evidence package" ne definiše pojam "external subject". Pinovani izvor PoC-a sadrži:
+```
+17:The issue was discovered with GPT 5.6.
+30:theorem flt
+32:    a ^ n + b ^ n ≠ c ^ n :=
+```
+Pored toga, ToB blog, jedini izvor tvrdnje T-B, već u prvom pasusu govori o Anthropic FLT formalizaciji. Klauzula zato mora da nabroji šta je isključeno (Anthropic FLT artefakt i svaka tvrdnja o njemu). Mora i da razdvoji "bajtovi izvora pinovani hashom u manifestu" od "predmet ispitivanja". Ovako napisana, ili ruši instancu pre prvog run-a ili će se tumačiti naknadno.
+
+**B-3. Nije pokazano da je predikat za T-B1 merljiv.** Nacrt kaže samo: "relational source predicate and its historical API mapping must be specified before execution".
+[L2] Za 45 verzija postoje tri puta:
+- **(a) Mehanički sintaksni proxy.** Verdikt se tada odnosi na proxy. Referentne klase teksta saznaju se tek čitanjem svih 45 verzija, a to čitanje je već samo merenje.
+- **(b) Semantičko čitanje po verziji.** To je adjudikacija, pa važi RB0 pravilo nezavisnog adjudikatora (`adjudicat 0`).
+- **(c) Evaluator po verziji.** To znači 45 toolchain-a, a to si isključio.
+
+Mapiranje se može rešiti mehanički: spojni ključ je extern ime (`@[extern "lean_string_utf8_extract"]` ↔ C funkcija istog imena), a promena ključa znači PREDICATE_INAPPLICABLE po pravilu. To rešava samo mapiranje, ne i odluku MISMATCH.
+[L3] Tvoje su odluke: izbor između (a) i (b), i da li T-B1 ostaje u instanci.
+
+**B-4. Kriterijumi se mogu podesiti prema ishodu.** Nacrt kaže: "Exact diagnostic and axiom matching rules remain pending inspection of the pinned PoC". Čitanje PoC-a ne otkriva ni tačno ime aksioma ni tekst greške na rc1. Oba se saznaju tek pokretanjem Lean-a. U telu issue-a nema ni `ax_1_1` (0 pogodaka, izmereno ranije), dakle to ime postoji samo na blogu. Nacrt pritom ne zabranjuje da izlaz exploratory run-a posluži za zamrzavanje kriterijuma.
+
+Potrebno:
+- strukturni kriterijum definisan bez run-a;
+- izričita zabrana da se izlaz pre freeze-a koristi za kriterijume.
+
+[L2] Primer kriterijuma: lista aksioma sadrži element van {propext, Classical.choice, Quot.sound} čije ime sadrži `native_decide`. Oblik imena može zavisiti od verzije.
+
+**B-5. Creator je bez oznake promenio tvoju odluku.** Tvoja tačka 8 kaže da prihvatanje zahteva exit 0, **odsustvo dijagnostičke greške** i ispis aksioma. Nacrt kaže: "Absence of `error:` is a supplementary diagnostic check, not the primary semantic criterion."
+[L2] Praktično je verovatno bez efekta, jer Lean greška daje exit ≠ 0. Ipak, L3 odluka ne sme da se menja bez oznake.
+
+**B-6. Tabela odluka T-B1 nema potpun redosled prednosti.**
+```
+35:| No NO_MISMATCH, but any INAPPLICABLE or missing evidence | Not Demonstrated |
+36:| No NO_MISMATCH and an applicable purely external/procedural blocker preclassified before freeze | Deferred |
+```
+Neuspelo preuzimanje je istovremeno "missing evidence" (red 35) i "procedural blocker" (red 36). Izbor između Not Demonstrated i Deferred tako ostaje za posle run-a. Uz to, reč "supported" se pojavljuje 2 puta, a nigde nije definisana.
+
+**FIXES**
+
+- **F-1. Kontradikcija oko snapshota.** Rečenica "do not silently substitute a later snapshot for the supplied one" traži bajtove koje izvršilac nema. Ista komanda, međutim, daje reproducibilan snimak:
+  ```
+  565d84d4c16b3db514dc46935c8c60cb7a96af6ec45a68adb0bd50af1fa70414  lsremote_tags.txt    (15:57:56Z)
+  565d84d4c16b3db514dc46935c8c60cb7a96af6ec45a68adb0bd50af1fa70414  lsremote_tags_2.txt  (16:17:07Z)
+  IDENTICAL
+  peeled (^{}) lines: 1  → refs/tags/v3.3.0^{}
+  stable<=4.33.1 lines with ^{}: 0
+  ```
+  Treba zamrznuti komandu i očekivani hash. Ako se hash razlikuje, diff se prijavljuje. [L2] Svih 45 članova su lightweight tagovi, ali "object type" meri izvršilac (`git cat-file -t`).
+- **F-2. Isti matriks u dva targeta.** T-A ("exact-PoC acceptance/rejection on the pinned behavioral matrix") i T-B2 koriste isti matriks. Svaki run mora da hrani tačno jednu podtvrdnju. Zaključak "semantic model/runtime disagreement" izvodi se iz prihvatanja PoC-a uz pretpostavku ispravnog kernela, pa taj lanac nosi oznaku L2.
+- **F-3. Nedefinisan slučaj za rc1.** Ne zna se ishod ako rc1 odbije PoC na neočekivanom koraku, npr. na `rfl` umesto na `native_decide`.
+- **F-4. Neusklađen test determinizma.** Operativna pravila traže rename → rerun → ponovo kreiran bajt-identičan fajl. Nacrt poredi dva procesa (`rename 0`).
+- **F-5. Nepotpun ledger izloženosti.** Moja izloženost uključuje još:
+  - ceo issue body;
+  - PR stranice 14687, 14717 i 14806, plus release stranice;
+  - cele fajlove `object.cpp` na 4 revizije i `Basic.lean` na f3b06c7 (preuzeti celi, prikazani samo isečci);
+  - dva snapshota tagova;
+  - ToB blog.
+
+  Creator-ova izloženost nije navedena, a njegov prethodni dokument citira anthropics README i FinalCheck.
+- **F-6. Autor "conflict assessment" nije određen.** Ako ga piše gejt, to je samoprocena. Tvoja već donesena L3 odluka treba da uđe doslovno, a gejt daje samo disclosure.
+- **F-7. Izvršilac nije imenovan** (`Executor 0`, `Ananke 0`). [L3]
+- **F-8. "external governance record" (2 pojavljivanja).** Po Necessity Guard pravilu ne vidim novu klasu izvršenja koju bi takav dokument omogućio, pa sadržaj može u INSTANCE_RULES. [L3]
+- **F-9. Neoznačena rečenica o ulogama.** "Creator != Gate != Ratifier…" je neoznačena, dakle L1, a Creator-ov grep je završio kodom 1. Lanac autoriteta postoji u "VolMax Observatory — Operating Rules (P10, v2026-08)" (`Operating Rules 0`) i treba ga citirati.
+
+**CLEAN**
+- Status i "No Lean invocation is authorized" su dosledni.
+- Odluke 2, 3, 5, 6 i 7 preslikane su tačno: rc1 kao hipoteza, rc2 van primarnog testa, regex sa ≤4.33.1, broj 45 označen kao prenet, UAF isključen, vremena Exploratory, adaptirani PoC odvojen i gejtovan.
+- Kontraprimer ima prednost, INAPPLICABLE nije NO_MISMATCH, a naknadna reklasifikacija je zabranjena.
+- Lanac PoC-a je pokriven: raw snapshot, updated_at, hash skripte, hash bajtova PoC-a.
+- Svaki run pre freeze-a trajno je Exploratory.
+
+```
+VERDICT: BLOCKED
+```
