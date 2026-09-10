@@ -29,3 +29,11 @@ Can this instance still carry a verdict? Yes, conditionally, after proper freeze
 OBSERVED in local draft 1: the universal source predicate lacked a claim-of-record mapping and semantic-fidelity boundary. Draft 2 identifies the source-structure proposition as investigator-defined, maps it as UNDERDETERMINED relative to behavioral “affects,” and limits both Verified and Not Verified to the proxy. No source-proxy counterexample is promoted to a behavioral counterexample without an independently justified equivalent predicate.
 
 Can this instance still carry a verdict? Yes, conditionally, only within the registered mapping and after freeze. The original universal behavioral claim is not established by this design.
+
+## F-005 — synthetic validation evidence omitted from draft-2 archive
+
+OBSERVED: commit f254bdb8623704500fb7a23f8631784446b91e21 and its original review archive asserted nine passing synthetic checks, but did not contain a replayable harness, explicit fixtures, or literal validation outputs. The inline tool execution existed in the task history; that did not make it independently replayable from the delivered package.
+
+Correction: preserve the old archive and qualify its historical assertion as a Creator report. Add nine literal fixtures, a runner, a command, and literal logs/provenance from a new execution in a separate evidence-supplement commit and archive. Hash all added evidence in MANIFEST.json. Do not backdate the new run or change the scientific predicates to fit outputs.
+
+Can this instance still carry a verdict? Yes, conditionally after the remaining freeze and Gate requirements. These tests are limited Creator self-check evidence, not scientific outcomes or a formal Gate result.

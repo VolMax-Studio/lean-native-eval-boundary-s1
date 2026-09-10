@@ -1,0 +1,77 @@
+[
+  {
+    "id": "S01_signature_pair",
+    "kind": "source_proxy",
+    "lean": "@[extern \"lean_string_utf8_extract\", expose]\ndef Pos.Raw.extract : (@& String) → (@& Pos.Raw) → (@& Pos.Raw) → String\n  | s, b, e => if b.byteIdx ≥ e.byteIdx then \"\" else ofList (go₁ s.toList 0 b e)\nwhere\n  go₁ : List Char → Pos → Pos → Pos → List Char\n    | [], _, _, _ => []\n    | s@(c::cs), i, b, e => if i = b then go₂ s i e else go₁ cs (i + c) b e\n  go₂ : List Char → Pos → Pos → List Char\n    | [], _, _ => []\n    | c::cs, i, e => if i = e then [] else c :: go₂ cs (i + c) e\n\ndef next := 0\n",
+    "cpp": "extern \"C\" LEAN_EXPORT obj_res lean_string_utf8_extract(b_obj_arg s, b_obj_arg b0, b_obj_arg e0) {\nif (!lean_is_scalar(b0) || !lean_is_scalar(e0)) { return s; }\n}\n",
+    "expected": "MISMATCH"
+  },
+  {
+    "id": "S02_absent_native_signature",
+    "kind": "source_proxy",
+    "lean": "@[extern \"lean_string_utf8_extract\", expose]\ndef Pos.Raw.extract : (@& String) → (@& Pos.Raw) → (@& Pos.Raw) → String\n  | s, b, e => if b.byteIdx ≥ e.byteIdx then \"\" else ofList (go₁ s.toList 0 b e)\nwhere\n  go₁ : List Char → Pos → Pos → Pos → List Char\n    | [], _, _, _ => []\n    | s@(c::cs), i, b, e => if i = b then go₂ s i e else go₁ cs (i + c) b e\n  go₂ : List Char → Pos → Pos → List Char\n    | [], _, _ => []\n    | c::cs, i, e => if i = e then [] else c :: go₂ cs (i + c) e\n\ndef next := 0\n",
+    "cpp": "extern \"C\" LEAN_EXPORT obj_res lean_string_utf8_extract(b_obj_arg s, b_obj_arg b0, b_obj_arg e0) {\nif (!lean_is_scalar(b0) || !lean_is_scalar(e0)) { return other; }\n}\n",
+    "expected": "NO_MISMATCH"
+  },
+  {
+    "id": "S03_changed_extern_key",
+    "kind": "source_proxy",
+    "lean": "@[extern \"other\", expose]\ndef Pos.Raw.extract : (@& String) → (@& Pos.Raw) → (@& Pos.Raw) → String\n  | s, b, e => if b.byteIdx ≥ e.byteIdx then \"\" else ofList (go₁ s.toList 0 b e)\nwhere\n  go₁ : List Char → Pos → Pos → Pos → List Char\n    | [], _, _, _ => []\n    | s@(c::cs), i, b, e => if i = b then go₂ s i e else go₁ cs (i + c) b e\n  go₂ : List Char → Pos → Pos → List Char\n    | [], _, _ => []\n    | c::cs, i, e => if i = e then [] else c :: go₂ cs (i + c) e\n\ndef next := 0\n",
+    "cpp": "extern \"C\" LEAN_EXPORT obj_res lean_string_utf8_extract(b_obj_arg s, b_obj_arg b0, b_obj_arg e0) {\nif (!lean_is_scalar(b0) || !lean_is_scalar(e0)) { return s; }\n}\n",
+    "expected": "PREDICATE_INAPPLICABLE"
+  },
+  {
+    "id": "B01_accept_conjunction",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "'flt' depends on axioms: [propext, demo.native_decide.ax_1]",
+    "stderr": "",
+    "exitcode": 0,
+    "expected": "ACCEPT"
+  },
+  {
+    "id": "B02_error_despite_zero",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "'flt' depends on axioms: [propext, demo.native_decide.ax_1]",
+    "stderr": "PoC.lean:1:0: error: unrelated",
+    "exitcode": 0,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "B03_sorry_without_native",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "'flt' depends on axioms: [propext, sorryAx]",
+    "stderr": "",
+    "exitcode": 0,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "B04_native_false_correct_line",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "",
+    "stderr": "PoC.lean:2:4: error: native_decide evaluated to false",
+    "exitcode": 1,
+    "expected": "EXPECTED_NATIVE_REJECTION"
+  },
+  {
+    "id": "B05_native_false_wrong_line",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "",
+    "stderr": "PoC.lean:1:4: error: native_decide evaluated to false",
+    "exitcode": 1,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  },
+  {
+    "id": "B06_additional_error",
+    "kind": "behavior_matcher",
+    "poc": "def example := 0\n    native_decide\n#print axioms flt\n",
+    "stdout": "",
+    "stderr": "PoC.lean:2:4: error: native_decide evaluated to false\nPoC.lean:3:0: error: unknown constant",
+    "exitcode": 1,
+    "expected": "EVIDENCE_INSUFFICIENT"
+  }
+]

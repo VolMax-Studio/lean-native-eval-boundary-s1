@@ -26,3 +26,7 @@ The supplied earlier discussion quoted the excluded artifact's README and FinalC
 ## PoC hash discrepancy
 
 Current byte extraction yields SHA-256 ed8e65ccf56fc10509b59a047101bb1c76426ae1fd8ee4d501fb29781e54049b. The supplied history reports b089432223ed0dc2… from a different HTML-regex extraction; neither its full original byte artifact nor complete extraction chain is available here. The new hash is not equated to that historical artifact. Checking removal/addition of a boundary newline and CRLF conversion did not reproduce that prefix. Do not infer why it differs or modify the PoC to force a match. The formal Gate must review the present raw JSON → pinned script → extracted bytes chain and explicitly settle which artifact is authoritative before freeze.
+
+## Validation evidence supplement — new observed execution
+
+The original draft-2 archive omitted the nine-case harness and literal outputs; its validation claim was therefore a Creator report within that archive. After the Operator identified this gap, the same nine synthetic cases were materialized as literal fixtures and executed through tests/command.sh. The new literal stdout/stderr, exit code and UTC execution interval are stored in validation/. This new run is not evidence of the historical run's timestamp or bytes. Both predicate scripts and scientific criteria remain unchanged; no Lean invocation or real-source predicate scan occurred. The fixtures and this limited test selection are themselves exposed and are not outcome-blind.

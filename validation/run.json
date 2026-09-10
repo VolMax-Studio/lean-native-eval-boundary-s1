@@ -1,0 +1,56 @@
+{
+  "kind": "new synthetic validation execution; not historical backfill",
+  "command": [
+    "sh",
+    "tests/command.sh"
+  ],
+  "cwd": "package root",
+  "started_at_utc": "2026-09-10T17:01:11.136837+00:00",
+  "completed_at_utc": "2026-09-10T17:01:11.164612+00:00",
+  "exit_code": 0,
+  "python_version": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+  "python_executable": "/home/volmax-studio/volmax-projects/IoT/volmax_env/bin/python3",
+  "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+  "artifacts": [
+    {
+      "path": "tests/command.sh",
+      "bytes": 81,
+      "sha256": "0c318a2e34263a8d28a8782080dfba17e445ccaed091c62b9439bb7bcf110949"
+    },
+    {
+      "path": "tests/run_synthetic.py",
+      "bytes": 1650,
+      "sha256": "8bd588932ec78b8fd36c91742ec21ab45e0cdfc5906a244e8178499a8a7c691a"
+    },
+    {
+      "path": "tests/synthetic_cases.json",
+      "bytes": 4389,
+      "sha256": "24074a1fccaa568fceb0d4fada8c844298a174e1126809db92c2b76138481f44"
+    },
+    {
+      "path": "scripts/source_proxy.py",
+      "bytes": 2534,
+      "sha256": "cd5bae4ff86177e589a0feaba0d0b97972889578e6390517eeb38bb889bc48f7"
+    },
+    {
+      "path": "scripts/behavior_matcher.py",
+      "bytes": 1565,
+      "sha256": "d20c223f3f9e6fe06a5f27acb842076b54d827b170b096cff67a1e599aa4dbdb"
+    },
+    {
+      "path": "validation/stdout.log",
+      "bytes": 773,
+      "sha256": "f85b6aec156d5f2718361eb356798ebc57af466ae4c75ab800807b4155ba27ed"
+    },
+    {
+      "path": "validation/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/exit-code.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    }
+  ]
+}

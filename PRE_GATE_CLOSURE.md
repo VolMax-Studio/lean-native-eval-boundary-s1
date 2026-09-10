@@ -22,6 +22,6 @@ Remaining concrete freeze blockers:
 3. Gate resolution of the current PoC hash versus the earlier reported extraction hash, using the actual files.
 4. Claude's formal review of the identified file set/commit, followed by the separate prescribed freeze and ratification records.
 
-Validation completed: nine synthetic source-proxy/behavior-matcher cases passed, including wrong-line rejection, extra diagnostic rejection, missing native axiom, and error output despite exit zero. No Lean run and no real-source predicate scan. Extraction was repeated to a separate output and compared byte-for-byte. MANIFEST and archive integrity checked before delivery.
+Validation evidence supplement: the prior nine-case inline run was reported by the Creator but its harness and literal log were absent from the original draft-2 package. Do not treat that historical statement alone as packaged evidence. A new execution of the nine explicit fixtures is now preserved in tests/ and validation/: command `sh tests/command.sh`, literal stdout/stderr, exit code 0, and UTC/input/output provenance in validation/run.json. All nine cases passed in this new execution. This is limited synthetic self-check evidence, not exhaustive correctness, formal Gate approval, Lean execution, or a real-source scan. The earlier extraction recreation and archive checks remain separate from these nine tests.
 
 Next action is evidence completion and formal review of this concrete draft-2 object, not another open-ended methodological redesign. No remote upload, message, or publication has been performed.

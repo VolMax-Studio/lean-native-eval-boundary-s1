@@ -1,7 +1,8 @@
 {
-  "status": "DRAFT 2 REVIEW PACKAGE; NOT FROZEN; pending entries are not complete execution pins",
-  "manifest_created_at_utc": "2026-09-10T16:31:39.271384+00:00",
-  "note": "Self excluded to avoid recursive hashing. Git commit identifies this manifest. external/ is outside the claim-bearing instance; sources/ is unadjudicated raw/reference material.",
+  "status": "DRAFT 2 VALIDATION EVIDENCE SUPPLEMENT; NOT FROZEN",
+  "manifest_created_at_utc": "2026-09-10T17:02:01.371151+00:00",
+  "previous_review_commit": "f254bdb8623704500fb7a23f8631784446b91e21",
+  "note": "Self excluded to avoid recursive hashing. Git commit identifies this manifest. external/ is outside the claim-bearing instance. validation/ records a new synthetic run, not historical backfill.",
   "files": [
     {
       "path": ".gitignore",
@@ -15,8 +16,8 @@
     },
     {
       "path": "FAILURES.md",
-      "bytes": 2897,
-      "sha256": "4d62048e0d4c1ddd46ecb64450a9f3f683dfa4123fc8e70ff7f21ecb978c4e9a"
+      "bytes": 3904,
+      "sha256": "7bc69f2431298ed8f50283571bc2a9b7856c1bd28119a6137783433332a12607"
     },
     {
       "path": "INSTANCE_RULES.md",
@@ -25,8 +26,8 @@
     },
     {
       "path": "PRE_GATE_CLOSURE.md",
-      "bytes": 3171,
-      "sha256": "9ca9bd8203464961fd5ec6daffc1a5fe324db57552e6af1bcfd1923ed4abb1c9"
+      "bytes": 3519,
+      "sha256": "0ccfc2d47487dcee0571deabf2eb108797c14d04895146563140046a911fb1b5"
     },
     {
       "path": "RESOURCE_PLAN.md",
@@ -40,8 +41,8 @@
     },
     {
       "path": "external/EXPOSURE_LEDGER.md",
-      "bytes": 3971,
-      "sha256": "cd8f1b2674990aa2eff36862515f2cf47202d83e052d00e7c4499ffc5096315a"
+      "bytes": 4721,
+      "sha256": "7db1b3ef8c928d9cf93b54ef4a2fe94cad8524ed66584a434bb921b4636920cd"
     },
     {
       "path": "external/GOVERNANCE.md",
@@ -112,6 +113,46 @@
       "path": "sources/retrieval.json",
       "bytes": 785,
       "sha256": "e716a4daca2ff35b9d718e43453b3a45edcc25d85bed91afcef4ed4d425750a9"
+    },
+    {
+      "path": "tests/README.md",
+      "bytes": 2029,
+      "sha256": "265565f96678f74dfa47fe5c2345e56f7773bd751cdf98880eb1161fad04dc2d"
+    },
+    {
+      "path": "tests/command.sh",
+      "bytes": 81,
+      "sha256": "0c318a2e34263a8d28a8782080dfba17e445ccaed091c62b9439bb7bcf110949"
+    },
+    {
+      "path": "tests/run_synthetic.py",
+      "bytes": 1650,
+      "sha256": "8bd588932ec78b8fd36c91742ec21ab45e0cdfc5906a244e8178499a8a7c691a"
+    },
+    {
+      "path": "tests/synthetic_cases.json",
+      "bytes": 4389,
+      "sha256": "24074a1fccaa568fceb0d4fada8c844298a174e1126809db92c2b76138481f44"
+    },
+    {
+      "path": "validation/exit-code.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "validation/run.json",
+      "bytes": 1782,
+      "sha256": "914fa41e5a0eb6a513e83edb57853f2c4b071df4c91949a1f32bb49085358d0b"
+    },
+    {
+      "path": "validation/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation/stdout.log",
+      "bytes": 773,
+      "sha256": "f85b6aec156d5f2718361eb356798ebc57af466ae4c75ab800807b4155ba27ed"
     }
   ]
 }
