@@ -1,20 +1,22 @@
-# Creator self-check — gate-repair-n3
+# Creator self-check — gate-repair-n4
 
-phase: pre-gate; execution_state: HALT; scientific verdict: null. The last formal Gate result is BLOCKED (N-3) over the N-1/N-2 repair ZIP. This is a repair record for review of the next exact GitHub commit; it is not a passing Gate result or a freeze.
+phase: pre-gate; execution_state: HALT; scientific verdict: null. The last formal Gate reviewed c8f10c960a87c12eb645366e2e64c9c98893c17d and its matching README ZIP, closed N-3/F-I/F-J, and recorded BLOCKED for N-4. This proposed PR does not replace that formal verdict with a passing result.
 
-| Finding | Concrete change/evidence | Creator check |
+| Finding | Repair/evidence | Creator check |
 | --- | --- | --- |
-| N-3 / U1 | N3_U1_axiom_cannot_supply_false and U1 mutant | Wrong diagnostic-boundary classification detected |
-| N-3 / U6 | N3_U6_raw_spelling_in_body and U6 mutant | Dropped Pos.Raw normalization detected |
-| N-3 / U8 | N3_U8_comment_in_native_guard and U8/I10/I11 mutants | Dropped block/line comment stripping detected; exact regex registered |
-| Stopping criterion | Code-derived AST inventory, grouped condition/transform table, named witnesses and explicit conservative/equivalent exclusions | Finite declared inventory; no claim of exhaustive correctness |
-| F-I | Print.lean, Meta/Native.lean, Elab/Tactic/Decide.lean at all three commits; capture metadata and hashes | Nine missing source dependencies pinned |
-| F-J | Contrary-result validity requires identical recreation and no applicable evidence failure | rc1 ACCEPT followed by differing recreation is EVIDENCE_INSUFFICIENT / Not Demonstrated |
-| F-K | Gate-reported exposure and Creator's new source/test exposure recorded separately | Ledger appended |
-| Repository custody | Existing local history retained; target VolMax-Studio/lean-native-eval-boundary-s1 | Exact remote SHA becomes primary review identifier after push |
+| N-4 A1 | no-expose fixture + require-expose mutant | Wrong classification detected |
+| N-4 A2 | namespace-less name fixture + require-prefix mutant | Wrong classification detected |
+| N-4 A3 | Pos.extract fixture + require-Raw-name mutant | Wrong classification detected |
+| N-4 A4 | plain Pos parameter fixture + require-Raw-parameters mutant | Wrong classification detected |
+| N-4 A7 | axiom record only in stderr + allow-stderr-axiom mutant | Widened acceptance detected |
+| N-4 A5a/A5b | Declared equivalent only under registered formatter's mandatory output space | Not counted as non-equivalent kills |
+| F-L | README integrity output changed to hash-match | Scientific vocabulary separated |
+| F-M | Gate's public-clone/alternative-sweep exposure recorded | Attributed ledger entry |
+| G-1 | Operator chose public version without raw data, with no history rewrite | Proposed tree externalizes originals; data_manifest.json indexes separate local ZIP |
+| G-2 | Repair goes to PR, not main; Ivan merges/ratifies | No Creator merge or freeze |
 
-Recorded validation: 54/54 synthetic fixtures pass; all 38 declared non-equivalent mutants are killed by explicit wrong-classification witnesses. Literal logs, commands, input/output hashes and witness table are included. The instrument scripts and PoC are byte-unchanged from the prior reviewed commit; N-3 repairs registration and test coverage, not outcome tuning. Only synthetic validation was run here; no Lean invocation or new full-denominator source scan occurred.
+Validation: 59/59 explicit fixtures pass; 43/43 declared mutants have wrong-classification witnesses. Literal outputs, commands and hashes are packaged. The three instrument scripts are unchanged; N-4 adds coverage, not a modified scientific predicate. Existing condition inventory now names each Gate-identified recognition alternative and the stdout-only AX rule separately.
 
-The Gate has closed N-1 and confirmed the previous archive's manifest/replay checks. Its latest result remains BLOCKED until the current exact commit is reviewed. The earlier ZIP identity limitations are historical; publishing the same Git history permits direct review of commits without silently treating ZIP comments as proof.
+The proposed public tree does not contain original raw-source payloads or verbatim supplied review .txt files. Those bytes are retained locally in the separate evidence ZIP with full path/size/SHA-256 inventory. Current main and earlier public commits are not rewritten or erased. This is a prepared public-tree correction, not retroactive withdrawal. Synthetic fixtures and validation remain public and self-contained.
 
-Remaining before freeze: passing formal Gate, Executor confirmation and disclosures, authority pin/adoption, tag object/commit resolution, toolchain/userland/harness/cleanup/resource pins. Freeze must be a separate later commit. No external message is sent by this work.
+Remaining before freeze: formal Gate over this exact repair object; Operator merge/ratification; Executor/disclosure/authority requirements; complete tag/toolchain/userland/harness/cleanup/resource pins; availability of external evidence. No Lean invocation or full-denominator scientific source scan occurred. No merge or freeze is performed here.

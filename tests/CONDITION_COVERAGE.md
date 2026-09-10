@@ -1,6 +1,6 @@
-# Declared mutation witnesses — N-3
+# Declared mutation witnesses — N-4
 
-Derived index of literal validation/mutation-stdout.log; exceptions never count as kills.
+Index of literal validation/mutation-stdout.log; exceptions never count as kills.
 
 | Mutant | Result | First witness | Expected | Mutant result |
 | --- | --- | --- | --- | --- |
@@ -42,3 +42,8 @@ Derived index of literal validation/mutation-stdout.log; exceptions never count 
 | I09_zero_based_line | KILLED | B04_native_false_correct_line | EXPECTED_NATIVE_REJECTION | EVIDENCE_INSUFFICIENT |
 | I10_drop_block_comment_alternative | KILLED | N3_U8_comment_in_native_guard | MISMATCH | NO_MISMATCH |
 | I11_drop_line_comment_alternative | KILLED | N3_U8_comment_in_native_guard | MISMATCH | NO_MISMATCH |
+| A1_require_expose | KILLED | N4_A1_no_expose | MISMATCH | PREDICATE_INAPPLICABLE |
+| A2_require_namespace_prefix | KILLED | N4_A2_namespace_less_name | MISMATCH | PREDICATE_INAPPLICABLE |
+| A3_require_Raw_in_name | KILLED | N4_A3_Pos_name | MISMATCH | PREDICATE_INAPPLICABLE |
+| A4_require_Raw_parameters | KILLED | N4_A4_plain_Pos_parameters | MISMATCH | PREDICATE_INAPPLICABLE |
+| A7_accept_stderr_axiom | KILLED | N4_A7_axiom_record_stderr_only | EVIDENCE_INSUFFICIENT | ACCEPT |

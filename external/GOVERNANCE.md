@@ -36,3 +36,11 @@ Executor confirmation, complete participant disclosure and canonical-original pi
 The latest supplied Claude Gate, external/claude-gate-n1-n2-repair.txt, closes N-1 and records BLOCKED for N-3 over ZIP SHA-256 5b293daef542caefcb275990f424d05124883b658fc33b249c9f5119a2d162cc. It does not yet review the present repair commit. The Operator now requires the existing history to be pushed to VolMax-Studio/lean-native-eval-boundary-s1 and the exact remote commit to become the primary review object. No history rewrite or new copied-file root is permitted.
 
 STATUS.md records pre-gate, HALT and null scientific verdict. The Operator's requested GATE_PASS means a passing formal review; the active canonical-style vocabulary remains BLOCKED / FIXES-PENDING / SURVIVES-REVIEW, with SURVIVES-REVIEW as the passing result. Any prereg freeze must be a later separate commit after the passing review and remaining freeze requirements.
+
+## N-4 review and current Operator distribution decision
+
+Claude's formal review targets c8f10c960a87c12eb645366e2e64c9c98893c17d and ZIP 6c45e960ad1c290dba294f9fccbfb4c7555ec4814e0c3b2f1ab41db6e5f5098e. It closes N-3/F-I/F-J and records BLOCKED for N-4. Original review text is now external evidence indexed by data_manifest.json rather than public-tree prose.
+
+All further changes, including freeze, proceed by PR; Ivan performs merge/ratification. The current task prepares and opens the repair PR, never merges it or directly updates main. The Operator selected a public version without raw data and no history rewrite. Raw-source snapshots and original supplied text artifacts are externalized to a local evidence ZIP. This does not remove bytes from earlier public commits or from current main before merge.
+
+Branch-protection read via mcp__codex_apps__github_fetch of /repos/VolMax-Studio/lean-native-eval-boundary-s1/branches/main/protection returned HTTP 403, “Resource not accessible by integration”. Alternative rulesets collection read succeeded and returned []. This does not establish absence of classic protection; its configuration remains UNVERIFIED through the available connector. No branch-protection setting was changed. PR-only operation here is an explicit process constraint, not a claim about enforced server settings.

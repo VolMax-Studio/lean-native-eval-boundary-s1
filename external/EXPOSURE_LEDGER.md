@@ -50,3 +50,11 @@ Claude's supplied review reports reading the full N-1/N-2 package, all 18 diagno
 Creator read that supplied review and directly retrieved Print.lean, Meta/Native.lean and Elab/Tactic/Decide.lean at the three full pinned commit SHAs; sources/diagnostics/n3-retrieval.json preserves URL/capture provenance. No additional T-B1 predicate source or Lean execution was used. The three N-3 synthetic fixtures and validation inventory are developed after exposure to the Gate's counterexamples. Their recorded runs remain instrument validation, not scientific measurements.
 
 The Operator instructed preservation and push of the existing Git history to VolMax-Studio/lean-native-eval-boundary-s1, explicitly retaining instance files, manifests, fixtures, validation and external governance. Connected repository metadata identifies the target as public; direct git ls-remote returned exit 0 with no refs before the initial push. This authorizes the requested public repository transfer and supersedes the earlier internal-review distribution restriction for this repository/history. It does not authorize messaging, Lean execution or prereg freeze.
+
+## N-4 review exposure
+
+Claude reports reviewing a public clone at c8f10c960a87c12eb645366e2e64c9c98893c17d and the matching README ZIP, performing an optional-group/alternation mutation sweep, and constructing synthetic variants of the already exposed v4.32.2 reference. It reports no Lean invocation or new denominator member/source acquisition, and reused previous downloads for F-I checks. Creator read this review and materialized five new synthetic fixtures and their mutants. No new predicate source or Lean behavior was measured.
+
+The review applies to c8f10c9, not d09c522: the intervening README/MANIFEST-only change is explicitly part of the reviewed object. Future handoffs identify the exact new ZIP and containing commit together.
+
+The Operator selected preparation of a public tree without raw data and explicitly deferred history rewriting. Creator moved original evidence bytes to a separate local archive, retained their hashes and did not treat HEAD removal as erasure of previously public data. Instrument code and source-derived synthetic fixtures remain public research definitions, distinct from full acquired source files.

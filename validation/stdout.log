@@ -52,4 +52,9 @@ PASS N3_U6_raw_spelling_in_body expected=MISMATCH actual=MISMATCH
 PASS N3_U8_comment_in_native_guard expected=MISMATCH actual=MISMATCH
 PASS I04_other_theorem_axioms expected=EVIDENCE_INSUFFICIENT actual=EVIDENCE_INSUFFICIENT
 PASS I05_absolute_PoC_path expected=EXPECTED_NATIVE_REJECTION actual=EXPECTED_NATIVE_REJECTION
-SUMMARY passed=54 failed=0 total=54
+PASS N4_A1_no_expose expected=MISMATCH actual=MISMATCH
+PASS N4_A2_namespace_less_name expected=MISMATCH actual=MISMATCH
+PASS N4_A3_Pos_name expected=MISMATCH actual=MISMATCH
+PASS N4_A4_plain_Pos_parameters expected=MISMATCH actual=MISMATCH
+PASS N4_A7_axiom_record_stderr_only expected=EVIDENCE_INSUFFICIENT actual=EVIDENCE_INSUFFICIENT
+SUMMARY passed=59 failed=0 total=59

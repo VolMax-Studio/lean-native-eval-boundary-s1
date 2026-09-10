@@ -1,5 +1,5 @@
 {
-  "kind": "N-3 repair validation; no Lean execution",
+  "kind": "N-4 repair, synthetic validation only; no external raw bytes required",
   "python_version": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
   "python_executable": "/home/volmax-studio/volmax-projects/IoT/volmax_env/bin/python3",
   "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
@@ -9,9 +9,9 @@
         "sh",
         "tests/command.sh"
       ],
-      "cwd": "repository root",
-      "started_at_utc": "2026-09-10T20:19:40.144194+00:00",
-      "completed_at_utc": "2026-09-10T20:19:40.172799+00:00",
+      "cwd": "public repository root",
+      "started_at_utc": "2026-09-10T20:37:14.808469+00:00",
+      "completed_at_utc": "2026-09-10T20:37:14.840304+00:00",
       "exit_code": 0,
       "output_prefix": "validation/"
     },
@@ -20,9 +20,9 @@
         "sh",
         "tests/mutation-command.sh"
       ],
-      "cwd": "repository root",
-      "started_at_utc": "2026-09-10T20:19:40.173064+00:00",
-      "completed_at_utc": "2026-09-10T20:19:40.230459+00:00",
+      "cwd": "public repository root",
+      "started_at_utc": "2026-09-10T20:37:14.840532+00:00",
+      "completed_at_utc": "2026-09-10T20:37:14.910852+00:00",
       "exit_code": 0,
       "output_prefix": "validation/mutation-"
     }
@@ -50,8 +50,8 @@
     },
     {
       "path": "tests/mutations.json",
-      "bytes": 6390,
-      "sha256": "f61d6e4be1e6ee8c277c8b1c08987aed66e22e6e72315eae08d18e7df5340f88"
+      "bytes": 7224,
+      "sha256": "94cc527736e11ec5ffd18bc9722f46de3480df5a6417aa6c4a05a062c97dd41f"
     },
     {
       "path": "tests/run_mutations.py",
@@ -65,8 +65,8 @@
     },
     {
       "path": "tests/synthetic_cases.json",
-      "bytes": 23411,
-      "sha256": "04b8b33a391f94502fe3c455798d7abb366dfb039e533b0a236145c01179e097"
+      "bytes": 27065,
+      "sha256": "652f13c1a2db561ef53e123c681f0df5eb1d92dcb1eff818d6320627909106fb"
     },
     {
       "path": "validation/exit-code.txt",
@@ -85,8 +85,8 @@
     },
     {
       "path": "validation/mutation-stdout.log",
-      "bytes": 21862,
-      "sha256": "881deaf0b650fa7cfe6f38d4c547da1629377d565b327ad911721a37f0912cac"
+      "bytes": 24589,
+      "sha256": "ad9b1b4692c9e82ac37c8e9e676ecdb0937f6824f4c7ef386f4e990ba5a43466"
     },
     {
       "path": "validation/stderr.log",
@@ -95,8 +95,8 @@
     },
     {
       "path": "validation/stdout.log",
-      "bytes": 4963,
-      "sha256": "82eb12222e0262ccba2eb2fbd72ab9df2eccf120b57045f420e2298c9ed2db3e"
+      "bytes": 5299,
+      "sha256": "0d2332ca7d2a6a3f87b3deab668547bfe5ffd24e52137e6a248e81f9b243b003"
     }
   ]
 }

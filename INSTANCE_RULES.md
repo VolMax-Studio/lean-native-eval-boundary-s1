@@ -63,3 +63,7 @@ This draft may be reviewed as concrete bytes. It is not a runnable preregistrati
 ## Bounded instrument validation before freeze
 
 The code-derived inventory in tests/INSTRUMENT_INVENTORY.md enumerates outcome conditions and transformations in both scripts, their named fixtures/mutants and explicitly excluded conservative/equivalent cases. The stopping rule for this repair is: all declared fixtures pass; all declared non-equivalent, outcome-changing mutants have a classification witness; U1/U6/U8 each have their own fixture; formatter/axiom/diagnostic source dependencies are pinned; and no unclassified outcome-changing inventory item remains. Crashes do not count as kills. The Gate may reject a specific uncovered condition; this is not an assertion of exhaustive software correctness or a mandate for unbounded speculative mutation rounds.
+
+## Evidence storage for the public review tree
+
+Original source and supplied-text paths are logical evidence identifiers resolved through data_manifest.json and the separate raw-evidence archive described in DATA_ACCESS.md. MANIFEST.json covers public files only. This storage change does not modify any predicate, PoC byte hash, denominator definition or scientific decision rule. Complete external evidence must be available to the Gate/Executor before freeze or execution. Synthetic validation is self-contained and requires no raw-source archive.
