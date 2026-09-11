@@ -13,12 +13,13 @@ The behavioral evaluation tests three specific Lean 4 release distribution archi
 | Version | Asset Filename | Byte Size | SHA-256 Digest | Official Distribution URL |
 | :--- | :--- | :---: | :---: | :--- |
 | **Lean v4.32.2** | `lean-4.32.2-linux.tar.zst` | 563,991,635 | `5f2069e6f5db73780f374ccb49ce8ea649aa20a0cebf0116816744c999ce72aa` | `https://github.com/leanprover/lean4/releases/download/v4.32.2/lean-4.32.2-linux.tar.zst` |
-| **Lean v4.33.1** | `lean-4.33.1-linux.tar.zst` | 570,405,234 | `2f8c10644606d7cb99c51267e2e0acd2bf90eac9619efbfa37330cfd9eb78bbf` | `https://github.com/leanprover/lean4/releases/download/v4.33.1/lean-4.33.1-linux.tar.zst` |
+| **Lean v4.33.1** | `lean-4.33.1-linux.tar.zst` | 570,405,234 | `890afd185370f85666025b883914ab4f4b339136f8c96167b69cfb62aecaf235` | `https://github.com/leanprover/lean4/releases/download/v4.33.1/lean-4.33.1-linux.tar.zst` |
 | **Lean v4.34.0-rc1** | `lean-4.34.0-rc1-linux.tar.zst` | 575,410,932 | `41dc6a6ec143ece8ed4ba4c4c6978c91f21ad5cbe3c4e7728ad31b869961dc17` | `https://github.com/leanprover/lean4/releases/download/v4.34.0-rc1/lean-4.34.0-rc1-linux.tar.zst` |
 
 Retrieval, extraction, and invocation provenance:
 - Assets retrieved directly from official GitHub releases of repository `leanprover/lean4`.
-- Exact stream-verified SHA-256 digests and content lengths established and recorded in `harness/pin_provenance.json`.
+- Exact full-archive verified SHA-256 digests and content lengths established and recorded in `harness/pin_provenance.json`.
+- Pre-invocation integrity check: Prior to extraction and execution, the archive file SHA-256 digest is verified against the pinned digest; any mismatch produces `EXTERNAL_EXECUTION_BLOCKER`.
 - Unpacking mechanism: `tar --zstd -xf <archive> -C <toolchain_dir>`.
 - Lean executable path: literal absolute path `<toolchain_dir>/bin/lean`.
 - Invariant: Invocation occurs strictly through the direct unpacked binary path; elan proxies and dynamic toolchain dispatch wrappers are prohibited.
@@ -30,13 +31,15 @@ Retrieval, extraction, and invocation provenance:
 The execution environment is pinned to a single, concrete reference platform:
 
 - **Operating System:** Linux kernel 7.0.0-31-generic x86_64.
-- **Userland Distribution:** Ubuntu 24.04.1 LTS (noble).
+- **Userland Distribution:** Ubuntu 24.04.4 LTS (noble).
 - **Architecture:** x86_64 (64-bit).
+- **Execution User:** `volmax-studio` (UID 1000, GID 1000).
 - **C Library (libc):** Ubuntu GLIBC 2.39-0ubuntu8.8 (`libc.so.6`).
 - **C Compiler:** GCC 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1).
 - **Shell:** `/bin/bash` version 5.2.21(1)-release.
-- **Network Isolation:** Process network namespace isolation enforced via `unshare --net --`.
 - **Memory Bound:** Maximum virtual memory limit 4096 MB enforced via `prlimit --as=4294967296`.
+- **Per-Invocation Timeout:** 60 seconds enforced via `timeout --kill-after=5s 60s`.
+- **Network Isolation:** Process network namespace isolation enforced via `unshare --net --`. If unprivileged network namespaces are prohibited on the host (`Operation not permitted`), the failure is detected by the non-Lean preflight check and mapped to `EXTERNAL_EXECUTION_BLOCKER`.
 - **Required Environment Variables:**
   ```bash
   export LANG="C.UTF-8"
@@ -47,7 +50,14 @@ The execution environment is pinned to a single, concrete reference platform:
 
 ---
 
-## 3. Exact Execution Harness & Command
+## 3. Exact Execution Harness, Preflight & Command
+
+### Preflight Isolation & Limit Check
+Before any test artifact run, the harness verifies wrapper availability and permissions using `/bin/true` (zero Lean execution):
+```bash
+prlimit --as=4294967296 timeout --kill-after=5s 60s /bin/true
+```
+If this preflight command or network isolation fails, execution halts and records `EXTERNAL_EXECUTION_BLOCKER`.
 
 ### Literal Invocation Script (`command.sh`)
 Per `INSTANCE_RULES.md#behavioral-criteria-and-recreation` and `DIAGNOSTIC_PROFILE.json`, with network namespace isolation, virtual address space limit (4096 MB), per-invocation timeout (60s), and environment enforcement:
@@ -75,24 +85,34 @@ fi
 - Exit code: `exit-code.txt` (ASCII decimal integer followed by newline).
 - Environment capture: `env.txt` (sorted snapshot of active environment variables during invocation).
 
+### Wrapper Error Classification & Matcher Invocation
+Per `INSTANCE_RULES.md:47`, wrapper-level failures (timeout, resource exhaustion, host permission denial) take precedence over Lean behavioral parsing:
+- If exit code is `124` (timeout) or `137` (SIGKILL / OOM) or stderr contains `unshare: unshare failed`: classify run outcome as `EXTERNAL_EXECUTION_BLOCKER`.
+- Otherwise, invoke `scripts/behavior_matcher.py`:
+  ```bash
+  python3 scripts/behavior_matcher.py "${POC_FILE}" stdout.bin stderr.bin $(cat exit-code.txt)
+  ```
+  yielding `ACCEPT`, `EXPECTED_NATIVE_REJECTION`, or `EVIDENCE_INSUFFICIENT`.
+
 ---
 
 ## 4. Deterministic Recreation Sequence
 
 For each of the three pinned toolchain versions:
-1. **Preserve clean environment:** Prepare clean isolated workspace. Place `PoC.lean`. Record `git_commit.txt`. Generate and execute `command.sh` (which writes active `env.txt`).
-2. **First Run:** Execute `command.sh`. Capture `stdout.bin`, `stderr.bin`, `exit-code.txt`.
-3. **Archive First Run:** Create directory `first-run/` and copy `stdout.bin`, `stderr.bin`, `exit-code.txt` into `first-run/`.
-4. **Between-Run Cleanup:** Execute cleanup removing strictly items on the Between-Run Allowlist. `first-run/` is preserved and must never be deleted.
-5. **Second Run (Recreation):** Re-execute `command.sh` with identical inputs and environment in directory `second-run/`. Move outputs into `second-run/`.
-6. **Byte-for-Byte Comparison:**
+1. **Preflight verification:** Run non-Lean wrapper check with `/bin/true`.
+2. **Preserve clean environment:** Prepare clean isolated workspace. Place `PoC.lean`. Record `git_commit.txt`. Generate and execute `command.sh` (which writes active `env.txt`).
+3. **First Run:** Execute `command.sh`. Capture `stdout.bin`, `stderr.bin`, `exit-code.txt`. Classify run 1 outcome.
+4. **Archive First Run:** Create directory `first-run/` and copy `stdout.bin`, `stderr.bin`, `exit-code.txt` into `first-run/`.
+5. **Between-Run Cleanup:** Execute cleanup removing strictly items on the Between-Run Allowlist. `first-run/` is preserved and must never be deleted.
+6. **Second Run (Recreation):** Re-execute `command.sh` with identical inputs and environment in the workspace. Move recreated outputs `stdout.bin`, `stderr.bin`, `exit-code.txt` into `second-run/`. Classify run 2 outcome.
+7. **Byte-for-Byte Comparison:**
    ```bash
    cmp -s first-run/stdout.bin second-run/stdout.bin
    cmp -s first-run/stderr.bin second-run/stderr.bin
    cmp -s first-run/exit-code.txt second-run/exit-code.txt
    ```
    Any byte mismatch immediately yields `EVIDENCE_INSUFFICIENT` for affected subclaims.
-7. **Package Evidence:** Package the full P10 evidence-run artifacts into `evidence/behavioral/{version}/`.
+8. **Package Evidence:** Package the full P10 evidence-run artifacts into `evidence/behavioral/{version}/`.
 
 ---
 
@@ -127,7 +147,7 @@ For each version run, the frozen harness outputs a standardized evidence bundle 
 - `env.txt`: Captured runtime environment variables.
 - `git_commit.txt`: Exact commit SHA of repository during execution.
 - `hashes.json`: SHA-256 hashes of input (`PoC.lean`), outputs (`stdout.bin`, `stderr.bin`), toolchain binary, and exit code.
-- `run_metadata.json`: UTC start/end timestamps, duration, host kernel/libc version, toolchain version, and byte comparison verdict.
+- `run_metadata.json`: UTC start/end timestamps, duration, host user/kernel/libc version, toolchain version, recreation byte comparison verdict, wrapper error classification, and behavior matcher outcome.
 
 ---
 

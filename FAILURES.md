@@ -79,3 +79,12 @@ README's manifest-check command printed Verified for byte integrity. Replace tha
 ## F-014 — review scope could be extended to future execution pins (F-N)
 
 Claude identified that the prior remaining-work wording allowed a repair-package Gate to be read as covering toolchain hashes, harness, cleanup list, resource limits and object resolutions created later. No such review had occurred. Correction: explicitly require the complete candidate freeze commit to receive its own exact-SHA formal Gate and separate Operator ratification before freeze is effective or execution is authorized; earlier reviews do not cover later artifacts. Subsequent changes require renewed formal review. STATUS and PRE_GATE_CLOSURE point to this single operative rule. Can this instance still carry a verdict? Yes, conditionally after the required future review and remaining prerequisites; no trust or execution authorization is transferred by this repair.
+
+## F-015 — PR #3 merged before Gate verdict without freeze ratification
+
+PR #3 (head `c1398ede5d044d8b457faa50a429a34c6790ef57`) was merged into `main` by the Operator as merge commit `f8495385750d9931d86d63d64fe282713f36fe28` prior to the conclusion of the formal Gate review. Per instance rules and explicit Operator confirmation, this merge was an administrative repository branch synchronization and DOES NOT constitute ratification of the preregistration freeze. The repository preregistration status remains unratified (`prereg_frozen: false`), execution state remains HALT, and `LEAN_RUNS=0`. All repairs proceed via a new candidate pull request against current `main`.
+
+## F-016 — Lean v4.33.1 archive hash pinned from truncated download stream (B-2)
+
+The toolchain distribution archive hash for Lean v4.33.1 (`lean-4.33.1-linux.tar.zst`, 570,405,234 bytes) was recorded in `EXECUTION_SPEC.md` and `harness/pin_provenance.json` as `2f8c10644606d7cb99c51267e2e0acd2bf90eac9619efbfa37330cfd9eb78bbf`. This hash resulted from an interrupted streaming pipeline (`curl -sL ... | sha256sum`) without `pipefail`. The verified full-archive SHA-256 digest from the official release asset is `890afd185370f85666025b883914ab4f4b339136f8c96167b69cfb62aecaf235`. Correction: update `EXECUTION_SPEC.md` and `harness/pin_provenance.json` to the verified full asset digest. Can this instance still carry a verdict? Yes, this correction precedes any execution run.
+

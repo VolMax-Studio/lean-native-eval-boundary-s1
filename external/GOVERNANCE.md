@@ -32,7 +32,7 @@ The Operator designated Claude as Gate and has explicitly confirmed: “Potvrđu
 
 Conflict acceptability is an Operator decision, not a Gate self-certification. The supplied correspondence states acceptance of Claude as Gate for T-A/T-B with the strict scope boundary. Claude must disclose exposure; model-family identity alone does not establish independence. The issue and blog report GPT-5.6 involvement in discovery, which is recorded as a claimant self-report, not independently verified discovery provenance.
 
-Authority is reported as “VolMax Observatory — Operating Rules (P10, v2026-08)”. The original document has not been retrieved, and its location and SHA-256 remain an unresolved provenance note. By explicit Operator decision, the locally versioned INSTANCE_RULES is operative and adopted as governing authority for this instance; locating or SHA-pinning the historical canonical document is not a freeze prerequisite or blocker. No canonical file SHA is invented.
+Authority is reported as “VolMax Observatory — Operating Rules (P10, v2026-08)”. The original document has not been retrieved, and its location and SHA-256 remain an unresolved provenance note. By explicit Operator decision (“ako ti usvajaš lokalni INSTANCE_RULES kao authority za ovu instancu, originalni P10 dokument ostaje UNRESOLVED provenance, ne freeze blocker”), the locally versioned INSTANCE_RULES is operative and adopted as governing authority for this instance; locating or SHA-pinning the historical canonical document is not a freeze prerequisite or blocker. No canonical file SHA is invented.
 
 ## Verification attempts
 
@@ -45,7 +45,10 @@ gate-round-01.txt was issued by Claude and is his formal draft-1 Gate over paste
 
 The latest formal Gate is external/gate-581b0a4c70aac1cf4f74ca284af003034ca4b80d.txt, targeting ZIP SHA-256 d52989959cbbfe28f7e84efe378f53659b6a10d21002fc4be0672ec60c672b9a (97022 bytes, 36 ZIP entries). It records BLOCKED for N-1/N-2. Its replay claims are Gate-reported observations; the current assistant independently checked the local ZIP size/hash and issue-body hash but does not turn that into independent reproduction of every Gate action.
 
-Use one formal Gate vocabulary: BLOCKED / FIXES-PENDING / SURVIVES-REVIEW, as specified in the supplied correction. Scientific outcome vocabulary is separate. The Creator's repair checklist is a self-check, never a formal Gate result. The last recorded formal verdict remains BLOCKED until Claude reviews the repaired concrete object.
+Use one formal Gate vocabulary: BLOCKED / FIXES-PENDING / SURVIVES-REVIEW, as specified in the supplied correction. Scientific outcome vocabulary is separate. The Creator's repair checklist is a self-check, never a formal Gate result. Gate history across recent revisions:
+- Review over `d9e97a9`: `SURVIVES-REVIEW`.
+- Merge of PR #3 into `main` (`f849538`): administrative sync, not freeze ratification (`FAILURES.md#f-015`).
+- Formal Gate review over candidate `c1398ed`: `BLOCKED` (citing B-1..B-4 and F-1..F-9).
 
 The ZIP comment identifies a local commit but is not by itself proof of Git-tree identity to the Gate. Local archive/tree verification may be recorded as an OBSERVED custody check with its scope, without claiming that the Gate could inspect the local repository. No remote publication, upload or message to Claude has been performed by this task.
 
@@ -53,13 +56,13 @@ The ZIP comment identifies a local commit but is not by itself proof of Git-tree
 
 T-B1 is explicitly designated “Deskriptivno merenje T-B1”. Report per-member syntactic outcomes and coverage, with no Verified/Not Verified scientific verdict. This change is an Operator-authorized scope-of-interpretation decision, not an outcome-driven modification.
 
-Executor confirmation is now complete via Operator appointment of Ananke as Executor for the eventual frozen run. Authority status: The original canonical authority document (“VolMax Observatory — Operating Rules (P10, v2026-08)”) location and SHA-256 remain UNRESOLVED; this instance explicitly operates under locally versioned, Operator-adopted authority.
+Executor confirmation is established by explicit Operator directive (“ROLE: Ops / repository custodian only... proposed Executor preparation only... Confirmed Executor Preparation (Ananke)”). Authority status: The original canonical authority document (“VolMax Observatory — Operating Rules (P10, v2026-08)”) location and SHA-256 remain UNRESOLVED; this instance explicitly operates under locally versioned, Operator-adopted authority.
 
 ## Repository transition and latest Gate
 
-The latest supplied Claude Gate, external/gate-e599d55343ab0b1168cb9edc61a4355f928499b0.txt, closes N-1 and records BLOCKED for N-3 over ZIP SHA-256 5b293daef542caefcb275990f424d05124883b658fc33b249c9f5119a2d162cc. It does not yet review the present repair commit. The Operator now requires the existing history to be pushed to VolMax-Studio/lean-native-eval-boundary-s1 and the exact remote commit to become the primary review object. No history rewrite or new copied-file root is permitted.
+The latest formal Gate result over candidate `c1398ede5d044d8b457faa50a429a34c6790ef57` records `BLOCKED` (findings B-1 through B-4, F-1 through F-9). It does not authorize freeze or execution. The current repair prepares a subsequent freeze-candidate PR against updated `main` (`f849538`). No history rewrite or direct push to `main` is permitted.
 
-STATUS.md records pre-gate, HALT and null scientific verdict. The Operator's requested GATE_PASS means a passing formal review; the active canonical-style vocabulary remains BLOCKED / FIXES-PENDING / SURVIVES-REVIEW, with SURVIVES-REVIEW as the passing result. Any prereg freeze must be a later separate commit after the passing review and remaining freeze requirements.
+STATUS.md records pre-gate, HALT and null scientific verdict. The active canonical-style vocabulary remains BLOCKED / FIXES-PENDING / SURVIVES-REVIEW, with SURVIVES-REVIEW as the passing result. Any prereg freeze must be a later separate commit after passing review and Operator ratification.
 
 ## N-4 review and current Operator distribution decision
 

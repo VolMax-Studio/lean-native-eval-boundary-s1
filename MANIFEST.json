@@ -1,8 +1,8 @@
 {
   "status": "pre-freeze candidate; pre-gate; HALT; not frozen; TARGET_LEAN_RUNS=0; scientific verdict null",
-  "manifest_created_at_utc": "2026-09-11T19:43:33.189139+00:00",
-  "previous_review_commit": "ae4ae63d630bfc1aaf47381c286fcc5243d3ee1d",
-  "previous_review_zip_sha256": "8ed9d0e685f343a8d03bfc522958b39a3787132e2ae9929aa15465c1cbc6d051",
+  "manifest_created_at_utc": "2026-09-11T20:03:13.251198+00:00",
+  "previous_review_commit": "c1398ede5d044d8b457faa50a429a34c6790ef57",
+  "previous_review_zip_sha256": "3b3cde7f78f3f37752798f458bd38c6c878230b9b5d88c4372bb99d8ace2d1fd",
   "repository": "VolMax-Studio/lean-native-eval-boundary-s1",
   "note": "Public files only; self excluded. Original evidence is separately indexed by data_manifest.json. Current main and historical raw data are not erased by this PR.",
   "files": [
@@ -33,18 +33,18 @@
     },
     {
       "path": "EXECUTION_SPEC.md",
-      "bytes": 7940,
-      "sha256": "8898a7aa1e8dfe5f6610a4bc9eae3f74b751da37e161dc2f325fd08b26468772"
+      "bytes": 9685,
+      "sha256": "64ddf07e2435f799d32e9d49119c3d53bb0e2d97b4c32a549be7c9e81d3d98f6"
     },
     {
       "path": "FAILURES.md",
-      "bytes": 10292,
-      "sha256": "454226e34e73ad87ed8a34122ca644dd3d4036eca6080d99fc571204aa4234d4"
+      "bytes": 11754,
+      "sha256": "565f481df2102f90f2ea484f0495fc93188cc0762c5f87a5649ee3ec82ef5cc0"
     },
     {
       "path": "INSTANCE_RULES.md",
-      "bytes": 15484,
-      "sha256": "c8d68eead98681074a1a126456e59609ab308bb26cc9672f4b5d896e941432f7"
+      "bytes": 15511,
+      "sha256": "3cbaf801fb6c9be0c82d47f5a65258e075b463acd9ebbfc85eab941464aa85a9"
     },
     {
       "path": "PRE_GATE_CLOSURE.md",
@@ -63,8 +63,8 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 1488,
-      "sha256": "ec589ff5ea93b44fa4533712dee2b7add1423c6dd72e78ce86540bae3339297b"
+      "bytes": 2210,
+      "sha256": "31dbc850e5f557235705d1e7e97838c1c169feebcf57bcca4edfd89cd32b0a15"
     },
     {
       "path": "TAG_MANIFEST.json",
@@ -83,33 +83,38 @@
     },
     {
       "path": "external/EXPOSURE_LEDGER.md",
-      "bytes": 11052,
-      "sha256": "b05244a84e3cedb4f147d124c07360d80b008be71a742a32680ea43e48504393"
+      "bytes": 12255,
+      "sha256": "e55a4feacb9af7e256101816591561341c066641db1691db81052a0528dd29ff"
     },
     {
       "path": "external/GOVERNANCE.md",
-      "bytes": 11485,
-      "sha256": "c5905db68fcdc1e915fa72858ced858c467f0e35bca7c28110b57ea1b6fddbad"
+      "bytes": 11676,
+      "sha256": "f9e51678f8c2cbb21ad17eddb02ff4779ec808629fcdaa75922643ad96fa1cc2"
     },
     {
       "path": "harness/pin_provenance.json",
-      "bytes": 2530,
-      "sha256": "28b4d19bda169826772db42ed824eb84c66007b81aef5aaf00af40441e5e9766"
+      "bytes": 2992,
+      "sha256": "c7d8069f04f796cf48e6a855d6fe38cca7a23ac063f5f041addcf3cec4cc99c3"
     },
     {
       "path": "harness/run_behavioral.sh",
-      "bytes": 3835,
-      "sha256": "2517fb1ab6cfe5caa41616386cb8902728b86b7650bbbdfdb5c1156b836f4d86"
+      "bytes": 5826,
+      "sha256": "6dfb711639b803f60aed00c4c114979fc56c0af2839d0ed00777505b514e46a1"
     },
     {
       "path": "harness/run_t_b1.sh",
-      "bytes": 7612,
-      "sha256": "a3c207f27ca21d14dff8c81c8b6a7541dbd6913f9ce4b01f632cb2891286b2a9"
+      "bytes": 9603,
+      "sha256": "e65973f57572fd3ca07791153f4f59a4d7cea6fc5cc4fb6b122828c111e1e5bc"
     },
     {
       "path": "harness/tag_resolution_provenance.json",
       "bytes": 15387,
       "sha256": "d1aaceda30b78a431a9d8e950e362d9defa533e4e945c0d64b54d751fcdc0f0f"
+    },
+    {
+      "path": "scripts/__pycache__/behavior_matcher.cpython-312.pyc",
+      "bytes": 4703,
+      "sha256": "963db4a77f3779f14bdfe33a25f02e2f63d4f4466893bbe62a1d4b4fa3463cc5"
     },
     {
       "path": "scripts/behavior_matcher.py",
@@ -175,6 +180,11 @@
       "path": "tests/synthetic_cases.json",
       "bytes": 27065,
       "sha256": "652f13c1a2db561ef53e123c681f0df5eb1d92dcb1eff818d6320627909106fb"
+    },
+    {
+      "path": "tests/test_harness_stubs.sh",
+      "bytes": 1906,
+      "sha256": "3de77603f5f59dc72edd8b23e66c1ff195e5e10b33d494b696f21e235196b498"
     },
     {
       "path": "validation/exit-code.txt",

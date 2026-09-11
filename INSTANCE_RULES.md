@@ -1,6 +1,6 @@
 # T-A/T-B — INSTANCE_RULES existing prereg object, N-3 repair
 
-Status: DRAFT / NOT FROZEN / NO LEAN EXECUTION AUTHORIZATION. This is a Creator-prepared review object, not a formal Gate result. The designated Gate performs formal review; the final Ratifier ratifies the result. Executor assignment is pending Operator confirmation. The drafting agent is Creator and performs only a disclosed self-check of revision closure, not independent adjudication.
+Status: DRAFT / NOT FROZEN / NO LEAN EXECUTION AUTHORIZATION. This is a Creator-prepared review object, not a formal Gate result. The designated Gate performs formal review; the final Ratifier ratifies the result. The Executor role is confirmed by the Operator for post-freeze execution. The drafting agent is Creator and performs only a disclosed self-check of revision closure, not independent adjudication.
 
 ## Authority and scope
 
@@ -58,7 +58,7 @@ Before each version's first run preserve a clean, pinned working environment. Sa
 
 ## Freeze boundary
 
-This draft may be reviewed as concrete bytes. It is not a runnable preregistration. In this freeze-candidate package: Executor is confirmed (Ananke); all 45 tag object types and commits are resolved in TAG_MANIFEST.json; toolchain digests, execution environment, harness, cleanup allowlist and resource limits are pinned in EXECUTION_SPEC.md and RESOURCE_PLAN.md; and participant governance is updated in external/GOVERNANCE.md. The required freeze boundary remains in effect: Every candidate freeze commit containing the complete tag/object resolutions, toolchain and userland hashes, execution harness, cleanup list, resource limits and all other execution pins must receive its own formal Gate review at that exact commit SHA and separate Operator ratification before freeze becomes effective or execution is authorized; no earlier repair-package review covers those future artifacts, and any subsequent change to them requires renewed formal review. Gate result and final Ratifier ratification are separate records. No Lean invocation is authorized by this document.
+This draft may be reviewed as concrete bytes. It is not a runnable preregistration. In this freeze-candidate package: Executor role assignment is confirmed; all 45 tag object types and commits are resolved in TAG_MANIFEST.json; toolchain digests, execution environment, harness, cleanup allowlist and resource limits are pinned in EXECUTION_SPEC.md and RESOURCE_PLAN.md; and participant governance is updated in external/GOVERNANCE.md. The required freeze boundary remains in effect: Every candidate freeze commit containing the complete tag/object resolutions, toolchain and userland hashes, execution harness, cleanup list, resource limits and all other execution pins must receive its own formal Gate review at that exact commit SHA and separate Operator ratification before freeze becomes effective or execution is authorized; no earlier repair-package review covers those future artifacts, and any subsequent change to them requires renewed formal review. Gate result and final Ratifier ratification are separate records. No Lean invocation is authorized by this document.
 
 ## Bounded instrument validation before freeze
 

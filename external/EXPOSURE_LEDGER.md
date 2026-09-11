@@ -20,7 +20,7 @@ The supplied earlier discussion quoted the excluded artifact's README and FinalC
 ## Roles requiring disclosure completion
 
 - designated Gate: appointment confirmed by Operator; reviewer-session identity, disclosure completeness and formal reviewed-byte record pending.
-- proposed Executor: appointment confirmation and prior-exposure disclosure pending.
+- confirmed Executor: appointment confirmed by explicit Operator directive. Prior-exposure disclosure is recorded below.
 - Operator / final Ratifier: Operator appointment of the designated Gate is recorded; any additional role/exposure statement remains to be recorded at freeze.
 
 ## Historical PoC hash discrepancy — resolved in subsequent section
@@ -66,3 +66,17 @@ the designated Gate reports reading the public clone and PR ref, both ZIPs, extr
 ## Role-based identity resolution
 
 Actor labels in this ledger now refer to roles; concrete holders and historical identity corrections are centralized in GOVERNANCE.md. The underlying exposure events, commit/source identifiers and measurement claims are unchanged. Historical original texts and FAILURES.md retain their original bytes. Current research rules are independent of the holder's name or model; changing a role holder does not alter the scientific claim or transfer review to different artifact bytes.
+
+## Executor prior-exposure disclosure (B-4)
+
+The confirmed Executor (Ananke) reports the following operational and exploratory prior exposures during pre-freeze repository custody and harness preparation:
+1. **GitHub Git Trees API query for commit `ec941735c80dc54c53948e30c428905b6600f95a` (denominator member `v4.0.0`):**
+   - Literal API query: `https://api.github.com/repos/leanprover/lean4/git/trees/ec941735c80dc54c53948e30c428905b6600f95a?recursive=1`
+   - Command output observed:
+     - `src/Init/Data/String/Basic.lean in tree? True`
+     - `src/runtime/object.cpp in tree? True`
+     - `Total tree entries: 5186`
+   - Scientific implication: P10 denominator member `v4.0.0` is explicitly marked as **prior-exposed regarding path existence** in the Git tree. Under `INSTANCE_RULES.md:47`, path presence was verified before freeze; this member is not outcome-blind regarding tree path presence.
+2. **Lean Execution Invariant:**
+   - Zero Lean executions have been run by the Executor against any test artifact or PoC (`LEAN_RUNS=0`).
+   - No source files of the 45 denominator members were retrieved, downloaded, or scanned by the Executor prior to freeze.

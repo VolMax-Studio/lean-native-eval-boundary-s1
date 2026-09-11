@@ -34,7 +34,7 @@
       "bytes": 570405234,
       "command": "curl -sL https://github.com/leanprover/lean4/releases/download/v4.33.1/lean-4.33.1-linux.tar.zst | sha256sum",
       "exit_code": 0,
-      "sha256": "2f8c10644606d7cb99c51267e2e0acd2bf90eac9619efbfa37330cfd9eb78bbf"
+      "sha256": "890afd185370f85666025b883914ab4f4b339136f8c96167b69cfb62aecaf235"
     },
     {
       "operation": "toolchain_digest_verification_v4_34_0_rc1",
@@ -44,6 +44,18 @@
       "command": "curl -sL https://github.com/leanprover/lean4/releases/download/v4.34.0-rc1/lean-4.34.0-rc1-linux.tar.zst | sha256sum",
       "exit_code": 0,
       "sha256": "41dc6a6ec143ece8ed4ba4c4c6978c91f21ad5cbe3c4e7728ad31b869961dc17"
+    },
+    {
+      "operation": "environment_provenance_measurements",
+      "measured_at_utc": "2026-09-11T20:00:00Z",
+      "operating_system": "Linux 7.0.0-31-generic x86_64",
+      "distribution": "Ubuntu 24.04.4 LTS (noble)",
+      "libc": "Ubuntu GLIBC 2.39-0ubuntu8.8",
+      "bash_version": "5.2.21(1)-release",
+      "gcc_version": "13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1)",
+      "execution_user": "volmax-studio",
+      "uid": 1000,
+      "gid": 1000
     }
   ]
 }

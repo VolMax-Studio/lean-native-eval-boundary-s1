@@ -70,6 +70,9 @@ for m in members:
         try:
             with urllib.request.urlopen(tree_req, timeout=30) as tr:
                 tree_data = json.load(tr)
+                # If tree is truncated, absence cannot be proven from partial tree
+                if tree_data.get('truncated'):
+                    return 'TREE_TRUNCATED_ABSENCE_UNPROVABLE'
                 tree_paths = {x['path'] for x in tree_data.get('tree', [])}
                 if target_path not in tree_paths:
                     return 'PATH_PROVEN_ABSENT'
@@ -184,6 +187,16 @@ for m in members:
         except Exception:
             parsed_outcome = 'EVIDENCE_INSUFFICIENT'
 
+    # Recreate execution pass (byte-identical recreation check)
+    recreate_proc = subprocess.run(
+        [sys.executable, 'scripts/source_proxy.py', basic_path, object_path],
+        capture_output=True,
+        text=True
+    )
+    recreation_match = (recreate_proc.returncode == proc.returncode and recreate_proc.stdout == proc.stdout and recreate_proc.stderr == proc.stderr)
+    if not recreation_match:
+        parsed_outcome = 'EVIDENCE_INSUFFICIENT'
+
     results.append({
         'tag': tag,
         'commit': commit,
@@ -191,15 +204,41 @@ for m in members:
         'outcome': parsed_outcome,
         'proxy_output': proxy_payload,
         'stdout_path': stdout_path,
-        'stderr_path': stderr_path
+        'stderr_path': stderr_path,
+        'recreation_match': recreation_match
     })
-    print(f'[{tag}] -> {parsed_outcome}')
+    print(f'[{tag}] -> {parsed_outcome} (recreation match: {recreation_match})')
+
+# Compute aggregate measurement status per INSTANCE_RULES.md:45
+# COMPLETE when all 45 members have supported literal predicate results, including explicit PREDICATE_INAPPLICABLE
+# INCOMPLETE if any member has EVIDENCE_INSUFFICIENT; otherwise EXTERNALLY_BLOCKED if any member has EXTERNAL_EXECUTION_BLOCKER
+outcomes = [r['outcome'] for r in results]
+has_insufficient = 'EVIDENCE_INSUFFICIENT' in outcomes
+has_blocker = 'EXTERNAL_EXECUTION_BLOCKER' in outcomes
+
+if has_insufficient:
+    aggregate_status = 'INCOMPLETE'
+elif has_blocker:
+    aggregate_status = 'EXTERNALLY_BLOCKED'
+else:
+    aggregate_status = 'COMPLETE'
+
+summary = {
+    'total_members': len(results),
+    'aggregate_status': aggregate_status,
+    'mismatch_count': sum(1 for r in results if r['outcome'] == 'MISMATCH'),
+    'no_mismatch_count': sum(1 for r in results if r['outcome'] == 'NO_MISMATCH'),
+    'predicate_inapplicable_count': sum(1 for r in results if r['outcome'] == 'PREDICATE_INAPPLICABLE'),
+    'evidence_insufficient_count': sum(1 for r in results if r['outcome'] == 'EVIDENCE_INSUFFICIENT'),
+    'external_execution_blocker_count': sum(1 for r in results if r['outcome'] == 'EXTERNAL_EXECUTION_BLOCKER'),
+    'results': results
+}
 
 with open(os.path.join('${OUTPUT_BASE}', 't_b1_manifest.json'), 'w') as f:
     json.dump(manifest_entries, f, indent=2)
 
 with open(os.path.join('${OUTPUT_BASE}', 't_b1_results.json'), 'w') as f:
-    json.dump(results, f, indent=2)
+    json.dump(summary, f, indent=2)
 
-print('T-B1 acquisition and scan completed successfully.')
+print(f'T-B1 acquisition and scan completed. Aggregate measurement status: {aggregate_status}')
 "
