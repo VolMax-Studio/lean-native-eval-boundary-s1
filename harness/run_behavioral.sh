@@ -38,6 +38,7 @@ write_preflight_blocker_metadata() {
   local libc_ver="$(python3 -c 'import platform; print(" ".join(platform.libc_ver()))' 2>/dev/null || echo 'unknown')"
   local toolchain_ver="$(basename "${TOOLCHAIN_DIR}")"
   local user_inf="$(id -u):$(id -g) ($(id -un))"
+  local is_stub="${TEST_STUB_MODE:-0}"
 
   python3 -c "
 import json
@@ -54,10 +55,11 @@ meta = {
   'recreation_byte_match': False,
   'first_run_exit_code': None,
   'second_run_exit_code': None,
-  'first_run_outcome': 'EXTERNAL_EXECUTION_BLOCKER',
-  'second_run_outcome': 'EXTERNAL_EXECUTION_BLOCKER',
+  'first_run_outcome': None,
+  'second_run_outcome': None,
   'final_behavioral_outcome': 'EXTERNAL_EXECUTION_BLOCKER',
-  'blocker_reason': '${reason}'
+  'blocker_reason': '${reason}',
+  'test_stub_mode': '${is_stub}' == '1'
 }
 with open('run_metadata.json', 'w') as f:
     json.dump(meta, f, indent=2)
@@ -78,6 +80,24 @@ if [ "${TEST_STUB_MODE:-0}" != "1" ]; then
   if [ "${ACTUAL_POC_SHA256}" != "${PINNED_POC_SHA256}" ]; then
     echo "Error: PoC SHA-256 mismatch: expected ${PINNED_POC_SHA256}, got ${ACTUAL_POC_SHA256}" >&2
     write_preflight_blocker_metadata "poc_sha256_mismatch"
+    exit 2
+  fi
+
+  # Verify toolchain binary against pinned toolchain_pins.json
+  PINS_JSON="${REPO_ROOT}/harness/toolchain_pins.json"
+  TOOLCHAIN_VER="$(basename "${TOOLCHAIN_DIR}")"
+  ACTUAL_BIN_SHA="$(sha256sum "${LEAN_BIN}" | awk '{print $1}')"
+
+  EXPECTED_BIN_SHA="$(python3 -c "
+import json
+with open('${PINS_JSON}') as f:
+    d = json.load(f)
+print(d.get('toolchains', {}).get('${TOOLCHAIN_VER}', {}).get('bin_lean_sha256') or '')
+" 2>/dev/null || echo '')"
+
+  if [ -z "${EXPECTED_BIN_SHA}" ] || [ "${ACTUAL_BIN_SHA}" != "${EXPECTED_BIN_SHA}" ]; then
+    echo "Error: Toolchain binary SHA-256 mismatch for ${TOOLCHAIN_VER}: expected '${EXPECTED_BIN_SHA}', got '${ACTUAL_BIN_SHA}'" >&2
+    write_preflight_blocker_metadata "lean_bin_sha256_mismatch"
     exit 2
   fi
 fi
@@ -227,7 +247,8 @@ metadata = {
   'second_run_exit_code': int(open('second-run/exit-code.txt').read().strip()),
   'first_run_outcome': '${FIRST_RUN_OUTCOME}',
   'second_run_outcome': '${SECOND_RUN_OUTCOME}',
-  'final_behavioral_outcome': '${FINAL_BEHAVIORAL_OUTCOME}'
+  'final_behavioral_outcome': '${FINAL_BEHAVIORAL_OUTCOME}',
+  'test_stub_mode': '${TEST_STUB_MODE:-0}' == '1'
 }
 
 with open('run_metadata.json', 'w') as f:

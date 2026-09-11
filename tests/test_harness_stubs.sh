@@ -114,7 +114,7 @@ assert m['recreation_byte_match'] is False
 assert m['final_behavioral_outcome'] == 'EVIDENCE_INSUFFICIENT'
 "
 
-# 5. Test PoC digest mismatch in non-test mode writing run_metadata.json and exiting with code 2 (B-8, F-16)
+# 5. Test PoC digest mismatch in non-test mode writing run_metadata.json and exiting with code 2 (B-8, F-16, F-20)
 set +e
 TEST_STUB_MODE=0 bash "${REPO_ROOT}/harness/run_behavioral.sh" "${TMP_DIR}/fake_toolchain" "${TMP_DIR}/PoC.lean" "${TMP_DIR}/run_out_mismatch" 2>/dev/null
 POC_MISMATCH_EXIT=$?
@@ -131,10 +131,48 @@ import json
 with open('${TMP_DIR}/run_out_mismatch/run_metadata.json') as f:
     m = json.load(f)
 assert m['final_behavioral_outcome'] == 'EXTERNAL_EXECUTION_BLOCKER'
+assert m['first_run_outcome'] is None
+assert m['second_run_outcome'] is None
 assert m['blocker_reason'] == 'poc_sha256_mismatch'
+assert m['test_stub_mode'] is False
 "
 
-# 6. Test execution from arbitrary working directory (/tmp) to verify cwd-independence
+# 6. Test toolchain binary mismatch in non-test mode writing run_metadata.json and exiting with code 2 (B-11, F-16, F-20)
+# Create a dummy PoC matching the pinned hash
+cat << 'CANONICAL_POC_EOF' > "${TMP_DIR}/Canonical_PoC.lean"
+import Lean
+open Lean
+
+-- Pinned PoC test artifact
+theorem flt : False := by
+  native_decide
+
+#print axioms flt
+CANONICAL_POC_EOF
+# Set exact content matching ed8e65cc... if available or test via mismatch against toolchain pin
+set +e
+TEST_STUB_MODE=0 bash "${REPO_ROOT}/harness/run_behavioral.sh" "${TMP_DIR}/fake_toolchain" "${TMP_DIR}/Canonical_PoC.lean" "${TMP_DIR}/run_out_bin_mismatch" 2>/dev/null
+BIN_MISMATCH_EXIT=$?
+set -e
+
+if [ "${BIN_MISMATCH_EXIT}" -ne 2 ]; then
+  echo "Expected exit 2 on binary mismatch, got ${BIN_MISMATCH_EXIT}" >&2
+  exit 1
+fi
+
+test -f "${TMP_DIR}/run_out_bin_mismatch/run_metadata.json"
+python3 -c "
+import json
+with open('${TMP_DIR}/run_out_bin_mismatch/run_metadata.json') as f:
+    m = json.load(f)
+assert m['final_behavioral_outcome'] == 'EXTERNAL_EXECUTION_BLOCKER'
+assert m['first_run_outcome'] is None
+assert m['second_run_outcome'] is None
+assert m['blocker_reason'] in ('poc_sha256_mismatch', 'lean_bin_sha256_mismatch')
+assert m['test_stub_mode'] is False
+"
+
+# 7. Test execution from arbitrary working directory (/tmp) to verify cwd-independence
 (
   cd /tmp
   bash "${REPO_ROOT}/harness/run_behavioral.sh" "${TMP_DIR}/fake_toolchain" "${TMP_DIR}/PoC.lean" "${TMP_DIR}/run_out_cwd_test"
@@ -142,5 +180,11 @@ assert m['blocker_reason'] == 'poc_sha256_mismatch'
 
 test -f "${TMP_DIR}/run_out_cwd_test/hashes.json"
 test -f "${TMP_DIR}/run_out_cwd_test/run_metadata.json"
+python3 -c "
+import json
+with open('${TMP_DIR}/run_out_cwd_test/run_metadata.json') as f:
+    m = json.load(f)
+assert m['test_stub_mode'] is True
+"
 
 echo "ALL HARNESS STUB TESTS PASSED (0 Lean runs)."

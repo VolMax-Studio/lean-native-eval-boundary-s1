@@ -52,24 +52,29 @@ The execution environment is pinned to a single, concrete reference platform:
 
 ## 3. Exact Execution Harness, Preflight & Command
 
-### Toolchain Acquisition Phase
-Per Operator decision (2026-09-11), toolchain acquisition and verification is a dedicated, pinned pre-execution phase executed via `harness/acquire_toolchains.sh`:
-1. The distribution archive is downloaded from the pinned release asset URL.
-2. The byte length and SHA-256 digest of the archive are verified strictly against the pinned values in `EXECUTION_SPEC.md` and `harness/pin_provenance.json`. Any mismatch terminates with exit code 1.
-3. The archive is unpacked without Lean execution: `tar --zstd -xf <archive> -C <toolchain_dir>`.
-4. The unpacked executable `<toolchain_dir>/bin/lean` is located, verified executable, and its SHA-256 digest is measured.
+### Toolchain Acquisition & PoC Extraction Phase
+Per Operator decision (2026-09-11), toolchain acquisition and evidence verification is a dedicated, pinned pre-execution phase executed via `harness/acquire_toolchains.sh`:
+1. The distribution archives are downloaded from the pinned release asset URLs.
+2. The byte length and SHA-256 digest of each archive are verified strictly against the pinned values in `EXECUTION_SPEC.md` and `harness/pin_provenance.json`. Any mismatch terminates with exit code 1.
+3. Each archive is unpacked without Lean execution: `tar --zstd -xf <archive> -C <toolchain_dir>`.
+4. The unpacked executable `<toolchain_dir>/bin/lean` is located, verified executable, and its SHA-256 digest and byte count are measured and recorded directly into `harness/toolchain_pins.json`.
+5. **PoC Placement (F-19):** Because `PoC.lean` is not committed in the public repository tree, during the acquisition phase it is extracted directly from the verified external private evidence bundle (`lean-native-eval-boundary-s1-role-based-raw-evidence.zip`, SHA-256 `90407481c8b511fa7c0ba9bef16b08b175f71a551fd3d757d956aebbc423e2a5`) into `sources/PoC.lean`. Its SHA-256 digest is strictly verified against pinned `ed8e65ccf56fc10509b59a047101bb1c76426ae1fd8ee4d501fb29781e54049b`.
 
 ### Preflight Limit & Input Integrity Verification
 Before any test artifact run, the behavioral harness verifies wrapper availability and permissions using `/bin/true` (zero Lean execution):
 ```bash
 prlimit --as=4294967296 timeout --kill-after=5s 60s /bin/true
 ```
-If this preflight command fails, execution halts, records `EXTERNAL_EXECUTION_BLOCKER` in `run_metadata.json`, and exits with code 2.
+If this preflight command fails, execution halts, records `EXTERNAL_EXECUTION_BLOCKER` in `run_metadata.json` (with `first_run_outcome: null` and `second_run_outcome: null`, reflecting zero execution), and exits with code 2.
 
 Next, input integrity is verified before execution:
 - `PoC.lean` SHA-256 digest is verified against the pinned digest (`ed8e65ccf56fc10509b59a047101bb1c76426ae1fd8ee4d501fb29781e54049b`).
-- `LEAN_BIN` must exist and be executable.
-Any input verification failure halts execution, writes `run_metadata.json` with `final_behavioral_outcome: "EXTERNAL_EXECUTION_BLOCKER"`, and exits with code 2 without invoking Lean.
+- `LEAN_BIN` must exist, be executable, and its SHA-256 digest must match the pinned value in `harness/toolchain_pins.json` for that toolchain version (B-11).
+Any input verification failure halts execution, writes `run_metadata.json` with `final_behavioral_outcome: "EXTERNAL_EXECUTION_BLOCKER"`, `first_run_outcome: null`, `second_run_outcome: null`, and exits with code 2 without invoking Lean.
+
+### Test Diagnostic Facility (`TEST_STUB_MODE`)
+- `TEST_STUB_MODE`: An environment variable facility strictly reserved for offline unit testing of harness wrapper logic and output parsing with synthetic stubs (`tests/test_harness_stubs.sh`).
+- **Strict Prohibition (F-18):** `TEST_STUB_MODE` is strictly prohibited during any candidate evaluation or ratified freeze run. `run_metadata.json` records `'test_stub_mode': true/false`. Any run where `test_stub_mode` is `true` is invalid for scientific adjudication.
 
 ### Literal Invocation Script (`command.sh`)
 Per `INSTANCE_RULES.md#behavioral-criteria-and-recreation` and `DIAGNOSTIC_PROFILE.json`, with virtual address space limit (4096 MB), per-invocation timeout (60s), and environment enforcement:

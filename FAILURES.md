@@ -122,5 +122,18 @@ During the candidate review rounds, a recurring defect pattern occurred where SH
 Correction:
 Establish strict operational discipline that every hash, commit SHA, and byte length recorded in manifests, specifications, and reports must be copy-pasted verbatim from direct terminal measurement command outputs (`sha256sum`, `stat -c%s`, `git rev-parse`). For candidate v3, `previous_review_commit` is recorded strictly as `f66ab4054382d29f0f2bd9d3d2547e99c460c16d` and `previous_review_zip_sha256` is recorded strictly as `5326eefab481f53226c669b8b5d8f817cce6a2deeb4abc3180d095a958b5929d` (measured directly from `git archive --format=zip -9 f66ab4054382d29f0f2bd9d3d2547e99c460c16d`). Can this instance still carry a verdict? Yes, this correction precedes any scientific execution and reinforces reproducibility.
 
+## F-019 — non-reproducibility of git archive ZIP digests and transition to tree SHA pinning (B-12)
+
+During formal Gate review of candidate `c8b45d9`, the Gate observed that standard `git archive --format=zip` incorporates creation/file timestamps (`mtime`), causing archive SHA-256 digests to vary across environments and runs even when byte content and compressed lengths are identical (e.g. `c8b45d9` produced `93172` bytes in both environments, but distinct archive SHA-256 digests: `225bc86f…` vs `5331db55…`). Furthermore, entry F-018 cited an archive hash for `7b28531` (`2bbd2463…`) that differed from the Gate's fresh measurement (`40259648…`).
+
+Correction:
+A standard ZIP digest is not a reproducible git object identifier. In `MANIFEST.json`, `previous_review_zip_sha256` is replaced with `previous_review_tree_sha`, pinning the exact deterministic Git tree object SHA:
+- Commit `c8b45d9c7fb751a105aa8d0af3fe0aa7d68b8860` tree SHA: `e5d5d09b7392db88097ff1f9ec8ef4bba97fcecc`.
+- Commit `f66ab4054382d29f0f2bd9d3d2547e99c460c16d` tree SHA: `fa06d37fcacd43457e5505c75313ac2413dfcd2c`.
+- Commit `7b2853184a01bc38605806b2185806b5892f39ba` tree SHA: `7936f50c97c5db59dfc5c59ab8c7ed1b41ccc8f4`.
+
+Can this instance still carry a verdict? Yes; tree object SHAs are fully deterministic, intrinsic Git invariants that guarantee byte-for-byte tree identity across all environments.
+
+
 
 
