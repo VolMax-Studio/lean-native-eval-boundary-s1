@@ -2,8 +2,8 @@
 phase: pre-gate
 execution_state: HALT
 verdict: null
-last_formal_gate_result: SURVIVES-REVIEW
-last_formal_gate_fix: F-21..F-23
+last_formal_gate_result: BLOCKED
+last_formal_gate_fix: B-13, F-24
 prereg_frozen: false
 operator: Operator
 ratifier: final Ratifier
@@ -23,6 +23,7 @@ Gate review history:
 - Formal Gate review over candidate `f66ab40`: `BLOCKED` (citing B-8, B-9, B-10 and F-16, F-17; B-7 confirmed closed by Operator verbatim declaration).
 - Formal Gate review over candidate `c8b45d9`: `BLOCKED` (citing B-11, B-12 and F-18..F-20).
 - Formal Gate review over candidate `ea0e1a5`: `SURVIVES-REVIEW` (citing non-blocking findings F-21..F-23).
+- Formal Gate review over candidate `0822d3c`: `BLOCKED` (citing B-13, F-24).
 - Mandatory separate review of this complete candidate freeze commit is defined in [INSTANCE_RULES.md — Freeze boundary](INSTANCE_RULES.md#freeze-boundary).
 
 Exhaustive scope of `LEAN_RUNS=0`:

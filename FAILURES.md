@@ -147,3 +147,20 @@ Correction:
 3. Updated `EXECUTION_SPEC.md:21` to establish `harness/toolchain_pins.json` as the single authoritative register for full-archive and binary digests.
 
 Can this instance still carry a verdict? Yes; zero Lean binaries were executed against test artifacts (`LEAN_RUNS=0`), all measurements were recorded directly from verified distribution artifacts, and the correction guarantees post-freeze execution repeatability without modifying tracked files.
+
+## F-021 — non-distinct runner binary pins, version differentiation via libleanshared.so, and acquisition verification mode (B-13, F-24)
+
+In formal Gate review of candidate `0822d3c`, the Gate identified:
+1. `bin/lean` has identical byte length (`9024`) and identical SHA-256 digest (`e8baaa71855a616dc351028f3ad2200051b0671f423a1696a100e809302d5550`) across all three pinned Lean versions (`v4.32.2`, `v4.33.1`, `v4.34.0-rc1`). Because `bin/lean` is a small launcher binary, verifying `bin/lean` alone did not prevent cross-version library substitution (B-13).
+2. `harness/acquire_toolchains.sh` contained Python code writing back to `harness/toolchain_pins.json`, which would mutate the repository if executed post-freeze (F-24).
+
+Correction:
+1. Pinned the version-distinguishing core library `lib/lean/libleanshared.so` for all three versions in `harness/toolchain_pins.json`:
+   - `v4.32.2`: `158401256` bytes, SHA-256 `d7768b88d8162736da4305777cd6f147676038fd885bd8a265c958b0ecea00b4`
+   - `v4.33.1`: `230925168` bytes, SHA-256 `23d636cac1cadcba37beac30eff9b9b20d66cee726cf5defb4ae39f1284a3e5a`
+   - `v4.34.0-rc1`: `231819744` bytes, SHA-256 `5b0640af7f6fcc7bf47e3bd7d1f3b68d5100da50c2f55968b340ac28f4e07bdd`
+2. Updated `harness/run_behavioral.sh` preflight verification to check both `bin/lean` and `lib/lean/libleanshared.so` against `harness/toolchain_pins.json`, mapping library absence to blocker reason `libleanshared_so_missing` and digest mismatch to `libleanshared_so_sha256_mismatch`.
+3. Converted `harness/acquire_toolchains.sh` from writing pins to strictly verifying extracted files against immutable pins in `harness/toolchain_pins.json`, ensuring zero repository mutation upon post-freeze execution.
+4. Harmonized `EXECUTION_SPEC.md:21-25` to record both binary and library verification requirements and `--strip-components=1` unpacking mechanism.
+
+Can this instance still carry a verdict? Yes; zero Lean binaries were executed against test artifacts (`LEAN_RUNS=0`), all measurements were recorded directly from verified distribution artifacts, and the correction establishes complete cryptographic toolchain version distinction.
