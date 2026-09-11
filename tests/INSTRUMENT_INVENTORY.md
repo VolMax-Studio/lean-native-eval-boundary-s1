@@ -36,3 +36,19 @@ Scope: the outcome-bearing pipeline of scripts/source_proxy.py and scripts/behav
 Explicit exclusions from the kill requirement: Gate's U3 removing error-marker lookbehind only broadens conservative error detection; Gate's U5 including the header in the diagnostic body is practically equivalent for registered input grammar. The fixed STD membership condition is redundant with the native_decide substring for those three names. Guards that merely prevent None/index accesses on malformed input are parser-safety plumbing; a crash is an evidence failure, not a scientific contrary result, and is not a kill. CLI file decoding, serialization, loop bookkeeping, regex group extraction and constructing records are listed in the mechanical AST inventory but are not separate scientific decision rules.
 
 Stopping rule: finish this finite inventory and declared mutations, preserve actual witnesses, and submit the exact commit. No unexplained outcome-changing row may be waived. Conservative/invalid/equivalent cases must remain explicit. This does not claim complete proof of program correctness. A future Gate finding must identify a concrete unclassified operation and counterfixture; it is not a request for endless arbitrary source mutations.
+
+## Individual recognition alternatives — N-4 closure
+
+| Alternative / stream condition | Fixture | Mutation / disposition |
+| --- | --- | --- |
+| extern annotation without expose | N4_A1_no_expose | A1_require_expose |
+| namespace-less extract name | N4_A2_namespace_less_name | A2_require_namespace_prefix |
+| Pos.extract name without Raw | N4_A3_Pos_name | A3_require_Raw_in_name |
+| Pos.Raw.extract name | S01_signature_pair | Existing source signature fixture; Gate's C1 also distinguished |
+| plain Pos in parameter types | N4_A4_plain_Pos_parameters | A4_require_Raw_parameters |
+| Pos.Raw in parameter types | S01_signature_pair | Gate's C1 reportedly killed; source type alternative retained |
+| axiom evidence accepted only from stdout | N4_A7_axiom_record_stderr_only; B01_accept_conjunction | A7_accept_stderr_axiom |
+| whitespace before AX list | B01_accept_conjunction | Gate's A6 reportedly killed; existing space in fixture |
+| optional label-following space | All registered formatter fixtures include a space | A5a/A5b are equivalent within registered formatter grammar; excluded, not counted as kills |
+
+This completes the Gate-identified sweep of optional groups and alternations. Existing rows cover name normalization, block/line comments, named markers, optional end ranges, severity and stream separation. No predicate code changed. The finite inventory remains bounded by registered inputs and explicitly declared equivalences; it is not proof against all arbitrary malformed text.

@@ -65,3 +65,17 @@ Correction: add one explicit fixture for each U1/U6/U8, declare their mutants, r
 ## F-011 — recreated validity not explicit in contrary-result precedence (F-J)
 
 The earlier phrase “valid direct contrary result” did not explicitly resolve rc1 ACCEPT followed by byte-different recreation. Correction: validity requires successful identical recreation, verified evidence pins/provenance, and absence of applicable failure classes. A differing recreation leads to EVIDENCE_INSUFFICIENT / Not Demonstrated, not a contrary-result Not Verified. This is defined before execution. Can this instance still carry a verdict? Yes, conditionally after the remaining Gate/freeze requirements.
+
+## F-012 — recognition alternatives and axiom stream lacked counterfixtures (N-4)
+
+Claude's formal review of c8f10c960a87c12eb645366e2e64c9c98893c17d found survivors for removing no-expose, namespace-less name, Pos-prefixed name and plain-Pos parameter alternatives, and for accepting axiom evidence from stderr. The instrument was correct on supplied probes, but its suite did not establish those registered alternatives and stream restriction.
+
+Correction: add five explicit fixtures and five corresponding declared mutants, plus inventory rows per alternative. Declare label-spacing A5a/A5b equivalent only within the registered formatter grammar. Predicate scripts remain unchanged. Can this instance still carry a verdict? Yes, conditionally after Gate review and remaining freeze requirements; T-B1 remains descriptive and no Lean invocation occurred.
+
+## F-013 — integrity output reused scientific verdict vocabulary (F-L)
+
+README's manifest-check command printed Verified for byte integrity. Replace that output label with hash-match, keeping integrity checks distinct from scientific verdicts. No scientific result changes.
+
+## F-014 — review scope could be extended to future execution pins (F-N)
+
+Claude identified that the prior remaining-work wording allowed a repair-package Gate to be read as covering toolchain hashes, harness, cleanup list, resource limits and object resolutions created later. No such review had occurred. Correction: explicitly require the complete candidate freeze commit to receive its own exact-SHA formal Gate and separate Operator ratification before freeze is effective or execution is authorized; earlier reviews do not cover later artifacts. Subsequent changes require renewed formal review. STATUS and PRE_GATE_CLOSURE point to this single operative rule. Can this instance still carry a verdict? Yes, conditionally after the required future review and remaining prerequisites; no trust or execution authorization is transferred by this repair.

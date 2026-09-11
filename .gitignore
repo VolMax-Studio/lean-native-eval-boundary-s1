@@ -1,2 +1,5 @@
 __pycache__/
 *.pyc
+# Original evidence is distributed separately; never re-add to the public tree.
+/sources/
+/external/*.txt

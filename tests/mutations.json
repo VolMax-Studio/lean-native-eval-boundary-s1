@@ -226,5 +226,35 @@
     "kind": "source_proxy",
     "find": "/\\*.*?\\*/|//[^\\n]*",
     "replace": "/\\*.*?\\*/"
+  },
+  {
+    "id": "A1_require_expose",
+    "kind": "source_proxy",
+    "find": "(?:, expose)?",
+    "replace": ", expose"
+  },
+  {
+    "id": "A2_require_namespace_prefix",
+    "kind": "source_proxy",
+    "find": "(?:Pos(?:\\.Raw)?\\.)?extract",
+    "replace": "(?:Pos(?:\\.Raw)?\\.)extract"
+  },
+  {
+    "id": "A3_require_Raw_in_name",
+    "kind": "source_proxy",
+    "find": "(?:Pos(?:\\.Raw)?\\.)?extract",
+    "replace": "(?:Pos\\.Raw\\.)?extract"
+  },
+  {
+    "id": "A4_require_Raw_parameters",
+    "kind": "source_proxy",
+    "find": "\\(@& Pos(?:\\.Raw)?\\) \u2192 \\(@& Pos(?:\\.Raw)?\\)",
+    "replace": "\\(@& Pos\\.Raw\\) \u2192 \\(@& Pos\\.Raw\\)"
+  },
+  {
+    "id": "A7_accept_stderr_axiom",
+    "kind": "behavior_matcher",
+    "find": "ax = AX.findall(stdout)",
+    "replace": "ax = AX.findall(stdout + '\\n' + stderr)"
   }
 ]

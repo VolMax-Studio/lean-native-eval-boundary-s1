@@ -1,0 +1,308 @@
+{
+  "status": "external evidence inventory; original bytes retained locally, removed from proposed public HEAD only",
+  "base_commit": "c8f10c960a87c12eb645366e2e64c9c98893c17d",
+  "created_at_utc": "2026-09-10T20:36:01.876792+00:00",
+  "entries": [
+    {
+      "path": "external/claude-gate-n1-n2-repair.txt",
+      "bytes": 5110,
+      "sha256": "59821074f4b443d6d21c996ebf5e7e661ff2e830f378d087c2458080950e2303",
+      "kind": "original supplied review/correspondence",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "external/claude-gate-n3-readme.txt",
+      "bytes": 6633,
+      "sha256": "bc476e9af8763d1abf2275dc3b05acf19d61a527b4cc8c9782286fb04f31da9f",
+      "kind": "original supplied review/correspondence",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "external/claude-gate-validation-supplement.txt",
+      "bytes": 7217,
+      "sha256": "54de05841028fb6a322828547ce75ac6ab0bd5e97cddcd1f6bf01840717292fd",
+      "kind": "original supplied review/correspondence",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "external/supplied-review-1.txt",
+      "bytes": 8167,
+      "sha256": "d5b1af7b98d83e822ff1229f04531539acb2147ec5f8f656a80efbf3c649084d",
+      "kind": "original supplied review/correspondence",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "external/supplied-review-2.txt",
+      "bytes": 7396,
+      "sha256": "51c1321f6b4454769f48c89e1c0f863e617a4d7e8f9fcb2d8f389f5c016de41f",
+      "kind": "original supplied review/correspondence",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/PoC.lean",
+      "bytes": 724,
+      "sha256": "ed8e65ccf56fc10509b59a047101bb1c76426ae1fd8ee4d501fb29781e54049b",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/blog.html",
+      "bytes": 19613,
+      "sha256": "f395f4710e237d2a12b44a253e36517838c71cdbdb4368a9dae1d3c8f7b1a079",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/connector-provenance.json",
+      "bytes": 1487,
+      "sha256": "bd5950dc422d6baeb08d0070e827bcbbce30c7e4d6942d4f7fe1625ed2d969f9",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/n3-retrieval.json",
+      "bytes": 5664,
+      "sha256": "cb24a71b8c1d8c26c83d968b24dabf5be39c39ae19970da4037df7247b9aaf35",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/retrieval.json",
+      "bytes": 10590,
+      "sha256": "5f22153677b57b252571ba9aefb2486266fa70352f3d54be512779619f8ee1f2",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.32.2/Decide.lean",
+      "bytes": 8955,
+      "sha256": "4cbd21f448eb8afbd81daee71bed7ce3f272af0fe916621b1e56b506c29a5c7b",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.32.2/Frontend.lean",
+      "bytes": 17608,
+      "sha256": "2616fef6e97c0a898d4b0c0e2207675c23396233748e5bf94b38fd72cf76733d",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.32.2/Language-Basic.lean",
+      "bytes": 17170,
+      "sha256": "71e9a288c9732223af39b3159c5c24433fb3375aa0a8b6a4cb1a2635a6f42e0e",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.32.2/Message.lean",
+      "bytes": 39015,
+      "sha256": "bee50b5c2a0e0baeb33966c6b8944143e12d47ed5617aadb94bd27711c8889aa",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.32.2/Native.lean",
+      "bytes": 3207,
+      "sha256": "e1d0c6b5be42f492810a12281fc0d8ff4c981e421397c3ec00e165a255ed09c1",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.32.2/Print.lean",
+      "bytes": 12636,
+      "sha256": "e0639698983533b4f48adc93a53feea2ce129364518b58ea09e8c97748bdd6e6",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.32.2/Shell.lean",
+      "bytes": 22896,
+      "sha256": "6ffb68a347815e43fe5771205bd02236e1508132b9197c27a3d805fe1cad7ab7",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.32.2/shell-lean.cpp",
+      "bytes": 588,
+      "sha256": "b311e6363d689e7b6d2e717c53981c59c63104892dc1d0cb308d977d6c6d943a",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.32.2/util-shell.cpp",
+      "bytes": 12127,
+      "sha256": "c103e3b51bc402527c52d7b6dc1624e33038a2db8180615d952287ca3f3f2a9e",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.33.1/Decide.lean",
+      "bytes": 9135,
+      "sha256": "99e84ce67778157e77d7261aa25b64ed72da16e9d1f60031cf2aa26f5ea6ee68",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.33.1/Frontend.lean",
+      "bytes": 19531,
+      "sha256": "e3e9037222c00308edc4fed589da83a80620bf5b35108779564fc485d8c17774",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.33.1/Language-Basic.lean",
+      "bytes": 21537,
+      "sha256": "a6aca4bca50ae1477eeab77696a199c029ae41a8d178fc86dc5d83767dea3236",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.33.1/Message.lean",
+      "bytes": 39073,
+      "sha256": "09277320b843288e7a51b98c794e4440cfd0e3c71e18eb777105414751a1004f",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.33.1/Native.lean",
+      "bytes": 3207,
+      "sha256": "e1d0c6b5be42f492810a12281fc0d8ff4c981e421397c3ec00e165a255ed09c1",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.33.1/Print.lean",
+      "bytes": 12705,
+      "sha256": "459b4ecda77dc07c346b6cb48be0f8941c9aa30e2729ffb8f339f604052140a3",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.33.1/Shell.lean",
+      "bytes": 22984,
+      "sha256": "4f584ae4d4cc859f39cdbb550df8e09417d1fd8e95046829ef821c2c95e2f940",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.33.1/shell-lean.cpp",
+      "bytes": 588,
+      "sha256": "b311e6363d689e7b6d2e717c53981c59c63104892dc1d0cb308d977d6c6d943a",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.33.1/util-shell.cpp",
+      "bytes": 12425,
+      "sha256": "502eaa752396cdff5bb448833a63be54cbbcbb3d36881eb10e235c04c64c0832",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.34.0-rc1/Decide.lean",
+      "bytes": 9135,
+      "sha256": "99e84ce67778157e77d7261aa25b64ed72da16e9d1f60031cf2aa26f5ea6ee68",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.34.0-rc1/Frontend.lean",
+      "bytes": 19531,
+      "sha256": "e3e9037222c00308edc4fed589da83a80620bf5b35108779564fc485d8c17774",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.34.0-rc1/Language-Basic.lean",
+      "bytes": 21537,
+      "sha256": "a6aca4bca50ae1477eeab77696a199c029ae41a8d178fc86dc5d83767dea3236",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.34.0-rc1/Message.lean",
+      "bytes": 39073,
+      "sha256": "09277320b843288e7a51b98c794e4440cfd0e3c71e18eb777105414751a1004f",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.34.0-rc1/Native.lean",
+      "bytes": 3207,
+      "sha256": "e1d0c6b5be42f492810a12281fc0d8ff4c981e421397c3ec00e165a255ed09c1",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.34.0-rc1/Print.lean",
+      "bytes": 12705,
+      "sha256": "459b4ecda77dc07c346b6cb48be0f8941c9aa30e2729ffb8f339f604052140a3",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.34.0-rc1/Shell.lean",
+      "bytes": 22984,
+      "sha256": "4f584ae4d4cc859f39cdbb550df8e09417d1fd8e95046829ef821c2c95e2f940",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.34.0-rc1/shell-lean.cpp",
+      "bytes": 588,
+      "sha256": "b311e6363d689e7b6d2e717c53981c59c63104892dc1d0cb308d977d6c6d943a",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/diagnostics/v4.34.0-rc1/util-shell.cpp",
+      "bytes": 12425,
+      "sha256": "502eaa752396cdff5bb448833a63be54cbbcbb3d36881eb10e235c04c64c0832",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/issue-14684.connector.json",
+      "bytes": 7274,
+      "sha256": "2b66fc0b1f9123e93e22cbf9772604ed562124c3ac44de224edfa9e582ea836f",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/lsremote_tags.txt",
+      "bytes": 12491,
+      "sha256": "565d84d4c16b3db514dc46935c8c60cb7a96af6ec45a68adb0bd50af1fa70414",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/reference-Basic.lean",
+      "bytes": 130871,
+      "sha256": "e506c9300ac508cc1391b9de50c7eaf2dc32cda3fa114ef809d4c9bcc870379e",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/reference-object.cpp",
+      "bytes": 97470,
+      "sha256": "897613d0ebe9d612daa5a09c13366cf21eaec2e1c3c0b4e0d35891770fedac29",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    },
+    {
+      "path": "sources/retrieval.json",
+      "bytes": 785,
+      "sha256": "e716a4daca2ff35b9d718e43453b3a45edcc25d85bed91afcef4ed4d425750a9",
+      "kind": "raw source/retrieval artifact",
+      "distribution": "separate non-repository evidence bundle"
+    }
+  ],
+  "bundle": {
+    "filename": "lean-native-eval-boundary-s1-raw-evidence-private.zip",
+    "bytes": 218770,
+    "sha256": "dd626b822347766a53a86ecbab8e5140d9dbdbe0d84047a968a43358717b74ab",
+    "availability": "supplied locally to Operator/Gate; not committed or publicly uploaded by this task"
+  },
+  "history_notice": "Historical commits retain raw bytes. No history rewrite, deletion from prior commits, or removal from main is claimed. This PR changes proposed HEAD only."
+}

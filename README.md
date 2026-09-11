@@ -2,7 +2,7 @@
 
 A preregistration and evidence package for checking a reported Lean model/runtime discrepancy in string extraction under native evaluation. It connects published claims to pinned sources, explicitly limited tests, recorded prior exposure, and reviewable evidence.
 
-**Current status: pre-gate · execution HALT · scientific verdict null · not frozen.** The latest formal Gate result is **BLOCKED (N-3)** on the previous review package. The N-3 repair is prepared for review. No Lean execution or full-denominator source scan has been performed in this task. [STATUS.md](STATUS.md) records the current state and remaining freeze requirements.
+**Current status: pre-gate · execution HALT · scientific verdict null · not frozen.** The latest formal Gate result is **FIXES-PENDING (F-N)** on the previous review package. Technical findings N-1 through N-4 are closed. The F-N freeze-review rule clarification is prepared on PR #1 for review. No Lean execution or full-denominator source scan has been performed in this task. [STATUS.md](STATUS.md) records the current state and remaining freeze requirements.
 
 ## What is being checked?
 
@@ -16,14 +16,14 @@ The source claims and their mapping to these tests are in [CLAIM_OF_RECORD.md](C
 
 ## Start a review here
 
-The complete ZIP supplied with each review handoff is the primary convenient file artifact; GitHub access is optional. Identify that ZIP by its externally supplied SHA-256. Review its actual bytes, rather than relying on a summary. If GitHub is available, also record the exact commit SHA. A ZIP comment containing a commit SHA is an identifier, not independent proof of tree identity.
+The complete ZIP supplied with each review handoff is the primary convenient file artifact; GitHub access is optional. Identify that ZIP by its externally supplied SHA-256. Review its actual bytes, rather than relying on a summary. Original source snapshots are supplied separately to the Operator/Gate; see [DATA_ACCESS.md](DATA_ACCESS.md) and [data_manifest.json](data_manifest.json). If GitHub is available, also record the exact commit SHA. A ZIP comment containing a commit SHA is an identifier, not independent proof of tree identity.
 
 1. Read [STATUS.md](STATUS.md), [CLAIM_OF_RECORD.md](CLAIM_OF_RECORD.md) and [INSTANCE_RULES.md](INSTANCE_RULES.md).
 2. Read [PRE_GATE_CLOSURE.md](PRE_GATE_CLOSURE.md) for repairs and outstanding blockers, and [FAILURES.md](FAILURES.md) for the append-only correction history.
 3. Verify [MANIFEST.json](MANIFEST.json), then replay the synthetic validation described below.
 4. Check [external/GOVERNANCE.md](external/GOVERNANCE.md) and [external/EXPOSURE_LEDGER.md](external/EXPOSURE_LEDGER.md) for authority, roles, review provenance and prior exposure. These are outside the claim-bearing instance.
 
-Claude is the designated formal Gate; Ivan is final Ratifier. Creator self-checks and synthetic replay do not replace formal Gate review. A passing Gate and completed prerequisites must precede a **separate preregistration freeze commit**.
+Claude is the designated formal Gate; Ivan is final Ratifier. Creator self-checks and synthetic replay do not replace formal Gate review. The complete candidate freeze commit must receive its **own exact-SHA formal Gate review and separate Operator ratification**, as required by [the freeze-boundary rule](INSTANCE_RULES.md#freeze-boundary); a passing repair-package review does not cover future execution pins.
 
 ## Verify package bytes
 
@@ -38,7 +38,7 @@ for item in manifest['files']:
     data = Path(item['path']).read_bytes()
     if len(data) != item['bytes'] or hashlib.sha256(data).hexdigest() != item['sha256']:
         raise SystemExit('MISMATCH: ' + item['path'])
-print('Verified', len(manifest['files']), 'manifest entries')
+print('hash-match', len(manifest['files']), 'manifest entries')
 PY
 ```
 
@@ -53,7 +53,7 @@ sh tests/command.sh
 sh tests/mutation-command.sh
 ```
 
-The recorded N-3 validation is **54/54 fixtures passed and 38/38 declared mutants detected**. Commands must exit zero and reproduce the corresponding stdout/stderr and exit-code files in [validation/](validation/). See [tests/README.md](tests/README.md), [condition coverage](tests/CONDITION_COVERAGE.md) and the [instrument inventory](tests/INSTRUMENT_INVENTORY.md). Exceptions do not count as mutation kills. These finite checks are instrument evidence, not scientific outcomes or exhaustive correctness proofs.
+The recorded N-4 validation is **59/59 fixtures passed and 43/43 declared mutants detected**. Commands must exit zero and reproduce the corresponding stdout/stderr and exit-code files in [validation/](validation/). See [tests/README.md](tests/README.md), [condition coverage](tests/CONDITION_COVERAGE.md) and the [instrument inventory](tests/INSTRUMENT_INVENTORY.md). Exceptions do not count as mutation kills. These finite checks are instrument evidence, not scientific outcomes or exhaustive correctness proofs.
 
 ## Package map
 
@@ -61,10 +61,10 @@ The recorded N-3 validation is **54/54 fixtures passed and 38/38 declared mutant
 | --- | --- |
 | `scripts/` | PoC extraction, source-signature proxy and behavioral-output classifier |
 | `tests/`, `validation/` | Literal fixtures, declared mutations, commands, outputs and run provenance |
-| `sources/` | Pinned source snapshots and retrieval records |
+| `data_manifest.json`, `DATA_ACCESS.md` | Hash inventory and access instructions for source snapshots kept outside this proposed public tree |
 | `TAG_MANIFEST.json` | Stable-tag denominator; unresolved object/commit metadata remains explicitly pending |
 | `DIAGNOSTIC_PROFILE.md`, `.json` | Static diagnostic/axiom-source evidence and registered CLI text options |
 | `RESOURCE_PLAN.md` | Resource planning and remaining execution pins |
 | `external/` | Governance, exposure, supplied Gate reports and distribution record |
 
-The original local Git history is preserved in this repository. Raw third-party source content is evidence, not an additional adjudicated claim or a blanket license grant. See [distribution status](external/DISTRIBUTION.md). **This README authorizes no Lean run, freeze or scientific verdict.**
+The original local Git history is preserved in this repository. Original raw evidence is externalized from this proposed tree. Historical public commits still retain it; no history rewrite has occurred. See [distribution status](external/DISTRIBUTION.md). **This README authorizes no Lean run, freeze or scientific verdict.**
