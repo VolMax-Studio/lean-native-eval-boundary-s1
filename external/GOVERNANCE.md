@@ -32,9 +32,9 @@ The Operator designated Claude as Gate and has explicitly confirmed: “Potvrđu
 
 Conflict acceptability is an Operator decision, not a Gate self-certification. The supplied correspondence states acceptance of Claude as Gate for T-A/T-B with the strict scope boundary. Claude must disclose exposure; model-family identity alone does not establish independence. The issue and blog report GPT-5.6 involvement in discovery, which is recorded as a claimant self-report, not independently verified discovery provenance.
 
-Authority is reported as “VolMax Observatory — Operating Rules (P10, v2026-08)”. The original document has not been retrieved, and its location and SHA-256 remain an unresolved provenance note. By explicit Operator declaration:
+Authority is reported as “VolMax Observatory — Operating Rules (P10, v2026-08)”. The original document has not been retrieved, and its location and SHA-256 remain an unresolved provenance note. By explicit Operator declaration issued 2026-09-11:
 
-> “Kao Operator potvrđujem da merge PR #3 nije predstavljao ratifikaciju niti freeze instance. `prereg_frozen` ostaje false. Za ovu instancu GitHub merge sam po sebi ne predstavlja ratifikaciju; ratifikacija zahteva zasebnu eksplicitnu Operator/final Ratifier izjavu koja navodi exact reviewed SHA i formalni Gate rezultat. Potvrđujem Ananke kao Executora nakon freeze-a i potvrđujem lokalni versioned `INSTANCE_RULES.md` kao operativni authority ove instance.”
+> “Kao Operator, 2026-09-11 potvrđujem da merge PR #3 nije bio ratifikacija niti freeze; `prereg_frozen` ostaje false. Potvrđujem Ananke kao Executora isključivo nakon ratifikovanog freeze-a i potvrđujem lokalni versioned `INSTANCE_RULES.md` kao operativni authority ove instance. Za behavioral execution ne zahtevam kernel network-namespace izolaciju; harness ne sme obavljati mrežne operacije tokom behavioral run-a, dok je toolchain acquisition zasebna pinned pre-execution faza. Pre freeze-a dozvoljavam samo syntax/stub validaciju, repository custody metadata, toolchain release/download/hash/extraction metadata, host-environment metadata i manifest/archive packaging; zabranjujem nova denominator source ili path-existence merenja.”
 
 The locally versioned INSTANCE_RULES is operative and adopted as governing authority for this instance; locating or SHA-pinning the historical canonical document is not a freeze prerequisite or blocker. No canonical file SHA is invented.
 
@@ -51,8 +51,9 @@ The latest formal Gate is external/gate-581b0a4c70aac1cf4f74ca284af003034ca4b80d
 
 Use one formal Gate vocabulary: BLOCKED / FIXES-PENDING / SURVIVES-REVIEW, as specified in the supplied correction. Scientific outcome vocabulary is separate. The Creator's repair checklist is a self-check, never a formal Gate result. Gate history across recent revisions:
 - Review over `d9e97a9`: `SURVIVES-REVIEW`.
-- Merge of PR #3 into `main` (`f849538`): administrative sync, not freeze ratification (`FAILURES.md#f-015`).
+- Merge of PR #3 into `main` (`f849538`): administrative sync, not freeze ratification (`FAILURES.md#f-015`, `f-017`).
 - Formal Gate review over candidate `c1398ed`: `BLOCKED` (citing B-1..B-4 and F-1..F-9).
+- Formal Gate review over candidate `7b28531`: `BLOCKED` (citing B-5, B-6, B-7 and F-10..F-15).
 
 The ZIP comment identifies a local commit but is not by itself proof of Git-tree identity to the Gate. Local archive/tree verification may be recorded as an OBSERVED custody check with its scope, without claiming that the Gate could inspect the local repository. No remote publication, upload or message to Claude has been performed by this task.
 
@@ -60,11 +61,11 @@ The ZIP comment identifies a local commit but is not by itself proof of Git-tree
 
 T-B1 is explicitly designated “Deskriptivno merenje T-B1”. Report per-member syntactic outcomes and coverage, with no Verified/Not Verified scientific verdict. This change is an Operator-authorized scope-of-interpretation decision, not an outcome-driven modification.
 
-Executor confirmation is established by explicit Operator directive (“ROLE: Ops / repository custodian only... proposed Executor preparation only... Confirmed Executor Preparation (Ananke)”). Authority status: The original canonical authority document (“VolMax Observatory — Operating Rules (P10, v2026-08)”) location and SHA-256 remain UNRESOLVED; this instance explicitly operates under locally versioned, Operator-adopted authority.
+Executor confirmation is established by the explicit Operator declaration above, with authority effective exclusively post-freeze. Authority status: The original canonical authority document (“VolMax Observatory — Operating Rules (P10, v2026-08)”) location and SHA-256 remain UNRESOLVED; this instance explicitly operates under locally versioned, Operator-adopted authority.
 
 ## Repository transition and latest Gate
 
-The latest formal Gate result over candidate `c1398ede5d044d8b457faa50a429a34c6790ef57` records `BLOCKED` (findings B-1 through B-4, F-1 through F-9). It does not authorize freeze or execution. The current repair prepares a subsequent freeze-candidate PR against updated `main` (`f849538`). No history rewrite or direct push to `main` is permitted.
+The formal Gate reviews over candidates `c1398ed` and `7b28531` recorded `BLOCKED`. They do not authorize freeze or execution. The current repair prepares a subsequent freeze-candidate PR against updated `main` (`f849538`). No history rewrite or direct push to `main` is permitted.
 
 STATUS.md records pre-gate, HALT and null scientific verdict. The active canonical-style vocabulary remains BLOCKED / FIXES-PENDING / SURVIVES-REVIEW, with SURVIVES-REVIEW as the passing result. Any prereg freeze must be a later separate commit after passing review and Operator ratification.
 

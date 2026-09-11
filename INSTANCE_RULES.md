@@ -10,6 +10,16 @@ The scientific scope is exhausted by the explicitly registered T-A and T-B claim
 
 UAF execution is excluded. Timing subclaims remain Exploratory and never carry a verdict. No material from any pre-freeze Lean invocation may be used to define, refine, or relax acceptance, rejection, diagnostic, or axiom-matching criteria. Any such invocation remains permanently Exploratory and is a protocol deviation; it cannot be relabeled as a preregistered run.
 
+By explicit Operator declaration (2026-09-11), pre-freeze operations are strictly limited to the following narrow allowlist:
+1. Shell syntax validation (`bash -n`).
+2. Harness self-testing using mock/stub executables (`/bin/true`, non-Lean shell stubs).
+3. Repository custody metadata (`git`, `ls-remote`, `cat-file`, `stat`, `sha256sum`).
+4. Toolchain release metadata, download, hash verification, and extraction without execution.
+5. Host environment metadata measurement (`platform.libc_ver()`, `uname -r`, user IDs).
+6. Manifest and archive packaging (`git archive`, `MANIFEST.json` generation).
+
+All new denominator source reads or path-existence measurements prior to ratified freeze are prohibited. For behavioral execution, kernel network-namespace isolation (`unshare --net`) is not required on the host platform; rather, the behavioral execution harness is strictly prohibited from performing network operations during execution runs, with toolchain acquisition performed as a separate pinned pre-execution phase.
+
 ## Claims and permitted interpretations
 
 CLAIM_OF_RECORD.md contains the verbatim source claims, author, URLs, source hashes and semantic-fidelity mapping. T-B1 is an investigator-defined source-structure proxy, not a source claim attributed to the publisher. Its mapping to universal behavioral “affects” is UNDERDETERMINED. By explicit Operator decision, T-B1 is descriptive measurement only: no Verified/Not Verified verdict is assigned either to the proxy or to the original behavioral universal claim.

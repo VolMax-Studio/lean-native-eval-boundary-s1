@@ -17,16 +17,12 @@ This commit is a candidate freeze package submitted for formal Gate review, not 
 
 Gate review history:
 - Formal review over commit `d9e97a9`: `SURVIVES-REVIEW`.
-- Administrative branch merge PR #3 into `main` (`f849538`): not a freeze ratification (`FAILURES.md#f-015`).
-- Formal Gate review over candidate `c1398ed` (PR #3 head): `BLOCKED` (citing B-1, B-2, B-3, B-4 and F-1 through F-9).
+- Administrative branch merge PR #3 into `main` (`f849538`): not a freeze ratification (`FAILURES.md#f-015`, `f-017`).
+- Formal Gate review over candidate `c1398ed`: `BLOCKED` (citing B-1..B-4, F-1..F-9).
+- Formal Gate review over candidate `7b28531`: `BLOCKED` (citing B-5, B-6, B-7 and F-10..F-15).
 - Mandatory separate review of this complete candidate freeze commit is defined in [INSTANCE_RULES.md — Freeze boundary](INSTANCE_RULES.md#freeze-boundary).
 
 Exhaustive scope of `LEAN_RUNS=0`:
-Zero Lean binaries are executed against test artifacts prior to formal Gate and ratification (`LEAN_RUNS=0` / `TARGET_LEAN_RUNS=0`). Permitted non-Lean commands during pre-freeze preparation are strictly limited to:
-1. Shell syntax validation (`bash -n`).
-2. Harness self-test using mock/stub executables (`/bin/true`, non-Lean shell stubs).
-3. Metadata inspection (`git`, `ls-remote`, `cat-file`, `stat`, `sha256sum`, `platform.libc_ver()`).
-4. Read-only HTTP metadata / API queries (release asset headers, tree metadata).
-5. Manifest checksum calculation and file verification.
+Zero Lean binaries are executed against test artifacts prior to formal Gate and ratification (`LEAN_RUNS=0` / `TARGET_LEAN_RUNS=0`). Permitted non-Lean operations during pre-freeze preparation are defined by the explicit Operator allowlist in [INSTANCE_RULES.md](INSTANCE_RULES.md#authority-and-scope). All new denominator source reads or path-existence measurements prior to freeze are prohibited.
 
 All subsequent changes, including freeze, require a PR. The Operator performs the merge and the final Ratifier records ratification; this task does not merge its own candidate. G-1 decision: public tree without raw data; no history rewrite.

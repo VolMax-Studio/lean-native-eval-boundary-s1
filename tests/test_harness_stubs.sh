@@ -8,6 +8,10 @@ trap 'rm -rf "${TMP_DIR}"' EXIT
 mkdir -p "${TMP_DIR}/fake_toolchain/bin"
 mkdir -p "${TMP_DIR}/run_out"
 
+# 0. Set REPO_ROOT
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+
 # 1. Test normal execution with synthetic PoC and stub binary
 cat << 'MOCK_EOF' > "${TMP_DIR}/fake_toolchain/bin/lean"
 #!/usr/bin/env bash
@@ -24,7 +28,7 @@ theorem flt : False := by
   native_decide
 POC_EOF
 
-bash harness/run_behavioral.sh "${TMP_DIR}/fake_toolchain" "${TMP_DIR}/PoC.lean" "${TMP_DIR}/run_out"
+bash "${REPO_ROOT}/harness/run_behavioral.sh" "${TMP_DIR}/fake_toolchain" "${TMP_DIR}/PoC.lean" "${TMP_DIR}/run_out"
 
 test -f "${TMP_DIR}/run_out/hashes.json"
 test -f "${TMP_DIR}/run_out/run_metadata.json"
@@ -50,7 +54,7 @@ cat << 'MOCK_TIMEOUT_EOF' > "${TMP_DIR}/fake_toolchain/bin/lean"
 exit 124
 MOCK_TIMEOUT_EOF
 
-bash harness/run_behavioral.sh "${TMP_DIR}/fake_toolchain" "${TMP_DIR}/PoC.lean" "${TMP_DIR}/run_out_timeout"
+bash "${REPO_ROOT}/harness/run_behavioral.sh" "${TMP_DIR}/fake_toolchain" "${TMP_DIR}/PoC.lean" "${TMP_DIR}/run_out_timeout"
 
 python3 -c "
 import json
@@ -58,6 +62,16 @@ with open('${TMP_DIR}/run_out_timeout/run_metadata.json') as f:
     m = json.load(f)
 assert m['first_run_outcome'] == 'EXTERNAL_EXECUTION_BLOCKER'
 assert m['second_run_outcome'] == 'EXTERNAL_EXECUTION_BLOCKER'
+assert m['final_outcome'] == 'EXTERNAL_EXECUTION_BLOCKER'
 "
+
+# 3. Test execution from arbitrary working directory (/tmp) to verify cwd-independence
+(
+  cd /tmp
+  bash "${REPO_ROOT}/harness/run_behavioral.sh" "${TMP_DIR}/fake_toolchain" "${TMP_DIR}/PoC.lean" "${TMP_DIR}/run_out_cwd_test"
+)
+
+test -f "${TMP_DIR}/run_out_cwd_test/hashes.json"
+test -f "${TMP_DIR}/run_out_cwd_test/run_metadata.json"
 
 echo "ALL HARNESS STUB TESTS PASSED (0 Lean runs)."

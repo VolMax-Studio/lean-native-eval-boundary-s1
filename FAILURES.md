@@ -82,13 +82,20 @@ Claude identified that the prior remaining-work wording allowed a repair-package
 
 ## F-015 — PR #3 merged before Gate verdict without freeze ratification
 
-PR #3 (head `c1398ede5d044d8b457faa50a429a34c6790ef57`) was merged into `main` by the Operator as merge commit `f8495385750d9931d86d63d64fe282713f36fe28` prior to the conclusion of the formal Gate review. Per instance rules and explicit Operator declaration:
-
-> “Kao Operator potvrđujem da merge PR #3 nije predstavljao ratifikaciju niti freeze instance. `prereg_frozen` ostaje false. Za ovu instancu GitHub merge sam po sebi ne predstavlja ratifikaciju; ratifikacija zahteva zasebnu eksplicitnu Operator/final Ratifier izjavu koja navodi exact reviewed SHA i formalni Gate rezultat. Potvrđujem Ananke kao Executora nakon freeze-a i potvrđujem lokalni versioned `INSTANCE_RULES.md` kao operativni authority ove instance.”
-
-The repository preregistration status remains unratified (`prereg_frozen: false`), execution state remains HALT, and `LEAN_RUNS=0`. All repairs proceed via a new candidate pull request against current `main`. Freeze identity is established strictly by the exact reviewed candidate SHA.
+PR #3 (head `c1398ede5d044d8b457faa50a429a34c6790ef57`) was merged into `main` by the Operator as merge commit `f8495385750d9931d86d63d64fe282713f36fe28` prior to the conclusion of the formal Gate review. Per instance rules and explicit Operator confirmation, this merge was an administrative repository branch synchronization and DOES NOT constitute ratification of the preregistration freeze. The repository preregistration status remains unratified (`prereg_frozen: false`), execution state remains HALT, and `LEAN_RUNS=0`. All repairs proceed via a new candidate pull request against current `main`.
 
 ## F-016 — Lean v4.33.1 archive hash pinned from truncated download stream (B-2)
 
 The toolchain distribution archive hash for Lean v4.33.1 (`lean-4.33.1-linux.tar.zst`, 570,405,234 bytes) was recorded in `EXECUTION_SPEC.md` and `harness/pin_provenance.json` as `2f8c10644606d7cb99c51267e2e0acd2bf90eac9619efbfa37330cfd9eb78bbf`. This hash resulted from an interrupted streaming pipeline (`curl -sL ... | sha256sum`) without `pipefail`. The verified full-archive SHA-256 digest from the official release asset is `890afd185370f85666025b883914ab4f4b339136f8c96167b69cfb62aecaf235`. Correction: update `EXECUTION_SPEC.md` and `harness/pin_provenance.json` to the verified full asset digest. Can this instance still carry a verdict? Yes, this correction precedes any execution run.
+
+## F-017 — merge commit SHA correction and append-only discipline restoration (F-11)
+
+In entry F-015 at commit 7b28531, the PR #3 merge commit was erroneously recorded as `f8495385750d9931d86d63d64fe282713f36fe28`. The actual canonical merge commit on `main` is `f8495385e077990261bb8e478d9168921ee90613`. In an interim commit (`3fb68b9`), F-015 was directly modified in violation of append-only discipline.
+
+Correction: Restore F-015 verbatim to its original form from commit 7b28531 and append this explicit correction. Furthermore, record the verbatim declaration issued by the Operator on 2026-09-11:
+
+> “Kao Operator, 2026-09-11 potvrđujem da merge PR #3 nije bio ratifikacija niti freeze; `prereg_frozen` ostaje false. Potvrđujem Ananke kao Executora isključivo nakon ratifikovanog freeze-a i potvrđujem lokalni versioned `INSTANCE_RULES.md` kao operativni authority ove instance. Za behavioral execution ne zahtevam kernel network-namespace izolaciju; harness ne sme obavljati mrežne operacije tokom behavioral run-a, dok je toolchain acquisition zasebna pinned pre-execution faza. Pre freeze-a dozvoljavam samo syntax/stub validaciju, repository custody metadata, toolchain release/download/hash/extraction metadata, host-environment metadata i manifest/archive packaging; zabranjujem nova denominator source ili path-existence merenja.”
+
+Can this instance still carry a verdict? Yes; the correction precedes any execution run and freeze identity remains bound to the exact candidate commit reviewed by the formal Gate.
+
 

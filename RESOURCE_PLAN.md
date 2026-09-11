@@ -10,7 +10,7 @@ Frozen runtime and resource bounds:
 - **Per-invocation timeout:** 60 seconds (enforced via `timeout --kill-after=5s 60s`). A bounded run that times out produces `EXTERNAL_EXECUTION_BLOCKER`, never successful rejection.
 - **Concurrency limit:** 1 (strictly sequential execution; no parallel Lean invocations).
 - **Process memory limit:** 4096 MB virtual address space enforced via `prlimit --as=4294967296`.
-- **Process isolation:** Network namespace isolation enforced via `unshare --net --`.
+- **Process isolation:** Zero network operations during behavioral execution runs; per explicit Operator decision (2026-09-11), kernel network-namespace isolation (`unshare --net`) is not required on the host platform.
 - **Disk workspace expectation:** Expected temporary disk usage is < 200 MB per run; workspace exhaustion produces `EXTERNAL_EXECUTION_BLOCKER`.
 
 ## 3. Between-Run Cleanup Allowlist

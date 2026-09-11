@@ -39,7 +39,7 @@ The execution environment is pinned to a single, concrete reference platform:
 - **Shell:** `/bin/bash` version 5.2.21(1)-release.
 - **Memory Bound:** Maximum virtual memory limit 4096 MB enforced via `prlimit --as=4294967296`.
 - **Per-Invocation Timeout:** 60 seconds enforced via `timeout --kill-after=5s 60s`.
-- **Network Isolation:** Process network namespace isolation enforced via `unshare --net --`. If unprivileged network namespaces are prohibited on the host (`Operation not permitted`), the failure is detected by the non-Lean preflight check and mapped to `EXTERNAL_EXECUTION_BLOCKER`.
+- **Network Isolation:** Per explicit Operator decision (2026-09-11), kernel network-namespace isolation (`unshare --net`) is not required on the host platform. Instead, zero network operations are permitted during behavioral execution runs, enforced contractually with pinned toolchain pre-extraction.
 - **Required Environment Variables:**
   ```bash
   export LANG="C.UTF-8"
@@ -52,15 +52,15 @@ The execution environment is pinned to a single, concrete reference platform:
 
 ## 3. Exact Execution Harness, Preflight & Command
 
-### Preflight Isolation & Limit Check
+### Preflight Limit Check
 Before any test artifact run, the harness verifies wrapper availability and permissions using `/bin/true` (zero Lean execution):
 ```bash
 prlimit --as=4294967296 timeout --kill-after=5s 60s /bin/true
 ```
-If this preflight command or network isolation fails, execution halts and records `EXTERNAL_EXECUTION_BLOCKER`.
+If this preflight command fails, execution halts and records `EXTERNAL_EXECUTION_BLOCKER`.
 
 ### Literal Invocation Script (`command.sh`)
-Per `INSTANCE_RULES.md#behavioral-criteria-and-recreation` and `DIAGNOSTIC_PROFILE.json`, with network namespace isolation, virtual address space limit (4096 MB), per-invocation timeout (60s), and environment enforcement:
+Per `INSTANCE_RULES.md#behavioral-criteria-and-recreation` and `DIAGNOSTIC_PROFILE.json`, with virtual address space limit (4096 MB), per-invocation timeout (60s), and environment enforcement:
 ```bash
 #!/usr/bin/env bash
 set -euo pipefail
@@ -72,7 +72,7 @@ export PATH="${TOOLCHAIN_DIR}/bin:/usr/bin:/bin"
 # Capture the exact execution environment variables
 env | sort > env.txt
 
-unshare --net -- prlimit --as=4294967296 timeout --kill-after=5s 60s "${LEAN_BIN}" -D printMessageEndPos=false -D maxErrors=0 "${POC_FILE}" > stdout.bin 2> stderr.bin || echo $? > exit-code.txt
+prlimit --as=4294967296 timeout --kill-after=5s 60s "${LEAN_BIN}" -D printMessageEndPos=false -D maxErrors=0 "${POC_FILE}" > stdout.bin 2> stderr.bin || echo $? > exit-code.txt
 if [ ! -s exit-code.txt ]; then
   echo 0 > exit-code.txt
 fi
@@ -87,7 +87,7 @@ fi
 
 ### Wrapper Error Classification & Matcher Invocation
 Per `INSTANCE_RULES.md:47`, wrapper-level failures (timeout, resource exhaustion, host permission denial) take precedence over Lean behavioral parsing:
-- If exit code is `124` (timeout) or `137` (SIGKILL / OOM) or stderr contains `unshare: unshare failed`: classify run outcome as `EXTERNAL_EXECUTION_BLOCKER`.
+- If exit code is `124` (timeout) or `137` (SIGKILL / OOM): classify run outcome as `EXTERNAL_EXECUTION_BLOCKER`.
 - Otherwise, invoke `scripts/behavior_matcher.py`:
   ```bash
   python3 scripts/behavior_matcher.py "${POC_FILE}" stdout.bin stderr.bin $(cat exit-code.txt)
