@@ -1,0 +1,99 @@
+#!/usr/bin/env bash
+# P10 Behavioral Execution Harness — Frozen Pre-Registration Script
+# Strictly executed POST-FREEZE; no Lean execution permitted before ratified freeze.
+set -euo pipefail
+
+TOOLCHAIN_DIR="${1:?Usage: $0 <toolchain_dir> [poc_file] [output_dir]}"
+POC_FILE="${2:-PoC.lean}"
+OUTPUT_DIR="${3:-evidence/behavioral/run}"
+
+LEAN_BIN="${TOOLCHAIN_DIR}/bin/lean"
+if [ ! -x "${LEAN_BIN}" ]; then
+  echo "Error: Lean binary not executable at ${LEAN_BIN}" >&2
+  exit 2
+fi
+
+if [ ! -f "${POC_FILE}" ]; then
+  echo "Error: PoC file not found at ${POC_FILE}" >&2
+  exit 2
+fi
+
+mkdir -p "${OUTPUT_DIR}"
+cd "${OUTPUT_DIR}"
+
+# 1. Capture environment metadata
+git rev-parse HEAD > git_commit.txt 2>/dev/null || echo "GIT_NOT_AVAILABLE" > git_commit.txt
+env | sort > env.txt
+
+# 2. Write literal execution command script
+cat << 'CMD_EOF' > command.sh
+#!/usr/bin/env bash
+set -euo pipefail
+timeout --kill-after=5s 60s "${LEAN_BIN}" -D printMessageEndPos=false -D maxErrors=0 "${POC_FILE}" > stdout.bin 2> stderr.bin || echo $? > exit-code.txt
+if [ ! -s exit-code.txt ]; then
+  echo 0 > exit-code.txt
+fi
+CMD_EOF
+chmod +x command.sh
+
+START_TIME_UTC="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+
+# 3. First Run
+./command.sh
+
+# 4. Archive First Run
+mkdir -p first-run
+mv stdout.bin stderr.bin exit-code.txt first-run/
+
+# 5. Between-Run Cleanup (PRESERVING first-run/)
+rm -rf .lake build *.olean *.ilean *.c stdout.bin stderr.bin exit-code.txt
+
+# 6. Second Run (Recreation)
+./command.sh
+mkdir -p second-run
+mv stdout.bin stderr.bin exit-code.txt second-run/
+
+END_TIME_UTC="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+
+# 7. Byte-for-byte Recreation Verification
+RECREATION_MATCH="true"
+cmp -s first-run/stdout.bin second-run/stdout.bin || RECREATION_MATCH="false"
+cmp -s first-run/stderr.bin second-run/stderr.bin || RECREATION_MATCH="false"
+cmp -s first-run/exit-code.txt second-run/exit-code.txt || RECREATION_MATCH="false"
+
+# 8. Compute artifact hashes
+python3 -c "
+import hashlib, json
+
+def h(path):
+    with open(path, 'rb') as f:
+        return hashlib.sha256(f.read()).hexdigest()
+
+data = {
+    'poc_sha256': h('${POC_FILE}'),
+    'lean_bin_sha256': h('${LEAN_BIN}'),
+    'first_run_stdout_sha256': h('first-run/stdout.bin'),
+    'first_run_stderr_sha256': h('first-run/stderr.bin'),
+    'first_run_exit_code': open('first-run/exit-code.txt').read().strip(),
+    'second_run_stdout_sha256': h('second-run/stdout.bin'),
+    'second_run_stderr_sha256': h('second-run/stderr.bin'),
+    'second_run_exit_code': open('second-run/exit-code.txt').read().strip(),
+    'recreation_match': ${RECREATION_MATCH}
+}
+with open('hashes.json', 'w') as f:
+    json.dump(data, f, indent=2)
+"
+
+# 9. Write run metadata
+cat << META_EOF > run_metadata.json
+{
+  "start_time_utc": "${START_TIME_UTC}",
+  "end_time_utc": "${END_TIME_UTC}",
+  "toolchain_dir": "${TOOLCHAIN_DIR}",
+  "recreation_byte_match": ${RECREATION_MATCH},
+  "first_run_exit_code": $(cat first-run/exit-code.txt),
+  "second_run_exit_code": $(cat second-run/exit-code.txt)
+}
+META_EOF
+
+echo "Behavioral run completed. Recreation byte match: ${RECREATION_MATCH}"

@@ -8,12 +8,11 @@ The scientific and normative layer uses Creator, Gate, Executor, Operator and fi
 
 | Role | Current holder | Appointment / status |
 | --- | --- | --- |
-| Creator | Drafting history: Astra / Codex (draft 1/2); Ananke (repository custodian / freeze-candidate preparation under strict Operator directive) | Prepares candidate package and self-checks; not the formal Gate. Does not assign independence to self. |
+| Creator | Sol (research lead / Creator-side participant); drafting history: Astra / Codex (draft 1/2) | Authors the package and performs disclosed self-checks; not the formal Gate. Does not assign independence to self. |
 | Gate | Claude | Designated formal Gate for T-A/T-B. Does not grant self-independence; Operator determines conflict acceptability. |
-| Executor | Ananke (confirmed by Operator) | Operator confirmation: Ananke is appointed Executor for the eventual frozen run of this instance. This appointment grants execution authority only after freeze; it grants no Gate or verdict authority. |
+| Executor | Ananke (Ops custodian + confirmed Executor) | Confirmed by explicit Operator appointment. Execution authority is active only after freeze; grants no Gate or verdict authority. Operational continuity across model/session runtime is maintained without private account identifiers. |
 | Operator | Ivan | Scope, assignments, conflict acceptability and workflow decisions; performs PR merge. |
 | final Ratifier | Ivan | Final ratification, distinct from Creator and Gate. |
-| Participant (Advisory) | Sol | Research lead / internal pre-Gate check; participant without normative or gatekeeping authority. |
 
 Repository coordination account: VolMax-Studio. The repository coordinate is retained in manifests and URLs as an address, not an assignment of scientific authority.
 
@@ -29,7 +28,7 @@ This record carries scope rationale, authority provenance and role disclosures. 
 
 The Operator excluded T-C: the Anthropic FLT artifact and every claim about its validity, dependencies, or exposure to the disclosed bug. The instance body must not name or evaluate that artifact. Immutable source bytes can contain such references without making them adjudicated claims.
 
-The Operator designated Claude as Gate and has now explicitly confirmed: “Potvrđujem Claudeov formalni Gate nad tekstom”. Ivan remains final Ratifier. The current assistant is Creator of draft 1 and draft 2. Ananke appears as proposed Executor in earlier supplied correspondence; explicit confirmation is pending. Do not infer that any external task has received instructions or executed work.
+The Operator designated Claude as Gate and has explicitly confirmed: “Potvrđujem Claudeov formalni Gate nad tekstom”. Ivan remains final Ratifier. In earlier correspondence Ananke appeared as proposed Executor; explicit confirmation as Executor for the eventual frozen execution is now granted by Operator decision. Do not infer that any external task has received instructions or executed work.
 
 Conflict acceptability is an Operator decision, not a Gate self-certification. The supplied correspondence states acceptance of Claude as Gate for T-A/T-B with the strict scope boundary. Claude must disclose exposure; model-family identity alone does not establish independence. The issue and blog report GPT-5.6 involvement in discovery, which is recorded as a claimant self-report, not independently verified discovery provenance.
 
@@ -54,7 +53,7 @@ The ZIP comment identifies a local commit but is not by itself proof of Git-tree
 
 T-B1 is explicitly designated “Deskriptivno merenje T-B1”. Report per-member syntactic outcomes and coverage, with no Verified/Not Verified scientific verdict. This change is an Operator-authorized scope-of-interpretation decision, not an outcome-driven modification.
 
-Executor confirmation, complete participant disclosure and canonical-original pin or explicit adoption of the local authority chain remain pending. These are separate from N-1/N-2 repairs.
+Executor confirmation is now complete via Operator appointment of Ananke as Executor for the eventual frozen run. Authority status: The original canonical authority document (“VolMax Observatory — Operating Rules (P10, v2026-08)”) location and SHA-256 remain UNRESOLVED; this instance explicitly operates under locally versioned, Operator-adopted authority.
 
 ## Repository transition and latest Gate
 
@@ -68,7 +67,7 @@ Claude's formal review targets c8f10c960a87c12eb645366e2e64c9c98893c17d and ZIP 
 
 All further changes, including freeze, proceed by PR; Ivan performs merge/ratification. The current task prepares and opens the repair PR, never merges it or directly updates main. The Operator selected a public version without raw data and no history rewrite. Raw-source snapshots and original supplied text artifacts are externalized to a local evidence ZIP. This does not remove bytes from earlier public commits or from current main before merge.
 
-Branch-protection query via GitHub API `/repos/VolMax-Studio/lean-native-eval-boundary-s1/branches/main` returned `"protected": false`. Setting GitHub protection via API is unavailable due to absence of administrative PAT/token in execution environment (`BRANCH_PROTECTION_UNAVAILABLE`). The Operator-established procedural rule `NO_DIRECT_PUSH_TO_MAIN` is active; all changes proceed strictly through pull requests.
+Branch-protection status: OBSERVED_DISABLED (`protected: false`) measured via GitHub API `/repos/VolMax-Studio/lean-native-eval-boundary-s1/branches/main`. Automated configuration via API is unavailable due to absence of administrative credentials in execution environment. Procedural constraint `NO_DIRECT_PUSH_TO_MAIN` is established by the Operator; all changes proceed strictly through pull requests.
 
 ## Formal Gate on PR #1 head ae4ae63 — FIXES-PENDING (F-N)
 

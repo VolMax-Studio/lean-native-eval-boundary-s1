@@ -1,5 +1,5 @@
 {
-  "status": "FROZEN: all 45 denominator tags resolved to commit objects; verified against snapshot and live remote advertisement",
+  "status": "PINNED_FREEZE_CANDIDATE: all 45 denominator tags resolved to commit objects; freeze pending Gate review and Ratifier ratification",
   "snapshot": "sources/lsremote_tags.txt",
   "snapshot_sha256": "565d84d4c16b3db514dc46935c8c60cb7a96af6ec45a68adb0bd50af1fa70414",
   "count": 45,

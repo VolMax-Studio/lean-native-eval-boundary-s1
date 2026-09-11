@@ -8,50 +8,54 @@ Pre-freeze Prohibition: `LEAN_RUNS=0` (no execution on test artifact prior to ra
 
 ## 1. Pinned Behavioral Toolchains (T-A)
 
-The behavioral evaluation tests three specific Lean 4 release artifacts for Linux x86_64:
+The behavioral evaluation tests three specific Lean 4 release distribution archives for Linux x86_64:
 
 | Version | Asset Filename | Byte Size | SHA-256 Digest | Official Distribution URL |
-| :--- | :--- | :--- | :--- | :--- |
+| :--- | :--- | :---: | :---: | :--- |
 | **Lean v4.32.2** | `lean-4.32.2-linux.tar.zst` | 563,991,635 | `5f2069e6f5db73780f374ccb49ce8ea649aa20a0cebf0116816744c999ce72aa` | `https://github.com/leanprover/lean4/releases/download/v4.32.2/lean-4.32.2-linux.tar.zst` |
 | **Lean v4.33.1** | `lean-4.33.1-linux.tar.zst` | 570,405,234 | `2f8c10644606d7cb99c51267e2e0acd2bf90eac9619efbfa37330cfd9eb78bbf` | `https://github.com/leanprover/lean4/releases/download/v4.33.1/lean-4.33.1-linux.tar.zst` |
 | **Lean v4.34.0-rc1** | `lean-4.34.0-rc1-linux.tar.zst` | 575,410,932 | `41dc6a6ec143ece8ed4ba4c4c6978c91f21ad5cbe3c4e7728ad31b869961dc17` | `https://github.com/leanprover/lean4/releases/download/v4.34.0-rc1/lean-4.34.0-rc1-linux.tar.zst` |
 
-Retrieval and verification provenance:
+Retrieval, extraction, and invocation provenance:
 - Assets retrieved directly from official GitHub releases of repository `leanprover/lean4`.
-- Stream-verified SHA-256 digests and exact content lengths recorded on 2026-09-11.
+- Exact stream-verified SHA-256 digests and content lengths established and recorded in `harness/pin_provenance.json`.
 - Unpacking mechanism: `tar --zstd -xf <archive> -C <toolchain_dir>`.
-- Lean executable path: `<toolchain_dir>/bin/lean`.
+- Lean executable path: literal absolute path `<toolchain_dir>/bin/lean`.
+- Invariant: Invocation occurs strictly through the direct unpacked binary path; elan proxies and dynamic toolchain dispatch wrappers are prohibited.
 
 ---
 
-## 2. Target Execution Environment
+## 2. Pinned Execution Environment
 
-- **Operating System:** Linux x86_64 (reference platform: Ubuntu 24.04.1 LTS / Linux kernel 7.0.0-31-generic or compatible standard Linux x86_64).
+The execution environment is pinned to a single, concrete reference platform:
+
+- **Operating System:** Linux kernel 7.0.0-31-generic x86_64.
+- **Userland Distribution:** Ubuntu 24.04.1 LTS (noble).
 - **Architecture:** x86_64 (64-bit).
-- **C Library (libc):** GNU C Library (glibc) version >= 2.38 (reference: `glibc 2.39`).
-- **C Compiler:** GCC >= 13.0 (reference: `gcc 13.3.0` x86_64-linux-gnu).
-- **Shell:** `/bin/bash` with strict settings (`set -euo pipefail`).
+- **C Library (libc):** Ubuntu GLIBC 2.39-0ubuntu8.8 (`libc.so.6`).
+- **C Compiler:** GCC 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1).
+- **Shell:** `/bin/bash` version 5.2.21(1)-release.
+- **Network Isolation:** Process network namespace isolation enforced via `unshare --net --`.
+- **Memory Bound:** Maximum virtual memory limit 4096 MB enforced via `prlimit --as=4294967296`.
 - **Required Environment Variables:**
   ```bash
   export LANG="C.UTF-8"
   export LC_ALL="C.UTF-8"
   export LEAN_PATH=""
-  export PATH="<toolchain_dir>/bin:${PATH}"
+  export PATH="<toolchain_dir>/bin:/usr/bin:/bin"
   ```
-- **Execution isolation:** Each run executes in a dedicated, isolated temporary workspace directory with network isolation (e.g. `unshare --net` or isolated runner environment) to guarantee outcome blindness and eliminate network side-effects.
 
 ---
 
 ## 3. Exact Execution Harness & Command
 
 ### Literal Invocation Command
-Per `INSTANCE_RULES.md#behavioral-criteria-and-recreation` and `DIAGNOSTIC_PROFILE.json`:
+Per `INSTANCE_RULES.md#behavioral-criteria-and-recreation` and `DIAGNOSTIC_PROFILE.json`, with timeout and memory enforcement:
 ```bash
-"${LEAN_BIN}" -D printMessageEndPos=false -D maxErrors=0 PoC.lean > stdout.bin 2> stderr.bin || echo $? > exit-code.txt
-```
-If the command exits with code 0:
-```bash
-echo 0 > exit-code.txt
+timeout --kill-after=5s 60s "${LEAN_BIN}" -D printMessageEndPos=false -D maxErrors=0 PoC.lean > stdout.bin 2> stderr.bin || echo $? > exit-code.txt
+if [ ! -s exit-code.txt ]; then
+  echo 0 > exit-code.txt
+fi
 ```
 
 ### Input & Output Paths
@@ -65,42 +69,71 @@ echo 0 > exit-code.txt
 ## 4. Deterministic Recreation Sequence
 
 For each of the three pinned toolchain versions:
-1. **Preserve clean environment:** Prepare clean isolated workspace. Place `PoC.lean`.
+1. **Preserve clean environment:** Prepare clean isolated workspace. Place `PoC.lean`. Record `env.txt` and `git_commit.txt`.
 2. **First Run:** Execute the literal invocation command. Capture `stdout.bin`, `stderr.bin`, `exit-code.txt`.
-3. **Archive First Run:** Move captured outputs and intermediate artifacts to directory `first-run/`.
-4. **Cleanup:** Execute the frozen cleanup sequence removing only items on the cleanup allowlist.
-5. **Second Run (Recreation):** Re-execute the identical invocation command with the identical input and environment. Capture fresh `stdout.bin`, `stderr.bin`, `exit-code.txt` to directory `second-run/`.
+3. **Archive First Run:** Create directory `first-run/` and move `stdout.bin`, `stderr.bin`, `exit-code.txt` into `first-run/`.
+4. **Between-Run Cleanup:** Execute cleanup removing strictly items on the Between-Run Allowlist. `first-run/` is preserved and must never be deleted.
+5. **Second Run (Recreation):** Re-execute the identical invocation command with identical inputs and environment in directory `second-run/`.
 6. **Byte-for-Byte Comparison:**
    ```bash
    cmp -s first-run/stdout.bin second-run/stdout.bin
    cmp -s first-run/stderr.bin second-run/stderr.bin
    cmp -s first-run/exit-code.txt second-run/exit-code.txt
    ```
-   Any byte mismatch immediately yields `EVIDENCE_INSUFFICIENT` for affected claims. Timestamps are retained solely as separate metadata and are not compared as deterministic stream content.
+   Any byte mismatch immediately yields `EVIDENCE_INSUFFICIENT` for affected subclaims.
+7. **Package Evidence:** Package the full P10 evidence-run artifacts into `evidence/behavioral/{version}/`.
 
 ---
 
-## 5. Cleanup Allowlist
+## 5. Cleanup Allowlist & Invariants
 
-Only the following enumerated relative paths within the isolated execution workspace may be deleted during workspace resets or between first-run and recreation:
+### Between-Run Allowlist (run 1 -> run 2)
+Only the following transient build artifacts may be deleted between first-run and recreation:
 - `.lake/`
 - `build/`
 - `*.olean`
 - `*.ilean`
 - `*.c`
-- `first-run/`
-- `second-run/`
-- `stdout.bin`
-- `stderr.bin`
-- `exit-code.txt`
+- `stdout.bin` (in root workspace)
+- `stderr.bin` (in root workspace)
+- `exit-code.txt` (in root workspace)
 
-**Strict Prohibition:** Absolutely nothing outside this enumerated allowlist may be deleted. Source inputs, toolchain files, scripts, manifests, and parent files are immutable.
+**STRICT PRESERVATION INVARIANT:**  
+`first-run/` is an immutable evidence record and **MUST NEVER BE DELETED** during between-run cleanup. It persists until byte comparison against `second-run/` has finished and the comparison verdict is logged.
+
+### Absolute Prohibitions
+Nothing outside the enumerated between-run allowlist may be deleted. Source inputs (`PoC.lean`), toolchain binaries, parent repository files, manifests, and archived run outputs are protected from deletion.
 
 ---
 
-## 6. Resource Limits
+## 6. Complete P10 Evidence-Run Package
 
-- **Per-invocation timeout:** 60 seconds (enforced via `timeout --kill-after=5 60s`).
-- **Concurrency:** Strictly sequential (concurrency = 1).
-- **Resident Set Size (RSS) memory cap:** 4096 MB.
-- **Workspace disk capacity:** 2048 MB.
+For each version run, the frozen harness outputs a standardized evidence bundle containing:
+- `command.sh`: Exact literal shell script executed.
+- `stdout.bin`: Raw byte capture of standard output.
+- `stderr.bin`: Raw byte capture of standard error.
+- `exit-code.txt`: Literal exit code.
+- `env.txt`: Captured runtime environment variables.
+- `git_commit.txt`: Exact commit SHA of repository during execution.
+- `hashes.json`: SHA-256 hashes of input (`PoC.lean`), outputs (`stdout.bin`, `stderr.bin`), toolchain binary, and exit code.
+- `run_metadata.json`: UTC start/end timestamps, duration, host kernel/libc version, toolchain version, and byte comparison verdict.
+
+---
+
+## 7. Pinned T-B1 Acquisition & Execution Procedure (Post-Freeze)
+
+For all 45 denominator tags resolved in `TAG_MANIFEST.json`, the post-freeze acquisition and execution procedure is pinned as follows:
+
+1. **Commit Resolution:** Use the exact `resolved_commit_sha` recorded in `TAG_MANIFEST.json`.
+2. **Deterministic URL Template:**
+   - `Basic.lean`: `https://raw.githubusercontent.com/leanprover/lean4/{resolved_commit_sha}/src/Init/Data/String/Basic.lean`
+   - `object.cpp`: `https://raw.githubusercontent.com/leanprover/lean4/{resolved_commit_sha}/src/runtime/object.cpp`
+3. **Storage & Hash Capture:**
+   - Target files saved to `evidence/t_b1/{tag}/Basic.lean` and `evidence/t_b1/{tag}/object.cpp`.
+   - Record HTTP status codes, byte sizes, and SHA-256 hashes in `evidence/t_b1_manifest.json`.
+4. **Source Proxy Invocation:**
+   ```bash
+   python3 scripts/source_proxy.py evidence/t_b1/{tag}/Basic.lean evidence/t_b1/{tag}/object.cpp
+   ```
+5. **Output Capture:** Record literal stdout, stderr, exit code, and classification (`MISMATCH` / `NO_MISMATCH` / `PREDICATE_INAPPLICABLE`) in `evidence/t_b1_results.json`.
+6. **Pre-Freeze Prohibition:** Neither source retrieval nor `source_proxy.py` execution on denominator members is permitted prior to formal freeze.

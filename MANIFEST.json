@@ -1,6 +1,6 @@
 {
   "status": "candidate freeze package; pre-gate; HALT; not frozen; scientific verdict null",
-  "manifest_created_at_utc": "2026-09-11T19:21:51.120913+00:00",
+  "manifest_created_at_utc": "2026-09-11T19:29:30.129854+00:00",
   "previous_review_commit": "ae4ae63d630bfc1aaf47381c286fcc5243d3ee1d",
   "previous_review_zip_sha256": "8ed9d0e685f343a8d03bfc522958b39a3787132e2ae9929aa15465c1cbc6d051",
   "repository": "VolMax-Studio/lean-native-eval-boundary-s1",
@@ -33,8 +33,8 @@
     },
     {
       "path": "EXECUTION_SPEC.md",
-      "bytes": 5054,
-      "sha256": "7da8321e494eb305a61adf5fb7af3d32ccee2e1980b898efbd0ae9db70d9d2ca"
+      "bytes": 7407,
+      "sha256": "dbdfbb5aa6a682f4c96073c483a24fbcea785d197c7506080f47575c2c3f9abc"
     },
     {
       "path": "FAILURES.md",
@@ -43,13 +43,13 @@
     },
     {
       "path": "INSTANCE_RULES.md",
-      "bytes": 15217,
-      "sha256": "97b116277bb45db5ffd1fd3e4ae3b0fc94ac77210fa8c53ccad8ee78d9e350b6"
+      "bytes": 15484,
+      "sha256": "c8d68eead98681074a1a126456e59609ab308bb26cc9672f4b5d896e941432f7"
     },
     {
       "path": "PRE_GATE_CLOSURE.md",
-      "bytes": 5562,
-      "sha256": "74a60417ceb2c3c86c5a65bbfa410564b0a47101b3f60f1026e8d5c34579f300"
+      "bytes": 5770,
+      "sha256": "ae9205493ed123a21c64abd61c954d2489f74690b17ab7fdfed7aaec26d42008"
     },
     {
       "path": "README.md",
@@ -68,8 +68,8 @@
     },
     {
       "path": "TAG_MANIFEST.json",
-      "bytes": 12308,
-      "sha256": "d891468e617a8d43282066bc4431cc605924a90cba4f0c4ee673fa8893dd7e44"
+      "bytes": 12322,
+      "sha256": "02ad0518a502ce41dbf3ad188d42f713f1d35bbdd5eb3774250bf329dd9efbf4"
     },
     {
       "path": "data_manifest.json",
@@ -88,8 +88,23 @@
     },
     {
       "path": "external/GOVERNANCE.md",
-      "bytes": 11369,
-      "sha256": "6105019bbddefa9fdaa0b0bf1b071b10706ce6c4771f06a077daf1becac9bf5c"
+      "bytes": 11413,
+      "sha256": "2c77125def355891ea271789fae208c0301ecef9f3cc3b289b01b335be7d0992"
+    },
+    {
+      "path": "harness/pin_provenance.json",
+      "bytes": 2212,
+      "sha256": "b50a32b2fc72c56996018cdc94e2104b86f03f0d10f443650509331bb448ba15"
+    },
+    {
+      "path": "harness/run_behavioral.sh",
+      "bytes": 3080,
+      "sha256": "c6f51015beab62d95758b0cf49aa195a34266d768dd7e797452ff0ab72194ed5"
+    },
+    {
+      "path": "harness/run_t_b1.sh",
+      "bytes": 2794,
+      "sha256": "56f2ed2c549a8eec6a9ad2539dd8d3c3ab0b71723a455d2ef031f336447efeba"
     },
     {
       "path": "scripts/behavior_matcher.py",

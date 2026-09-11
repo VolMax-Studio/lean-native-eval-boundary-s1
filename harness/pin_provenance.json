@@ -1,0 +1,42 @@
+{
+  "provenance_created_at_utc": "2026-09-11T19:22:00Z",
+  "provenance_purpose": "Metadata-only verification of tag object types and toolchain distribution digests prior to freeze; no Lean execution, no denominator scan",
+  "operations": [
+    {
+      "operation": "git_remote_tag_advertisement_verification",
+      "command": "git ls-remote --tags https://github.com/leanprover/lean4.git",
+      "exit_code": 0,
+      "sha256_of_stdout": "565d84d4c16b3db514dc46935c8c60cb7a96af6ec45a68adb0bd50af1fa70414",
+      "matching_snapshot": "sources/lsremote_tags.txt",
+      "match": true,
+      "conclusion": "All 45 denominator tags are git lightweight tags pointing directly to commit objects; peeled lines count is 0 for all 45 tags."
+    },
+    {
+      "operation": "toolchain_digest_verification_v4_32_2",
+      "asset": "lean-4.32.2-linux.tar.zst",
+      "url": "https://github.com/leanprover/lean4/releases/download/v4.32.2/lean-4.32.2-linux.tar.zst",
+      "bytes": 563991635,
+      "command": "curl -sL https://github.com/leanprover/lean4/releases/download/v4.32.2/lean-4.32.2-linux.tar.zst | sha256sum",
+      "exit_code": 0,
+      "sha256": "5f2069e6f5db73780f374ccb49ce8ea649aa20a0cebf0116816744c999ce72aa"
+    },
+    {
+      "operation": "toolchain_digest_verification_v4_33_1",
+      "asset": "lean-4.33.1-linux.tar.zst",
+      "url": "https://github.com/leanprover/lean4/releases/download/v4.33.1/lean-4.33.1-linux.tar.zst",
+      "bytes": 570405234,
+      "command": "curl -sL https://github.com/leanprover/lean4/releases/download/v4.33.1/lean-4.33.1-linux.tar.zst | sha256sum",
+      "exit_code": 0,
+      "sha256": "2f8c10644606d7cb99c51267e2e0acd2bf90eac9619efbfa37330cfd9eb78bbf"
+    },
+    {
+      "operation": "toolchain_digest_verification_v4_34_0_rc1",
+      "asset": "lean-4.34.0-rc1-linux.tar.zst",
+      "url": "https://github.com/leanprover/lean4/releases/download/v4.34.0-rc1/lean-4.34.0-rc1-linux.tar.zst",
+      "bytes": 575410932,
+      "command": "curl -sL https://github.com/leanprover/lean4/releases/download/v4.34.0-rc1/lean-4.34.0-rc1-linux.tar.zst | sha256sum",
+      "exit_code": 0,
+      "sha256": "41dc6a6ec143ece8ed4ba4c4c6978c91f21ad5cbe3c4e7728ad31b869961dc17"
+    }
+  ]
+}
