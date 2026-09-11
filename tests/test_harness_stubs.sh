@@ -28,6 +28,8 @@ theorem flt : False := by
   native_decide
 POC_EOF
 
+export TEST_STUB_MODE=1
+
 bash "${REPO_ROOT}/harness/run_behavioral.sh" "${TMP_DIR}/fake_toolchain" "${TMP_DIR}/PoC.lean" "${TMP_DIR}/run_out"
 
 test -f "${TMP_DIR}/run_out/hashes.json"
@@ -83,7 +85,56 @@ assert m['second_run_outcome'] == 'EVIDENCE_INSUFFICIENT'
 assert m['final_behavioral_outcome'] == 'EVIDENCE_INSUFFICIENT'
 "
 
-# 4. Test execution from arbitrary working directory (/tmp) to verify cwd-independence
+# 4. Test mixed run (first run timeout 124, second run ACCEPT 0) -> recreation mismatch -> EVIDENCE_INSUFFICIENT (B-9)
+COUNT_FILE="${TMP_DIR}/call_count.txt"
+echo 0 > "${COUNT_FILE}"
+
+cat << MOCK_MIXED_EOF > "${TMP_DIR}/fake_toolchain/bin/lean"
+#!/usr/bin/env bash
+count=\$(cat "${COUNT_FILE}")
+count=\$(( count + 1 ))
+echo "\${count}" > "${COUNT_FILE}"
+if [ "\${count}" -eq 1 ]; then
+  exit 124
+else
+  echo "'flt' depends on axioms: [propext, demo.native_decide.ax_1]"
+  exit 0
+fi
+MOCK_MIXED_EOF
+
+bash "${REPO_ROOT}/harness/run_behavioral.sh" "${TMP_DIR}/fake_toolchain" "${TMP_DIR}/PoC.lean" "${TMP_DIR}/run_out_mixed"
+
+python3 -c "
+import json
+with open('${TMP_DIR}/run_out_mixed/run_metadata.json') as f:
+    m = json.load(f)
+assert m['first_run_outcome'] == 'EXTERNAL_EXECUTION_BLOCKER'
+assert m['second_run_outcome'] == 'ACCEPT'
+assert m['recreation_byte_match'] is False
+assert m['final_behavioral_outcome'] == 'EVIDENCE_INSUFFICIENT'
+"
+
+# 5. Test PoC digest mismatch in non-test mode writing run_metadata.json and exiting with code 2 (B-8, F-16)
+set +e
+TEST_STUB_MODE=0 bash "${REPO_ROOT}/harness/run_behavioral.sh" "${TMP_DIR}/fake_toolchain" "${TMP_DIR}/PoC.lean" "${TMP_DIR}/run_out_mismatch" 2>/dev/null
+POC_MISMATCH_EXIT=$?
+set -e
+
+if [ "${POC_MISMATCH_EXIT}" -ne 2 ]; then
+  echo "Expected exit 2 on PoC mismatch, got ${POC_MISMATCH_EXIT}" >&2
+  exit 1
+fi
+
+test -f "${TMP_DIR}/run_out_mismatch/run_metadata.json"
+python3 -c "
+import json
+with open('${TMP_DIR}/run_out_mismatch/run_metadata.json') as f:
+    m = json.load(f)
+assert m['final_behavioral_outcome'] == 'EXTERNAL_EXECUTION_BLOCKER'
+assert m['blocker_reason'] == 'poc_sha256_mismatch'
+"
+
+# 6. Test execution from arbitrary working directory (/tmp) to verify cwd-independence
 (
   cd /tmp
   bash "${REPO_ROOT}/harness/run_behavioral.sh" "${TMP_DIR}/fake_toolchain" "${TMP_DIR}/PoC.lean" "${TMP_DIR}/run_out_cwd_test"

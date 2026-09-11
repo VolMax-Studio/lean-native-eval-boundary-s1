@@ -1,8 +1,8 @@
 {
   "status": "pre-freeze candidate; pre-gate; HALT; not frozen; TARGET_LEAN_RUNS=0; scientific verdict null",
-  "manifest_created_at_utc": "2026-09-11T20:20:41.047232+00:00",
-  "previous_review_commit": "7b2853184a01bc38605806b2185806b5892f39ba",
-  "previous_review_zip_sha256": "9c13d51b3f9ff705116aa423fc99201f81d11bb746d5c64c7827e85c2b03d526",
+  "manifest_created_at_utc": "2026-09-11T20:45:01Z",
+  "previous_review_commit": "f66ab4054382d29f0f2bd9d3d2547e99c460c16d",
+  "previous_review_zip_sha256": "5326eefab481f53226c669b8b5d8f817cce6a2deeb4abc3180d095a958b5929d",
   "repository": "VolMax-Studio/lean-native-eval-boundary-s1",
   "note": "Public files only; self excluded. Original evidence is separately indexed by data_manifest.json. Current main and historical raw data are not erased by this PR.",
   "files": [
@@ -33,13 +33,13 @@
     },
     {
       "path": "EXECUTION_SPEC.md",
-      "bytes": 10327,
-      "sha256": "07f0a94f503db75301154979cb47df24cbd92731625eb1ff8496713d07f8cdfd"
+      "bytes": 11629,
+      "sha256": "6a43f227f8f92986793276ba3ff00808eec86e3eeff469ee9c009859b7dfa867"
     },
     {
       "path": "FAILURES.md",
-      "bytes": 14066,
-      "sha256": "d8e1a53704c656e488a3d4976ffd18f5aa2642d29745a9a811913b400ce514d8"
+      "bytes": 15696,
+      "sha256": "8157f07b9dbbeb461cc2bb9d66ac1fc01b743eb2335ccf2b16121e22e63ed658"
     },
     {
       "path": "INSTANCE_RULES.md",
@@ -63,8 +63,8 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 2103,
-      "sha256": "c31641c5bd28a7e3a97d139a70d32723a64971778b763caa0657d6a5cb346d4e"
+      "bytes": 2256,
+      "sha256": "9c8ef4c37030cab7273c3bece3dbf17799174137a0327e12d557b8d435af721f"
     },
     {
       "path": "TAG_MANIFEST.json",
@@ -92,14 +92,19 @@
       "sha256": "be4504b4056a28ec4bf2a2a594d4947983ce6671b658e4641a92aaa3a10249b9"
     },
     {
+      "path": "harness/acquire_toolchains.sh",
+      "bytes": 3113,
+      "sha256": "ffda64d0f19b73816407863834d6f7dd6d667cecc459609571cc1d67253120c9"
+    },
+    {
       "path": "harness/pin_provenance.json",
       "bytes": 2992,
       "sha256": "c7d8069f04f796cf48e6a855d6fe38cca7a23ac063f5f041addcf3cec4cc99c3"
     },
     {
       "path": "harness/run_behavioral.sh",
-      "bytes": 6811,
-      "sha256": "4323e76638def5f4a480c59caa787f47bc579cedd80b8e510e7642e05845142d"
+      "bytes": 8609,
+      "sha256": "073b740c910fa30c851ed8de8fcb6e929d66cec2b60321f865ced5a9fb902e27"
     },
     {
       "path": "harness/run_t_b1.sh",
@@ -178,8 +183,8 @@
     },
     {
       "path": "tests/test_harness_stubs.sh",
-      "bytes": 3116,
-      "sha256": "fe23b3559375b619c8f02b5159aeb342e1828338aed589576f94f038c6f924d9"
+      "bytes": 4803,
+      "sha256": "02e28dfca2dedee2f8bfb73b4ef4f918d9444d80961644a363a383f2bb217b15"
     },
     {
       "path": "validation/exit-code.txt",

@@ -112,4 +112,15 @@ Correction: Restore F-015 verbatim to its original form from commit 7b28531 and 
 
 Can this instance still carry a verdict? Yes; the correction precedes any execution run and freeze identity remains bound to the exact candidate commit reviewed by the formal Gate.
 
+## F-018 — pattern of unmeasured / prefix-filled hashes in reports and manifest (B-10, F-17)
+
+During the candidate review rounds, a recurring defect pattern occurred where SHA-256 hashes in reports and manifests were reconstructed from prefixes or recorded without fresh direct execution output measurement:
+1. In candidate `c6b4041` report: private evidence archive hash was reported with a typographical prefix mismatch.
+2. In candidate `3717506` report: the candidate commit SHA was reported as `37175069fbb7…` instead of actual remote commit `3717506c2e01…`.
+3. In `MANIFEST.json` of candidate `7052042` and `f66ab40`: `previous_review_zip_sha256` was recorded as `9c13d51b3f9ff705116aa423fc99201f81d11bb746d5c64c7827e85c2b03d526`, which was unmeasured and differed from the actual archive digest of commit `7b28531` (`2bbd2463c1a8f8277001a7b702b819973c1a9351f40a90f06bbced6f885aa1ca`).
+
+Correction:
+Establish strict operational discipline that every hash, commit SHA, and byte length recorded in manifests, specifications, and reports must be copy-pasted verbatim from direct terminal measurement command outputs (`sha256sum`, `stat -c%s`, `git rev-parse`). For candidate v3, `previous_review_commit` is recorded strictly as `f66ab4054382d29f0f2bd9d3d2547e99c460c16d` and `previous_review_zip_sha256` is recorded strictly as `5326eefab481f53226c669b8b5d8f817cce6a2deeb4abc3180d095a958b5929d` (measured directly from `git archive --format=zip -9 f66ab4054382d29f0f2bd9d3d2547e99c460c16d`). Can this instance still carry a verdict? Yes, this correction precedes any scientific execution and reinforces reproducibility.
+
+
 

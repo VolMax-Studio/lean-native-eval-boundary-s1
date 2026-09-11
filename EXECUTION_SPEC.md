@@ -52,12 +52,24 @@ The execution environment is pinned to a single, concrete reference platform:
 
 ## 3. Exact Execution Harness, Preflight & Command
 
-### Preflight Limit Check
-Before any test artifact run, the harness verifies wrapper availability and permissions using `/bin/true` (zero Lean execution):
+### Toolchain Acquisition Phase
+Per Operator decision (2026-09-11), toolchain acquisition and verification is a dedicated, pinned pre-execution phase executed via `harness/acquire_toolchains.sh`:
+1. The distribution archive is downloaded from the pinned release asset URL.
+2. The byte length and SHA-256 digest of the archive are verified strictly against the pinned values in `EXECUTION_SPEC.md` and `harness/pin_provenance.json`. Any mismatch terminates with exit code 1.
+3. The archive is unpacked without Lean execution: `tar --zstd -xf <archive> -C <toolchain_dir>`.
+4. The unpacked executable `<toolchain_dir>/bin/lean` is located, verified executable, and its SHA-256 digest is measured.
+
+### Preflight Limit & Input Integrity Verification
+Before any test artifact run, the behavioral harness verifies wrapper availability and permissions using `/bin/true` (zero Lean execution):
 ```bash
 prlimit --as=4294967296 timeout --kill-after=5s 60s /bin/true
 ```
-If this preflight command fails, execution halts and records `EXTERNAL_EXECUTION_BLOCKER`.
+If this preflight command fails, execution halts, records `EXTERNAL_EXECUTION_BLOCKER` in `run_metadata.json`, and exits with code 2.
+
+Next, input integrity is verified before execution:
+- `PoC.lean` SHA-256 digest is verified against the pinned digest (`ed8e65ccf56fc10509b59a047101bb1c76426ae1fd8ee4d501fb29781e54049b`).
+- `LEAN_BIN` must exist and be executable.
+Any input verification failure halts execution, writes `run_metadata.json` with `final_behavioral_outcome: "EXTERNAL_EXECUTION_BLOCKER"`, and exits with code 2 without invoking Lean.
 
 ### Literal Invocation Script (`command.sh`)
 Per `INSTANCE_RULES.md#behavioral-criteria-and-recreation` and `DIAGNOSTIC_PROFILE.json`, with virtual address space limit (4096 MB), per-invocation timeout (60s), and environment enforcement:
@@ -96,11 +108,11 @@ Per `INSTANCE_RULES.md:47`, wrapper-level failures (timeout, host permission den
   yielding `ACCEPT`, `EXPECTED_NATIVE_REJECTION`, or `EVIDENCE_INSUFFICIENT`.
 
 ### Final Behavioral Outcome Precedence
-For the two-run deterministic recreation sequence, the overall run outcome (`final_behavioral_outcome`) is evaluated strictly in the following precedence order:
-1. `wrapper/preflight blocker` $\to$ `EXTERNAL_EXECUTION_BLOCKER`
-2. `recreation mismatch` $\to$ `EVIDENCE_INSUFFICIENT`
-3. `both recreated runs produce the identical valid matcher outcome` $\to$ that outcome (`ACCEPT` or `EXPECTED_NATIVE_REJECTION`)
-4. `all other cases` (divergent outcomes, unexpected errors, crash/unclear exits) $\to$ `EVIDENCE_INSUFFICIENT`
+For the two-run deterministic recreation sequence, the overall run outcome (`final_behavioral_outcome`) is evaluated strictly in accordance with `INSTANCE_RULES.md:67`:
+1. `recreation mismatch` (`RECREATION_MATCH != "True"`) $\to$ `EVIDENCE_INSUFFICIENT`
+2. `solely listed external blocker` (both runs produce `EXTERNAL_EXECUTION_BLOCKER`, or preflight/integrity failure) $\to$ `EXTERNAL_EXECUTION_BLOCKER`
+3. `both recreated runs produce identical valid matcher outcome` $\to$ that outcome (`ACCEPT` or `EXPECTED_NATIVE_REJECTION`)
+4. `all other cases` (divergent outcomes, unexpected errors, mixed runs) $\to$ `EVIDENCE_INSUFFICIENT`
 
 ---
 
