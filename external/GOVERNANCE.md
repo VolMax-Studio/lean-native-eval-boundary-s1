@@ -1,6 +1,6 @@
 # Governance and conflict disclosure register
 
-Current repository base for this refactor: c08c9504746dca3b68ba9476815212df59e7525d (PR #1 merged). Historical sections below describe their own earlier states; the latest recorded formal Gate result remains FIXES-PENDING (F-N), independent of merge state.
+Current repository base for this freeze-candidate: ae40c018081ccb0a85617549251074fd3e0d89d5 (PR #2 merged). Historical sections below describe their own earlier states; the latest recorded formal Gate result remains FIXES-PENDING (F-N), independent of merge state.
 
 ## Current role assignments
 
@@ -8,11 +8,12 @@ The scientific and normative layer uses Creator, Gate, Executor, Operator and fi
 
 | Role | Current holder | Appointment / status |
 | --- | --- | --- |
-| Creator | Drafting assistant identified in the supplied discussion as Astra / Codex | Authors the package and performs disclosed self-checks; not the formal Gate. Exact model/runtime version is not pinned here. |
-| Gate | Claude | Operator-confirmed formal Gate for T-A/T-B, including the draft-1 pasted-text review; exact model version is not established here. |
-| Executor | Ananke, proposed | Operator confirmation and exposure disclosure remain pending. |
-| Operator | Ivan | Scope, assignments and workflow decisions; performs PR merge. |
+| Creator | Drafting history: Astra / Codex (draft 1/2); Ananke (repository custodian / freeze-candidate preparation under strict Operator directive) | Prepares candidate package and self-checks; not the formal Gate. Does not assign independence to self. |
+| Gate | Claude | Designated formal Gate for T-A/T-B. Does not grant self-independence; Operator determines conflict acceptability. |
+| Executor | Ananke (confirmed by Operator) | Operator confirmation: Ananke is appointed Executor for the eventual frozen run of this instance. This appointment grants execution authority only after freeze; it grants no Gate or verdict authority. |
+| Operator | Ivan | Scope, assignments, conflict acceptability and workflow decisions; performs PR merge. |
 | final Ratifier | Ivan | Final ratification, distinct from Creator and Gate. |
+| Participant (Advisory) | Sol | Research lead / internal pre-Gate check; participant without normative or gatekeeping authority. |
 
 Repository coordination account: VolMax-Studio. The repository coordinate is retained in manifests and URLs as an address, not an assignment of scientific authority.
 
@@ -67,7 +68,7 @@ Claude's formal review targets c8f10c960a87c12eb645366e2e64c9c98893c17d and ZIP 
 
 All further changes, including freeze, proceed by PR; Ivan performs merge/ratification. The current task prepares and opens the repair PR, never merges it or directly updates main. The Operator selected a public version without raw data and no history rewrite. Raw-source snapshots and original supplied text artifacts are externalized to a local evidence ZIP. This does not remove bytes from earlier public commits or from current main before merge.
 
-Branch-protection read via mcp__codex_apps__github_fetch of /repos/VolMax-Studio/lean-native-eval-boundary-s1/branches/main/protection returned HTTP 403, “Resource not accessible by integration”. Alternative rulesets collection read succeeded and returned []. This does not establish absence of classic protection; its configuration remains UNVERIFIED through the available connector. No branch-protection setting was changed. PR-only operation here is an explicit process constraint, not a claim about enforced server settings.
+Branch-protection query via GitHub API `/repos/VolMax-Studio/lean-native-eval-boundary-s1/branches/main` returned `"protected": false`. Setting GitHub protection via API is unavailable due to absence of administrative PAT/token in execution environment (`BRANCH_PROTECTION_UNAVAILABLE`). The Operator-established procedural rule `NO_DIRECT_PUSH_TO_MAIN` is active; all changes proceed strictly through pull requests.
 
 ## Formal Gate on PR #1 head ae4ae63 — FIXES-PENDING (F-N)
 

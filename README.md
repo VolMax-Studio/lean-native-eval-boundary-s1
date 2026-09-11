@@ -18,7 +18,7 @@ The source claims and their mapping to these tests are in [CLAIM_OF_RECORD.md](C
 
 The complete ZIP supplied with each review handoff is the primary convenient file artifact; GitHub access is optional. Identify that ZIP by its externally supplied SHA-256. Review its actual bytes, rather than relying on a summary. Original source snapshots are supplied separately to the Operator/Gate; see [DATA_ACCESS.md](DATA_ACCESS.md) and [data_manifest.json](data_manifest.json). If GitHub is available, also record the exact commit SHA. A ZIP comment containing a commit SHA is an identifier, not independent proof of tree identity.
 
-1. Read [STATUS.md](STATUS.md), [CLAIM_OF_RECORD.md](CLAIM_OF_RECORD.md) and [INSTANCE_RULES.md](INSTANCE_RULES.md).
+1. Read [STATUS.md](STATUS.md), [CLAIM_OF_RECORD.md](CLAIM_OF_RECORD.md), [INSTANCE_RULES.md](INSTANCE_RULES.md), [EXECUTION_SPEC.md](EXECUTION_SPEC.md) and [RESOURCE_PLAN.md](RESOURCE_PLAN.md).
 2. Read [PRE_GATE_CLOSURE.md](PRE_GATE_CLOSURE.md) for repairs and outstanding blockers, and [FAILURES.md](FAILURES.md) for the append-only correction history.
 3. Verify [MANIFEST.json](MANIFEST.json), then replay the synthetic validation described below.
 4. Check [external/GOVERNANCE.md](external/GOVERNANCE.md) and [external/EXPOSURE_LEDGER.md](external/EXPOSURE_LEDGER.md) for authority, roles, review provenance and prior exposure. These are outside the claim-bearing instance.

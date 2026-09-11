@@ -1,6 +1,6 @@
 {
-  "status": "role-based governance refactor; pre-gate; HALT; not frozen; scientific verdict null",
-  "manifest_created_at_utc": "2026-09-11T17:27:27.802613+00:00",
+  "status": "candidate freeze package; pre-gate; HALT; not frozen; scientific verdict null",
+  "manifest_created_at_utc": "2026-09-11T19:21:51.120913+00:00",
   "previous_review_commit": "ae4ae63d630bfc1aaf47381c286fcc5243d3ee1d",
   "previous_review_zip_sha256": "8ed9d0e685f343a8d03bfc522958b39a3787132e2ae9929aa15465c1cbc6d051",
   "repository": "VolMax-Studio/lean-native-eval-boundary-s1",
@@ -13,8 +13,8 @@
     },
     {
       "path": "CLAIM_OF_RECORD.md",
-      "bytes": 4153,
-      "sha256": "690059e04f03bdf84129c71a1caff8374aaf42b1bc4af7dc7573d85e9748c97b"
+      "bytes": 4083,
+      "sha256": "d9c8190fdb448b85e748db03b67e7588c6d53fbb4d7f2bebbc03050c48bd2a72"
     },
     {
       "path": "DATA_ACCESS.md",
@@ -32,6 +32,11 @@
       "sha256": "1bc33079d4d7d0cb11824ca6ddb3a5f7e18a31c7dbff7d559a66d28c4c4ff137"
     },
     {
+      "path": "EXECUTION_SPEC.md",
+      "bytes": 5054,
+      "sha256": "7da8321e494eb305a61adf5fb7af3d32ccee2e1980b898efbd0ae9db70d9d2ca"
+    },
+    {
       "path": "FAILURES.md",
       "bytes": 10292,
       "sha256": "454226e34e73ad87ed8a34122ca644dd3d4036eca6080d99fc571204aa4234d4"
@@ -43,28 +48,28 @@
     },
     {
       "path": "PRE_GATE_CLOSURE.md",
-      "bytes": 3880,
-      "sha256": "28b18899315a98db5a7982fa0dd3f01576c7a3e9b0f244a0378282cb5cf84c33"
+      "bytes": 5562,
+      "sha256": "74a60417ceb2c3c86c5a65bbfa410564b0a47101b3f60f1026e8d5c34579f300"
     },
     {
       "path": "README.md",
-      "bytes": 6117,
-      "sha256": "cc2ff3025e59141f7255ffe5968209dd344cddb245abccd12805f8a2c102a372"
+      "bytes": 6195,
+      "sha256": "dadd2a9e5b633bb3eacbe2fe1c0e7877a070ccadc3121ccc3805a00e08afc1e7"
     },
     {
       "path": "RESOURCE_PLAN.md",
-      "bytes": 960,
-      "sha256": "ea23dbddd2607baa0917279dec1afdb50996a54fd0cf951090a6472c41f481ab"
+      "bytes": 1888,
+      "sha256": "1af693444afe575be60b1fe84ce47b577d65f3c6a83626956e2cdee54d081e3e"
     },
     {
       "path": "STATUS.md",
-      "bytes": 1600,
-      "sha256": "d3edd917b892c36151b4e9fda649e97c55ef9781c70b64b1b76ddce76891f09c"
+      "bytes": 1488,
+      "sha256": "ec589ff5ea93b44fa4533712dee2b7add1423c6dd72e78ce86540bae3339297b"
     },
     {
       "path": "TAG_MANIFEST.json",
-      "bytes": 11116,
-      "sha256": "b618b65927de0c671cd60a339e867a9bfeeda0b315eb3d72aec057967ff404ae"
+      "bytes": 12308,
+      "sha256": "d891468e617a8d43282066bc4431cc605924a90cba4f0c4ee673fa8893dd7e44"
     },
     {
       "path": "data_manifest.json",
@@ -83,8 +88,8 @@
     },
     {
       "path": "external/GOVERNANCE.md",
-      "bytes": 11143,
-      "sha256": "001b3dcd2ef36dbe0c87cca2e88fcdeb5060f418905610b00df6009df49fd19a"
+      "bytes": 11369,
+      "sha256": "6105019bbddefa9fdaa0b0bf1b071b10706ce6c4771f06a077daf1becac9bf5c"
     },
     {
       "path": "scripts/behavior_matcher.py",
@@ -192,5 +197,5 @@
       "sha256": "0d2332ca7d2a6a3f87b3deab668547bfe5ffd24e52137e6a248e81f9b243b003"
     }
   ],
-  "refactor_base_commit": "c08c9504746dca3b68ba9476815212df59e7525d"
+  "refactor_base_commit": "ae40c018081ccb0a85617549251074fd3e0d89d5"
 }
