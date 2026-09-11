@@ -1,6 +1,6 @@
 # T-A/T-B — INSTANCE_RULES existing prereg object, N-3 repair
 
-Status: DRAFT / NOT FROZEN / NO LEAN EXECUTION AUTHORIZATION. This is a Creator-prepared review object, not a formal Gate result. The designated Gate performs formal review; the final Ratifier ratifies the result. Executor assignment is pending Operator confirmation. The drafting agent is Creator and performs only a disclosed self-check of revision closure, not independent adjudication.
+Status: DRAFT / NOT FROZEN / NO LEAN EXECUTION AUTHORIZATION. This is a Creator-prepared review object, not a formal Gate result. The designated Gate performs formal review; the final Ratifier ratifies the result. The Executor role is confirmed by the Operator for post-freeze execution. The drafting agent is Creator and performs only a disclosed self-check of revision closure, not independent adjudication.
 
 ## Authority and scope
 
@@ -9,6 +9,24 @@ Status: DRAFT / NOT FROZEN / NO LEAN EXECUTION AUTHORIZATION. This is a Creator-
 The scientific scope is exhausted by the explicitly registered T-A and T-B claims. Material outside those claim families is non-adjudicated and cannot contribute to any instance verdict. Scope expansion invalidates the current Gate scope and requires a new scope determination. Instance prose may not name or evaluate an excluded subject. Raw source snapshots may preserve unrelated source sentences as immutable evidence bytes; this does not import them as instance claims. Manifest entries identify those files by hash without reproducing unrelated content. External governance and supplied review correspondence are not instance-body text or scientific appendices.
 
 UAF execution is excluded. Timing subclaims remain Exploratory and never carry a verdict. No material from any pre-freeze Lean invocation may be used to define, refine, or relax acceptance, rejection, diagnostic, or axiom-matching criteria. Any such invocation remains permanently Exploratory and is a protocol deviation; it cannot be relabeled as a preregistered run.
+
+By explicit Operator declaration (2026-09-11):
+
+> “Kao Operator, 2026-09-11 potvrđujem da merge PR #3 nije bio ratifikacija niti freeze; `prereg_frozen` ostaje false. Potvrđujem Ananke kao Executora isključivo nakon ratifikovanog freeze-a i potvrđujem lokalni versioned `INSTANCE_RULES.md` kao operativni authority ove instance.
+>
+> Za behavioral execution ne zahtevam kernel network-namespace izolaciju. Behavioral harness ne sme obavljati mrežne operacije tokom behavioral run-a. Toolchain acquisition je zasebna pinned pre-execution faza.
+>
+> Pre freeze-a dozvoljavam isključivo:
+>
+> 1. shell syntax validation;
+> 2. stub/mock harness validation bez Lean-a;
+> 3. replay već registrovanih synthetic fixtures i declared mutation suite-a (`tests/command.sh`, `tests/mutation-command.sh`) isključivo kao instrument-validation evidence;
+> 4. repository custody i Git-object metadata potrebne za proveru kandidata, bez novih denominator path/source merenja;
+> 5. toolchain release metadata, download, byte-count, SHA-256 verification, extraction i hashovanje pripadajućeg `bin/lean`, bez izvršavanja Lean binarnog fajla;
+> 6. host-environment metadata potrebne za pinned execution environment;
+> 7. manifest i review-archive generation/verification.
+>
+> Pre freeze-a zabranjujem nova denominator source ili path-existence merenja, pokretanje Lean-a nad bilo kojim test artefaktom, kao i menjanje naučnih kriterijuma, fixture-a ili mutant suite-a na osnovu novih scientific outcomes. Existing synthetic/mutation replay ne predstavlja scientific execution.”
 
 ## Claims and permitted interpretations
 
@@ -56,9 +74,11 @@ EXPECTED_NATIVE_REJECTION requires nonzero exit and exactly one parsed error for
 
 Before each version's first run preserve a clean, pinned working environment. Save stdout.bin, stderr.bin and exit-code.txt at fixed paths. Rename the result directory to first-run; remove only enumerated generated artifacts in the isolated run workspace (never source inputs or user files). Recreate the same output paths in a fresh process with the identical input path, invocation and environment. Compare each corresponding output and exit-code file byte for byte; do not normalize, select, or discard outputs. Runtime timestamps are stored separately as metadata and are not compared as deterministic content. Preserve rename/cleanup/command logs and comparison results. Any byte difference gives EVIDENCE_INSUFFICIENT for affected subclaims, unless it is independently logged as a listed external blocker before obtaining an output. Recreation demonstrates repeatability of the pinned pipeline, not truth or independent replication.
 
+The diagnostic environment variable `TEST_STUB_MODE` is strictly for pre-freeze offline harness test suites (`tests/test_harness_stubs.sh`). It is strictly prohibited during any candidate evaluation or ratified execution run. Any run where `test_stub_mode` is true is scientifically invalid and inadmissible for adjudication. All toolchain binaries must match the pinned digests recorded in `harness/toolchain_pins.json` during the acquisition phase; any mismatch aborts with EXTERNAL_EXECUTION_BLOCKER before execution.
+
 ## Freeze boundary
 
-This draft may be reviewed as concrete bytes. It is not a runnable preregistration. In this freeze-candidate package: Executor is confirmed (Ananke); all 45 tag object types and commits are resolved in TAG_MANIFEST.json; toolchain digests, execution environment, harness, cleanup allowlist and resource limits are pinned in EXECUTION_SPEC.md and RESOURCE_PLAN.md; and participant governance is updated in external/GOVERNANCE.md. The required freeze boundary remains in effect: Every candidate freeze commit containing the complete tag/object resolutions, toolchain and userland hashes, execution harness, cleanup list, resource limits and all other execution pins must receive its own formal Gate review at that exact commit SHA and separate Operator ratification before freeze becomes effective or execution is authorized; no earlier repair-package review covers those future artifacts, and any subsequent change to them requires renewed formal review. Gate result and final Ratifier ratification are separate records. No Lean invocation is authorized by this document.
+This draft may be reviewed as concrete bytes. It is not a runnable preregistration. In this freeze-candidate package: Executor role assignment is confirmed; all 45 tag object types and commits are resolved in TAG_MANIFEST.json; toolchain digests, execution environment, harness, cleanup allowlist and resource limits are pinned in EXECUTION_SPEC.md and RESOURCE_PLAN.md; and participant governance is updated in external/GOVERNANCE.md. The required freeze boundary remains in effect: Every candidate freeze commit containing the complete tag/object resolutions, toolchain and userland hashes, execution harness, cleanup list, resource limits and all other execution pins must receive its own formal Gate review at that exact commit SHA and separate Operator ratification before freeze becomes effective or execution is authorized; no earlier repair-package review covers those future artifacts, and any subsequent change to them requires renewed formal review. Gate result and final Ratifier ratification are separate records. No Lean invocation is authorized by this document.
 
 ## Bounded instrument validation before freeze
 

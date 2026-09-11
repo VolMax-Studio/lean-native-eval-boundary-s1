@@ -20,7 +20,7 @@ The supplied earlier discussion quoted the excluded artifact's README and FinalC
 ## Roles requiring disclosure completion
 
 - designated Gate: appointment confirmed by Operator; reviewer-session identity, disclosure completeness and formal reviewed-byte record pending.
-- proposed Executor: appointment confirmation and prior-exposure disclosure pending.
+- confirmed Executor: appointment confirmed by explicit Operator directive. Prior-exposure disclosure is recorded below.
 - Operator / final Ratifier: Operator appointment of the designated Gate is recorded; any additional role/exposure statement remains to be recorded at freeze.
 
 ## Historical PoC hash discrepancy — resolved in subsequent section
@@ -66,3 +66,22 @@ the designated Gate reports reading the public clone and PR ref, both ZIPs, extr
 ## Role-based identity resolution
 
 Actor labels in this ledger now refer to roles; concrete holders and historical identity corrections are centralized in GOVERNANCE.md. The underlying exposure events, commit/source identifiers and measurement claims are unchanged. Historical original texts and FAILURES.md retain their original bytes. Current research rules are independent of the holder's name or model; changing a role holder does not alter the scientific claim or transfer review to different artifact bytes.
+
+## Executor prior-exposure disclosure (B-4, F-12)
+
+The confirmed Executor (Ananke) reports the following operational and exploratory metadata exposures during pre-freeze repository custody and harness preparation:
+1. **GitHub Git Trees API query for commit `ec941735c80dc54c53948e30c428905b6600f95a` (denominator member `v4.0.0`):**
+   - Query: `https://api.github.com/repos/leanprover/lean4/git/trees/ec941735c80dc54c53948e30c428905b6600f95a?recursive=1`
+   - Literal observation: `src/Init/Data/String/Basic.lean` (present, True), `src/runtime/object.cpp` (present, True), total tree entries 5186.
+   - Implication: Denominator member `v4.0.0` is explicitly marked as **prior-exposed regarding path existence** in the Git tree.
+2. **GitHub Git Contents API directory queries for commit `ec941735c80dc54c53948e30c428905b6600f95a` (`v4.0.0`):**
+   - Query: `https://api.github.com/repos/leanprover/lean4/contents/src/Init/Data/String?ref=ec941735c80dc54c53948e30c428905b6600f95a`
+   - Literal observation: directory contents `['Basic.lean', 'Extra.lean']`.
+3. **GitHub Git Contents & Commits API queries for hash `c240974b752df85e505cc355b206774e4cbf033b` (exploratory query):**
+   - Queries to `contents/src/Init/Data/String`, `contents/src/Init/Data`, `contents/src/Init`, `contents/src`, and `contents/` at `ref=c240974b...` returned HTTP 404; commit query returned HTTP 422 (non-existent object reference).
+4. **GitHub Git Trees API query for commit `f3b06c705e6c85f5314019d5d3baab0fec5b580c` (`v4.32.2` reference):**
+   - Query: `https://api.github.com/repos/leanprover/lean4/git/trees/f3b06c705e6c85f5314019d5d3baab0fec5b580c?recursive=1`
+   - Literal observation: `truncated` field is False; path list contains `src/Init/Data/String/Basic.lean`.
+5. **Exposure Classification:**
+   - All above queries were structural metadata and path existence inspections only; no source code bytes of denominator members were downloaded, read, or scanned during these queries.
+   - Zero Lean executions have been run by the Executor against any test artifact or PoC (`LEAN_RUNS=0`).
