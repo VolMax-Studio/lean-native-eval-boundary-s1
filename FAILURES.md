@@ -134,6 +134,16 @@ A standard ZIP digest is not a reproducible git object identifier. In `MANIFEST.
 
 Can this instance still carry a verdict? Yes; tree object SHAs are fully deterministic, intrinsic Git invariants that guarantee byte-for-byte tree identity across all environments.
 
+## F-020 — pre-freeze toolchain acquisition, bin/lean pin population, mandatory PoC verification, and execution spec harmonization (F-21, F-22, F-23)
 
+In formal Gate review of candidate `ea0e1a5`, the Gate found that:
+1. `harness/toolchain_pins.json` contained `null` values for `bin_lean_sha256` and `bin_lean_bytes`, preventing post-freeze execution without repo mutation (F-21).
+2. `harness/acquire_toolchains.sh` treated PoC verification as optional, failing to guarantee PoC presence prior to execution runs (F-22).
+3. `EXECUTION_SPEC.md:21` referenced `harness/pin_provenance.json` instead of `harness/toolchain_pins.json` as the authoritative pin registry (F-23).
 
+Correction:
+1. Conducted pre-freeze toolchain acquisition under explicit Operator allowlist item 5: downloaded distribution archives for all 3 pinned versions (`v4.32.2`, `v4.33.1`, `v4.34.0-rc1`), verified byte sizes and SHA-256 digests against pinned archive records, extracted without invoking Lean, measured exact `bin/lean` binary bytes (`9024`) and SHA-256 digests (`e8baaa71855a616dc351028f3ad2200051b0671f423a1696a100e809302d5550`), and recorded them directly into `harness/toolchain_pins.json`.
+2. Updated `harness/acquire_toolchains.sh` to enforce mandatory `sources/PoC.lean` verification against pinned SHA-256 `ed8e65ccf56fc10509b59a047101bb1c76426ae1fd8ee4d501fb29781e54049b`, failing with exit code 1 if missing or mismatched.
+3. Updated `EXECUTION_SPEC.md:21` to establish `harness/toolchain_pins.json` as the single authoritative register for full-archive and binary digests.
 
+Can this instance still carry a verdict? Yes; zero Lean binaries were executed against test artifacts (`LEAN_RUNS=0`), all measurements were recorded directly from verified distribution artifacts, and the correction guarantees post-freeze execution repeatability without modifying tracked files.

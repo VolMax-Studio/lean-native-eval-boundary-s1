@@ -30,11 +30,16 @@ declare -A TOOLCHAIN_SHA256=(
   ["v4.34.0-rc1"]="41dc6a6ec143ece8ed4ba4c4c6978c91f21ad5cbe3c4e7728ad31b869961dc17"
 )
 
-# Optional PoC extraction if private evidence bundle is provided
+# PoC verification: verify existing sources/PoC.lean or extract from private evidence bundle
 PINNED_EVIDENCE_SHA256="90407481c8b511fa7c0ba9bef16b08b175f71a551fd3d757d956aebbc423e2a5"
 PINNED_POC_SHA256="ed8e65ccf56fc10509b59a047101bb1c76426ae1fd8ee4d501fb29781e54049b"
+POC_PATH="${REPO_ROOT}/sources/PoC.lean"
 
-if [ -n "${EVIDENCE_ZIP}" ] && [ -f "${EVIDENCE_ZIP}" ]; then
+if [ -n "${EVIDENCE_ZIP}" ]; then
+  if [ ! -f "${EVIDENCE_ZIP}" ]; then
+    echo "Error: Specified evidence bundle does not exist: ${EVIDENCE_ZIP}" >&2
+    exit 1
+  fi
   echo "Verifying external evidence bundle..."
   actual_ev_sha="$(sha256sum "${EVIDENCE_ZIP}" | awk '{print $1}')"
   if [ "${actual_ev_sha}" != "${PINNED_EVIDENCE_SHA256}" ]; then
@@ -42,14 +47,21 @@ if [ -n "${EVIDENCE_ZIP}" ] && [ -f "${EVIDENCE_ZIP}" ]; then
     exit 1
   fi
   mkdir -p "${REPO_ROOT}/sources"
-  unzip -p "${EVIDENCE_ZIP}" sources/PoC.lean > "${REPO_ROOT}/sources/PoC.lean"
-  actual_poc_sha="$(sha256sum "${REPO_ROOT}/sources/PoC.lean" | awk '{print $1}')"
-  if [ "${actual_poc_sha}" != "${PINNED_POC_SHA256}" ]; then
-    echo "Error: Extracted PoC SHA-256 mismatch: expected ${PINNED_POC_SHA256}, got ${actual_poc_sha}" >&2
-    exit 1
-  fi
-  echo "Successfully extracted and verified sources/PoC.lean from private evidence bundle."
+  unzip -p "${EVIDENCE_ZIP}" sources/PoC.lean > "${POC_PATH}"
+  echo "Successfully extracted sources/PoC.lean from private evidence bundle."
 fi
+
+if [ ! -f "${POC_PATH}" ]; then
+  echo "Error: Mandatory PoC artifact not found at ${POC_PATH}. Provide path to verified evidence zip as second argument." >&2
+  exit 1
+fi
+
+actual_poc_sha="$(sha256sum "${POC_PATH}" | awk '{print $1}')"
+if [ "${actual_poc_sha}" != "${PINNED_POC_SHA256}" ]; then
+  echo "Error: PoC SHA-256 mismatch at ${POC_PATH}: expected ${PINNED_POC_SHA256}, got ${actual_poc_sha}" >&2
+  exit 1
+fi
+echo "Verified sources/PoC.lean integrity (SHA-256: ${actual_poc_sha})."
 
 echo "Starting toolchain acquisition for 3 pinned versions..."
 
@@ -83,7 +95,7 @@ for ver in "v4.32.2" "v4.33.1" "v4.34.0-rc1"; do
   
   # Extract toolchain without executing lean binary
   echo "[${ver}] Extracting toolchain..."
-  tar --zstd -xf "${archive_file}" -C "${ver_dir}"
+  tar --strip-components=1 --zstd -xf "${archive_file}" -C "${ver_dir}"
   
   # Locate lean executable
   lean_bin=""

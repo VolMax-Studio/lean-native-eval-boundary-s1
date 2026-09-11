@@ -1,8 +1,8 @@
 {
   "status": "pre-freeze candidate; pre-gate; HALT; not frozen; TARGET_LEAN_RUNS=0; scientific verdict null",
-  "manifest_created_at_utc": "2026-09-11T21:38:59Z",
-  "previous_review_commit": "c8b45d9c7fb751a105aa8d0af3fe0aa7d68b8860",
-  "previous_review_tree_sha": "e5d5d09b7392db88097ff1f9ec8ef4bba97fcecc",
+  "manifest_created_at_utc": "2026-09-11T22:12:00Z",
+  "previous_review_commit": "ea0e1a5883319f1136f3181d7d54d6180c8a8259",
+  "previous_review_tree_sha": "94a2441402d93e73226bfd96f97004e5e14df3cc",
   "repository": "VolMax-Studio/lean-native-eval-boundary-s1",
   "note": "Public files only; self excluded. Original evidence is separately indexed by data_manifest.json. Current main and historical raw data are not erased by this PR.",
   "files": [
@@ -34,12 +34,12 @@
     {
       "path": "EXECUTION_SPEC.md",
       "bytes": 12994,
-      "sha256": "f256f5efd9f324ecdcb78154042a6edf730ae7d2702b568c1d9b12a7c2eb494d"
+      "sha256": "f385d757e44996a89fec621d8e40ef1097140e5ef8ccc8e3f47a65de016104e9"
     },
     {
       "path": "FAILURES.md",
-      "bytes": 17089,
-      "sha256": "8629bc779eb1d6b57d831ba484c6a07ac84a89a98a8b33af2088562dc75412b4"
+      "bytes": 18950,
+      "sha256": "2ef1ac090f1e2862cea166935a80ba660ccbef2a0c2b21553b40c7c8c3f06b45"
     },
     {
       "path": "INSTANCE_RULES.md",
@@ -63,8 +63,8 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 2350,
-      "sha256": "8f3595111977423ace5625c093bdf88edab8f4fab7baf31c6035e84b801e3dbb"
+      "bytes": 2454,
+      "sha256": "b11ad37df1d494e62ddb53057ea18fd6a46e4d05ec262e6ab3817945e3083ebf"
     },
     {
       "path": "TAG_MANIFEST.json",
@@ -93,8 +93,8 @@
     },
     {
       "path": "harness/acquire_toolchains.sh",
-      "bytes": 4604,
-      "sha256": "747c27af877c0a3e183bfba675d0325dd626d9d2601b23c1f77376edd94d9e34"
+      "bytes": 4992,
+      "sha256": "eb7208cfd910e6fdae2a42df6b551ed714440f37046bba13b816c7c342ace65b"
     },
     {
       "path": "harness/pin_provenance.json",
@@ -118,8 +118,8 @@
     },
     {
       "path": "harness/toolchain_pins.json",
-      "bytes": 900,
-      "sha256": "f68833f2ed2e9345eb20e2f9fe6178554a45c4e7a2d856e5776cb8d30f1e91a9"
+      "bytes": 1086,
+      "sha256": "3400da4144da8aa8e3353636f21f8633d837d306abe6e02c2d9dc2236d6c7b73"
     },
     {
       "path": "scripts/behavior_matcher.py",
