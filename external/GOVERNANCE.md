@@ -44,3 +44,9 @@ Claude's formal review targets c8f10c960a87c12eb645366e2e64c9c98893c17d and ZIP 
 All further changes, including freeze, proceed by PR; Ivan performs merge/ratification. The current task prepares and opens the repair PR, never merges it or directly updates main. The Operator selected a public version without raw data and no history rewrite. Raw-source snapshots and original supplied text artifacts are externalized to a local evidence ZIP. This does not remove bytes from earlier public commits or from current main before merge.
 
 Branch-protection read via mcp__codex_apps__github_fetch of /repos/VolMax-Studio/lean-native-eval-boundary-s1/branches/main/protection returned HTTP 403, “Resource not accessible by integration”. Alternative rulesets collection read succeeded and returned []. This does not establish absence of classic protection; its configuration remains UNVERIFIED through the available connector. No branch-protection setting was changed. PR-only operation here is an explicit process constraint, not a claim about enforced server settings.
+
+## Formal Gate on PR #1 head ae4ae63 — FIXES-PENDING (F-N)
+
+The supplied Claude result reviews ae4ae63d630bfc1aaf47381c286fcc5243d3ee1d and the matching public/private ZIPs. It reports N-4 closed, all technical blockers N-1 through N-4 closed, F-L and G-2 closed, and G-1 partially resolved according to the Operator's no-history-rewrite decision. Its formal result is FIXES-PENDING (F-N), not authorization to freeze or execute.
+
+F-N requires the final candidate freeze commit with all execution pins to receive its own exact-SHA formal Gate; the operative rule is INSTANCE_RULES.md#freeze-boundary. This repair only makes that boundary explicit. It does not invent a review of missing pins, perform an Operator merge, or produce a freeze commit. The Gate's note concerning attribution of source-derived snippets remains an Operator consideration; this documentation-only change makes no new license claim.

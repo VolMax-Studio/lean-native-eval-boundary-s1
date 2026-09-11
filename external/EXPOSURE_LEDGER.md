@@ -58,3 +58,7 @@ Claude reports reviewing a public clone at c8f10c960a87c12eb645366e2e64c9c98893c
 The review applies to c8f10c9, not d09c522: the intervening README/MANIFEST-only change is explicitly part of the reviewed object. Future handoffs identify the exact new ZIP and containing commit together.
 
 The Operator selected preparation of a public tree without raw data and explicitly deferred history rewriting. Creator moved original evidence bytes to a separate local archive, retained their hashes and did not treat HEAD removal as erasure of previously public data. Instrument code and source-derived synthetic fixtures remain public research definitions, distinct from full acquired source files.
+
+## Gate on ae4ae63 — reported exposure
+
+Claude reports reading the public clone and PR ref, both ZIPs, extracting the PoC from the private bundle and repeating its mutation sweep. It reports no new source downloads, no Lean invocation and no new denominator member read. The Creator read that forwarded result and changed only the future-freeze review rule and associated status/provenance documentation. No new scientific measurement or validation run is claimed for this revision.

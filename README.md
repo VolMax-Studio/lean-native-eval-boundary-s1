@@ -2,7 +2,7 @@
 
 A preregistration and evidence package for checking a reported Lean model/runtime discrepancy in string extraction under native evaluation. It connects published claims to pinned sources, explicitly limited tests, recorded prior exposure, and reviewable evidence.
 
-**Current status: pre-gate · execution HALT · scientific verdict null · not frozen.** The latest formal Gate result is **BLOCKED (N-4)** on the previous review package. The N-4 coverage repair is prepared on a PR branch for review. No Lean execution or full-denominator source scan has been performed in this task. [STATUS.md](STATUS.md) records the current state and remaining freeze requirements.
+**Current status: pre-gate · execution HALT · scientific verdict null · not frozen.** The latest formal Gate result is **FIXES-PENDING (F-N)** on the previous review package. Technical findings N-1 through N-4 are closed. The F-N freeze-review rule clarification is prepared on PR #1 for review. No Lean execution or full-denominator source scan has been performed in this task. [STATUS.md](STATUS.md) records the current state and remaining freeze requirements.
 
 ## What is being checked?
 
@@ -23,7 +23,7 @@ The complete ZIP supplied with each review handoff is the primary convenient fil
 3. Verify [MANIFEST.json](MANIFEST.json), then replay the synthetic validation described below.
 4. Check [external/GOVERNANCE.md](external/GOVERNANCE.md) and [external/EXPOSURE_LEDGER.md](external/EXPOSURE_LEDGER.md) for authority, roles, review provenance and prior exposure. These are outside the claim-bearing instance.
 
-Claude is the designated formal Gate; Ivan is final Ratifier. Creator self-checks and synthetic replay do not replace formal Gate review. A passing Gate and completed prerequisites must precede a **separate preregistration freeze commit**.
+Claude is the designated formal Gate; Ivan is final Ratifier. Creator self-checks and synthetic replay do not replace formal Gate review. The complete candidate freeze commit must receive its **own exact-SHA formal Gate review and separate Operator ratification**, as required by [the freeze-boundary rule](INSTANCE_RULES.md#freeze-boundary); a passing repair-package review does not cover future execution pins.
 
 ## Verify package bytes
 

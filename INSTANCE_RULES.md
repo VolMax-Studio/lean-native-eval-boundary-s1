@@ -58,7 +58,7 @@ Before each version's first run preserve a clean, pinned working environment. Sa
 
 ## Freeze boundary
 
-This draft may be reviewed as concrete bytes. It is not a runnable preregistration. Before freeze: confirm Executor; complete object-type/commit resolution and toolchain/userland/invocation/resource pins; finish participant disclosure; have the Operator resolve governance provenance and conflict acceptability; and obtain Claude's formal review of the identified files/commit. The exact cleanup list and harness must be frozen too. Gate result and Ivan ratification are separate records. No Lean invocation is authorized by this document.
+This draft may be reviewed as concrete bytes. It is not a runnable preregistration. Before freeze: confirm Executor; complete object-type/commit resolution and toolchain/userland/invocation/resource pins; finish participant disclosure; have the Operator resolve governance provenance and conflict acceptability; and obtain Claude's formal review of the identified files/commit. The exact cleanup list and harness must be frozen too. Every candidate freeze commit containing the complete tag/object resolutions, toolchain and userland hashes, execution harness, cleanup list, resource limits and all other execution pins must receive its own formal Gate review at that exact commit SHA and separate Operator ratification before freeze becomes effective or execution is authorized; no earlier repair-package review covers those future artifacts, and any subsequent change to them requires renewed formal review. Gate result and Ivan ratification are separate records. No Lean invocation is authorized by this document.
 
 ## Bounded instrument validation before freeze
 

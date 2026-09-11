@@ -75,3 +75,7 @@ Correction: add five explicit fixtures and five corresponding declared mutants, 
 ## F-013 — integrity output reused scientific verdict vocabulary (F-L)
 
 README's manifest-check command printed Verified for byte integrity. Replace that output label with hash-match, keeping integrity checks distinct from scientific verdicts. No scientific result changes.
+
+## F-014 — review scope could be extended to future execution pins (F-N)
+
+Claude identified that the prior remaining-work wording allowed a repair-package Gate to be read as covering toolchain hashes, harness, cleanup list, resource limits and object resolutions created later. No such review had occurred. Correction: explicitly require the complete candidate freeze commit to receive its own exact-SHA formal Gate and separate Operator ratification before freeze is effective or execution is authorized; earlier reviews do not cover later artifacts. Subsequent changes require renewed formal review. STATUS and PRE_GATE_CLOSURE point to this single operative rule. Can this instance still carry a verdict? Yes, conditionally after the required future review and remaining prerequisites; no trust or execution authorization is transferred by this repair.

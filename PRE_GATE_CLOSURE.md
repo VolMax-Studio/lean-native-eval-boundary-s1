@@ -1,9 +1,10 @@
-# Creator self-check — gate-repair-n4
+# Creator self-check — F-N clarification
 
-phase: pre-gate; execution_state: HALT; scientific verdict: null. The last formal Gate reviewed c8f10c960a87c12eb645366e2e64c9c98893c17d and its matching README ZIP, closed N-3/F-I/F-J, and recorded BLOCKED for N-4. This proposed PR does not replace that formal verdict with a passing result.
+phase: pre-gate; execution_state: HALT; scientific verdict: null. The last formal Gate reviewed PR #1 head ae4ae63d630bfc1aaf47381c286fcc5243d3ee1d with public ZIP 8ed9d0e685f343a8d03bfc522958b39a3787132e2ae9929aa15465c1cbc6d051 and private ZIP dd626b822347766a53a86ecbab8e5140d9dbdbe0d84047a968a43358717b74ab. It closes N-1 through N-4 and records FIXES-PENDING for F-N. This documentation repair does not change that formal result or authorize freeze.
 
 | Finding | Repair/evidence | Creator check |
 | --- | --- | --- |
+| F-N | Complete candidate freeze commit requires its own exact-SHA formal Gate and separate Operator ratification | Rule added; formal re-review pending |
 | N-4 A1 | no-expose fixture + require-expose mutant | Wrong classification detected |
 | N-4 A2 | namespace-less name fixture + require-prefix mutant | Wrong classification detected |
 | N-4 A3 | Pos.extract fixture + require-Raw-name mutant | Wrong classification detected |
@@ -19,4 +20,6 @@ Validation: 59/59 explicit fixtures pass; 43/43 declared mutants have wrong-clas
 
 The proposed public tree does not contain original raw-source payloads or verbatim supplied review .txt files. Those bytes are retained locally in the separate evidence ZIP with full path/size/SHA-256 inventory. Current main and earlier public commits are not rewritten or erased. This is a prepared public-tree correction, not retroactive withdrawal. Synthetic fixtures and validation remain public and self-contained.
 
-Remaining before freeze: formal Gate over this exact repair object; Operator merge/ratification; Executor/disclosure/authority requirements; complete tag/toolchain/userland/harness/cleanup/resource pins; availability of external evidence. No Lean invocation or full-denominator scientific source scan occurred. No merge or freeze is performed here.
+Remaining preparation includes Executor/disclosure/authority requirements, complete tag/toolchain/userland/harness/cleanup/resource pins and external evidence availability. The mandatory separate formal review of the complete candidate freeze commit is governed by [INSTANCE_RULES.md — Freeze boundary](INSTANCE_RULES.md#freeze-boundary); the current repair review does not cover that future object. No Lean invocation or full-denominator scientific source scan occurred. No merge or freeze is performed here.
+
+Only documentation and the public manifest change in this F-N revision. The recorded 59/59 fixture and 43/43 mutation results belong to the unchanged instrument/test artifacts; no new test or Lean run is claimed.
