@@ -86,13 +86,21 @@ fi
 - Environment capture: `env.txt` (sorted snapshot of active environment variables during invocation).
 
 ### Wrapper Error Classification & Matcher Invocation
-Per `INSTANCE_RULES.md:47`, wrapper-level failures (timeout, resource exhaustion, host permission denial) take precedence over Lean behavioral parsing:
-- If exit code is `124` (timeout) or `137` (SIGKILL / OOM): classify run outcome as `EXTERNAL_EXECUTION_BLOCKER`.
+Per `INSTANCE_RULES.md:47`, wrapper-level failures (timeout, host permission denial) take precedence over Lean behavioral parsing:
+- If exit code is `124` (timeout): classify run outcome as `EXTERNAL_EXECUTION_BLOCKER`.
+- Exit code `137` (SIGKILL / OOM / crash) without an independently verified host external blocker is conservatively classified as `EVIDENCE_INSUFFICIENT` rather than assuming resource-limit exhaustion.
 - Otherwise, invoke `scripts/behavior_matcher.py`:
   ```bash
   python3 scripts/behavior_matcher.py "${POC_FILE}" stdout.bin stderr.bin $(cat exit-code.txt)
   ```
   yielding `ACCEPT`, `EXPECTED_NATIVE_REJECTION`, or `EVIDENCE_INSUFFICIENT`.
+
+### Final Behavioral Outcome Precedence
+For the two-run deterministic recreation sequence, the overall run outcome (`final_behavioral_outcome`) is evaluated strictly in the following precedence order:
+1. `wrapper/preflight blocker` $\to$ `EXTERNAL_EXECUTION_BLOCKER`
+2. `recreation mismatch` $\to$ `EVIDENCE_INSUFFICIENT`
+3. `both recreated runs produce the identical valid matcher outcome` $\to$ that outcome (`ACCEPT` or `EXPECTED_NATIVE_REJECTION`)
+4. `all other cases` (divergent outcomes, unexpected errors, crash/unclear exits) $\to$ `EVIDENCE_INSUFFICIENT`
 
 ---
 
@@ -147,7 +155,7 @@ For each version run, the frozen harness outputs a standardized evidence bundle 
 - `env.txt`: Captured runtime environment variables.
 - `git_commit.txt`: Exact commit SHA of repository during execution.
 - `hashes.json`: SHA-256 hashes of input (`PoC.lean`), outputs (`stdout.bin`, `stderr.bin`), toolchain binary, and exit code.
-- `run_metadata.json`: UTC start/end timestamps, duration, host user/kernel/libc version, toolchain version, recreation byte comparison verdict, wrapper error classification, and behavior matcher outcome.
+- `run_metadata.json`: UTC start/end timestamps, duration, host user/kernel/libc version, toolchain version, recreation byte comparison verdict, wrapper error classification, individual run outcomes, and `final_behavioral_outcome`.
 
 ---
 

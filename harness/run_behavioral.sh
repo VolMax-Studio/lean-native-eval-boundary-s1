@@ -76,7 +76,7 @@ classify_run() {
   local ecode
   ecode="$(cat "${dir}/exit-code.txt" | tr -d '[:space:]')"
 
-  if [ "${ecode}" -eq 124 ] || [ "${ecode}" -eq 137 ]; then
+  if [ "${ecode}" -eq 124 ]; then
     echo "EXTERNAL_EXECUTION_BLOCKER"
   else
     python3 -c "
@@ -118,17 +118,19 @@ cmp -s first-run/stdout.bin second-run/stdout.bin || RECREATION_MATCH="False"
 cmp -s first-run/stderr.bin second-run/stderr.bin || RECREATION_MATCH="False"
 cmp -s first-run/exit-code.txt second-run/exit-code.txt || RECREATION_MATCH="False"
 
-# Determine final behavioral outcome with strict precedence per INSTANCE_RULES.md:
-# If recreation bytes mismatch, final outcome is EVIDENCE_INSUFFICIENT (regardless of first run ACCEPT).
-# If either run produced EXTERNAL_EXECUTION_BLOCKER, final outcome is EXTERNAL_EXECUTION_BLOCKER.
-if [ "${RECREATION_MATCH}" != "True" ]; then
-  FINAL_OUTCOME="EVIDENCE_INSUFFICIENT"
-elif [ "${FIRST_RUN_OUTCOME}" = "EXTERNAL_EXECUTION_BLOCKER" ] || [ "${SECOND_RUN_OUTCOME}" = "EXTERNAL_EXECUTION_BLOCKER" ]; then
-  FINAL_OUTCOME="EXTERNAL_EXECUTION_BLOCKER"
+# Determine final behavioral outcome with strict precedence per Operator decision:
+# 1. wrapper/preflight blocker -> EXTERNAL_EXECUTION_BLOCKER
+# 2. recreation mismatch -> EVIDENCE_INSUFFICIENT
+# 3. both recreated runs produce identical valid matcher outcome -> that outcome
+# 4. all other cases -> EVIDENCE_INSUFFICIENT
+if [ "${FIRST_RUN_OUTCOME}" = "EXTERNAL_EXECUTION_BLOCKER" ] || [ "${SECOND_RUN_OUTCOME}" = "EXTERNAL_EXECUTION_BLOCKER" ]; then
+  FINAL_BEHAVIORAL_OUTCOME="EXTERNAL_EXECUTION_BLOCKER"
+elif [ "${RECREATION_MATCH}" != "True" ]; then
+  FINAL_BEHAVIORAL_OUTCOME="EVIDENCE_INSUFFICIENT"
 elif [ "${FIRST_RUN_OUTCOME}" = "${SECOND_RUN_OUTCOME}" ]; then
-  FINAL_OUTCOME="${FIRST_RUN_OUTCOME}"
+  FINAL_BEHAVIORAL_OUTCOME="${FIRST_RUN_OUTCOME}"
 else
-  FINAL_OUTCOME="EVIDENCE_INSUFFICIENT"
+  FINAL_BEHAVIORAL_OUTCOME="EVIDENCE_INSUFFICIENT"
 fi
 
 # 9. Compute artifact hashes
@@ -149,7 +151,7 @@ data = {
     'second_run_stderr_sha256': h('second-run/stderr.bin'),
     'second_run_exit_code': open('second-run/exit-code.txt').read().strip(),
     'recreation_match': ${RECREATION_MATCH},
-    'final_outcome': '${FINAL_OUTCOME}'
+    'final_behavioral_outcome': '${FINAL_BEHAVIORAL_OUTCOME}'
 }
 with open('hashes.json', 'w') as f:
     json.dump(data, f, indent=2)
@@ -179,11 +181,11 @@ metadata = {
   'second_run_exit_code': int(open('second-run/exit-code.txt').read().strip()),
   'first_run_outcome': '${FIRST_RUN_OUTCOME}',
   'second_run_outcome': '${SECOND_RUN_OUTCOME}',
-  'final_outcome': '${FINAL_OUTCOME}'
+  'final_behavioral_outcome': '${FINAL_BEHAVIORAL_OUTCOME}'
 }
 
 with open('run_metadata.json', 'w') as f:
     json.dump(metadata, f, indent=2)
 "
 
-echo "Behavioral run completed. First: ${FIRST_RUN_OUTCOME}, Second: ${SECOND_RUN_OUTCOME}, Recreation match: ${RECREATION_MATCH}, Final: ${FINAL_OUTCOME}"
+echo "Behavioral run completed. First: ${FIRST_RUN_OUTCOME}, Second: ${SECOND_RUN_OUTCOME}, Recreation match: ${RECREATION_MATCH}, Final: ${FINAL_BEHAVIORAL_OUTCOME}"

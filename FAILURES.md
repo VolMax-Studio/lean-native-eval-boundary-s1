@@ -94,7 +94,21 @@ In entry F-015 at commit 7b28531, the PR #3 merge commit was erroneously recorde
 
 Correction: Restore F-015 verbatim to its original form from commit 7b28531 and append this explicit correction. Furthermore, record the verbatim declaration issued by the Operator on 2026-09-11:
 
-> “Kao Operator, 2026-09-11 potvrđujem da merge PR #3 nije bio ratifikacija niti freeze; `prereg_frozen` ostaje false. Potvrđujem Ananke kao Executora isključivo nakon ratifikovanog freeze-a i potvrđujem lokalni versioned `INSTANCE_RULES.md` kao operativni authority ove instance. Za behavioral execution ne zahtevam kernel network-namespace izolaciju; harness ne sme obavljati mrežne operacije tokom behavioral run-a, dok je toolchain acquisition zasebna pinned pre-execution faza. Pre freeze-a dozvoljavam samo syntax/stub validaciju, repository custody metadata, toolchain release/download/hash/extraction metadata, host-environment metadata i manifest/archive packaging; zabranjujem nova denominator source ili path-existence merenja.”
+> “Kao Operator, 2026-09-11 potvrđujem da merge PR #3 nije bio ratifikacija niti freeze; `prereg_frozen` ostaje false. Potvrđujem Ananke kao Executora isključivo nakon ratifikovanog freeze-a i potvrđujem lokalni versioned `INSTANCE_RULES.md` kao operativni authority ove instance.
+>
+> Za behavioral execution ne zahtevam kernel network-namespace izolaciju. Behavioral harness ne sme obavljati mrežne operacije tokom behavioral run-a. Toolchain acquisition je zasebna pinned pre-execution faza.
+>
+> Pre freeze-a dozvoljavam isključivo:
+>
+> 1. shell syntax validation;
+> 2. stub/mock harness validation bez Lean-a;
+> 3. replay već registrovanih synthetic fixtures i declared mutation suite-a (`tests/command.sh`, `tests/mutation-command.sh`) isključivo kao instrument-validation evidence;
+> 4. repository custody i Git-object metadata potrebne za proveru kandidata, bez novih denominator path/source merenja;
+> 5. toolchain release metadata, download, byte-count, SHA-256 verification, extraction i hashovanje pripadajućeg `bin/lean`, bez izvršavanja Lean binarnog fajla;
+> 6. host-environment metadata potrebne za pinned execution environment;
+> 7. manifest i review-archive generation/verification.
+>
+> Pre freeze-a zabranjujem nova denominator source ili path-existence merenja, pokretanje Lean-a nad bilo kojim test artefaktom, kao i menjanje naučnih kriterijuma, fixture-a ili mutant suite-a na osnovu novih scientific outcomes. Existing synthetic/mutation replay ne predstavlja scientific execution.”
 
 Can this instance still carry a verdict? Yes; the correction precedes any execution run and freeze identity remains bound to the exact candidate commit reviewed by the formal Gate.
 

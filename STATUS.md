@@ -3,7 +3,7 @@ phase: pre-gate
 execution_state: HALT
 verdict: null
 last_formal_gate_result: BLOCKED
-last_formal_gate_fix: B-1..B-4, F-1..F-9
+last_formal_gate_fix: B-5..B-7, F-10..F-15
 prereg_frozen: false
 operator: Operator
 ratifier: final Ratifier

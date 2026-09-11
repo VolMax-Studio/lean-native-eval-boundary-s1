@@ -10,15 +10,23 @@ The scientific scope is exhausted by the explicitly registered T-A and T-B claim
 
 UAF execution is excluded. Timing subclaims remain Exploratory and never carry a verdict. No material from any pre-freeze Lean invocation may be used to define, refine, or relax acceptance, rejection, diagnostic, or axiom-matching criteria. Any such invocation remains permanently Exploratory and is a protocol deviation; it cannot be relabeled as a preregistered run.
 
-By explicit Operator declaration (2026-09-11), pre-freeze operations are strictly limited to the following narrow allowlist:
-1. Shell syntax validation (`bash -n`).
-2. Harness self-testing using mock/stub executables (`/bin/true`, non-Lean shell stubs).
-3. Repository custody metadata (`git`, `ls-remote`, `cat-file`, `stat`, `sha256sum`).
-4. Toolchain release metadata, download, hash verification, and extraction without execution.
-5. Host environment metadata measurement (`platform.libc_ver()`, `uname -r`, user IDs).
-6. Manifest and archive packaging (`git archive`, `MANIFEST.json` generation).
+By explicit Operator declaration (2026-09-11):
 
-All new denominator source reads or path-existence measurements prior to ratified freeze are prohibited. For behavioral execution, kernel network-namespace isolation (`unshare --net`) is not required on the host platform; rather, the behavioral execution harness is strictly prohibited from performing network operations during execution runs, with toolchain acquisition performed as a separate pinned pre-execution phase.
+> “Kao Operator, 2026-09-11 potvrđujem da merge PR #3 nije bio ratifikacija niti freeze; `prereg_frozen` ostaje false. Potvrđujem Ananke kao Executora isključivo nakon ratifikovanog freeze-a i potvrđujem lokalni versioned `INSTANCE_RULES.md` kao operativni authority ove instance.
+>
+> Za behavioral execution ne zahtevam kernel network-namespace izolaciju. Behavioral harness ne sme obavljati mrežne operacije tokom behavioral run-a. Toolchain acquisition je zasebna pinned pre-execution faza.
+>
+> Pre freeze-a dozvoljavam isključivo:
+>
+> 1. shell syntax validation;
+> 2. stub/mock harness validation bez Lean-a;
+> 3. replay već registrovanih synthetic fixtures i declared mutation suite-a (`tests/command.sh`, `tests/mutation-command.sh`) isključivo kao instrument-validation evidence;
+> 4. repository custody i Git-object metadata potrebne za proveru kandidata, bez novih denominator path/source merenja;
+> 5. toolchain release metadata, download, byte-count, SHA-256 verification, extraction i hashovanje pripadajućeg `bin/lean`, bez izvršavanja Lean binarnog fajla;
+> 6. host-environment metadata potrebne za pinned execution environment;
+> 7. manifest i review-archive generation/verification.
+>
+> Pre freeze-a zabranjujem nova denominator source ili path-existence merenja, pokretanje Lean-a nad bilo kojim test artefaktom, kao i menjanje naučnih kriterijuma, fixture-a ili mutant suite-a na osnovu novih scientific outcomes. Existing synthetic/mutation replay ne predstavlja scientific execution.”
 
 ## Claims and permitted interpretations
 

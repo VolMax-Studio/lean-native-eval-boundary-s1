@@ -1,6 +1,6 @@
 {
   "status": "pre-freeze candidate; pre-gate; HALT; not frozen; TARGET_LEAN_RUNS=0; scientific verdict null",
-  "manifest_created_at_utc": "2026-09-11T20:16:19.722353+00:00",
+  "manifest_created_at_utc": "2026-09-11T20:20:41.047232+00:00",
   "previous_review_commit": "7b2853184a01bc38605806b2185806b5892f39ba",
   "previous_review_zip_sha256": "9c13d51b3f9ff705116aa423fc99201f81d11bb746d5c64c7827e85c2b03d526",
   "repository": "VolMax-Studio/lean-native-eval-boundary-s1",
@@ -33,18 +33,18 @@
     },
     {
       "path": "EXECUTION_SPEC.md",
-      "bytes": 9579,
-      "sha256": "6361ce83245161d8f9f5dc7cda6b2704b5928f42f4f1a9096a3bfd51800298f4"
+      "bytes": 10327,
+      "sha256": "07f0a94f503db75301154979cb47df24cbd92731625eb1ff8496713d07f8cdfd"
     },
     {
       "path": "FAILURES.md",
-      "bytes": 13295,
-      "sha256": "10291ec7663f57de98055bd2dc61d36018a212a1183ab688db2685bd9422213b"
+      "bytes": 14066,
+      "sha256": "d8e1a53704c656e488a3d4976ffd18f5aa2642d29745a9a811913b400ce514d8"
     },
     {
       "path": "INSTANCE_RULES.md",
-      "bytes": 16537,
-      "sha256": "b4bbeae92a1109cdf0b0d59c26da9288df98bb1c7acb127af40a616f70b6e176"
+      "bytes": 17080,
+      "sha256": "a75772989ec0b20748ed29e3d9f1bc0be6ddbf226923e2c13a51f2ad334496ea"
     },
     {
       "path": "PRE_GATE_CLOSURE.md",
@@ -63,8 +63,8 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 2101,
-      "sha256": "0426e2193f898ceb03435a58f1205d60d637fa058c682a4ce22a13e4e25e0639"
+      "bytes": 2103,
+      "sha256": "c31641c5bd28a7e3a97d139a70d32723a64971778b763caa0657d6a5cb346d4e"
     },
     {
       "path": "TAG_MANIFEST.json",
@@ -88,8 +88,8 @@
     },
     {
       "path": "external/GOVERNANCE.md",
-      "bytes": 12271,
-      "sha256": "d17c13a4e7015b26fdfc060ff7f3759b8bdc144915e9441c1c19716f42bf0f25"
+      "bytes": 13042,
+      "sha256": "be4504b4056a28ec4bf2a2a594d4947983ce6671b658e4641a92aaa3a10249b9"
     },
     {
       "path": "harness/pin_provenance.json",
@@ -98,8 +98,8 @@
     },
     {
       "path": "harness/run_behavioral.sh",
-      "bytes": 6703,
-      "sha256": "76adbf002e73b3e4075e3efd621dac2eaa2d000729a2a438617b044f3f49fd0e"
+      "bytes": 6811,
+      "sha256": "4323e76638def5f4a480c59caa787f47bc579cedd80b8e510e7642e05845142d"
     },
     {
       "path": "harness/run_t_b1.sh",
@@ -178,8 +178,8 @@
     },
     {
       "path": "tests/test_harness_stubs.sh",
-      "bytes": 2454,
-      "sha256": "3a3eb1485ca1ad74426f22a52d6a02aada12df74a81bcb7b6657aca343dde191"
+      "bytes": 3116,
+      "sha256": "fe23b3559375b619c8f02b5159aeb342e1828338aed589576f94f038c6f924d9"
     },
     {
       "path": "validation/exit-code.txt",

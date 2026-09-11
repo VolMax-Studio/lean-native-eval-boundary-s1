@@ -46,6 +46,7 @@ with open('${TMP_DIR}/run_out/run_metadata.json') as f:
 assert m['first_run_outcome'] == 'ACCEPT'
 assert m['second_run_outcome'] == 'ACCEPT'
 assert m['recreation_byte_match'] is True
+assert m['final_behavioral_outcome'] == 'ACCEPT'
 "
 
 # 2. Test timeout exit code 124 mapping to EXTERNAL_EXECUTION_BLOCKER
@@ -62,10 +63,27 @@ with open('${TMP_DIR}/run_out_timeout/run_metadata.json') as f:
     m = json.load(f)
 assert m['first_run_outcome'] == 'EXTERNAL_EXECUTION_BLOCKER'
 assert m['second_run_outcome'] == 'EXTERNAL_EXECUTION_BLOCKER'
-assert m['final_outcome'] == 'EXTERNAL_EXECUTION_BLOCKER'
+assert m['final_behavioral_outcome'] == 'EXTERNAL_EXECUTION_BLOCKER'
 "
 
-# 3. Test execution from arbitrary working directory (/tmp) to verify cwd-independence
+# 3. Test exit code 137 (SIGKILL/crash) conservatively mapping to EVIDENCE_INSUFFICIENT
+cat << 'MOCK_137_EOF' > "${TMP_DIR}/fake_toolchain/bin/lean"
+#!/usr/bin/env bash
+exit 137
+MOCK_137_EOF
+
+bash "${REPO_ROOT}/harness/run_behavioral.sh" "${TMP_DIR}/fake_toolchain" "${TMP_DIR}/PoC.lean" "${TMP_DIR}/run_out_137"
+
+python3 -c "
+import json
+with open('${TMP_DIR}/run_out_137/run_metadata.json') as f:
+    m = json.load(f)
+assert m['first_run_outcome'] == 'EVIDENCE_INSUFFICIENT'
+assert m['second_run_outcome'] == 'EVIDENCE_INSUFFICIENT'
+assert m['final_behavioral_outcome'] == 'EVIDENCE_INSUFFICIENT'
+"
+
+# 4. Test execution from arbitrary working directory (/tmp) to verify cwd-independence
 (
   cd /tmp
   bash "${REPO_ROOT}/harness/run_behavioral.sh" "${TMP_DIR}/fake_toolchain" "${TMP_DIR}/PoC.lean" "${TMP_DIR}/run_out_cwd_test"
