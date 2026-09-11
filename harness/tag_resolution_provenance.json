@@ -1,0 +1,368 @@
+{
+  "measurement_method": "direct Git object database inspection via git cat-file -t against treeless/blobless metadata repository clone",
+  "repository": "https://github.com/leanprover/lean4.git",
+  "members_count": 45,
+  "all_objects_are_commit": true,
+  "measurements": [
+    {
+      "tag": "v4.0.0",
+      "direct_ref_object_sha": "ec941735c80dc54c53948e30c428905b6600f95a",
+      "git_cat_file_command": "git cat-file -t ec941735c80dc54c53948e30c428905b6600f95a",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "ec941735c80dc54c53948e30c428905b6600f95a",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.1.0",
+      "direct_ref_object_sha": "a832f398b80a5ebb820d27b9e55ec949759043ff",
+      "git_cat_file_command": "git cat-file -t a832f398b80a5ebb820d27b9e55ec949759043ff",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "a832f398b80a5ebb820d27b9e55ec949759043ff",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.2.0",
+      "direct_ref_object_sha": "0d7051497ea09b2b4a4ef608e371b8f317487c3c",
+      "git_cat_file_command": "git cat-file -t 0d7051497ea09b2b4a4ef608e371b8f317487c3c",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "0d7051497ea09b2b4a4ef608e371b8f317487c3c",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.3.0",
+      "direct_ref_object_sha": "8e5cf6466061e7660353d7c3d9b69f744ac29edd",
+      "git_cat_file_command": "git cat-file -t 8e5cf6466061e7660353d7c3d9b69f744ac29edd",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "8e5cf6466061e7660353d7c3d9b69f744ac29edd",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.4.0",
+      "direct_ref_object_sha": "ca7d6dadb9e11831cb47959fbb0bab2dd427edfe",
+      "git_cat_file_command": "git cat-file -t ca7d6dadb9e11831cb47959fbb0bab2dd427edfe",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "ca7d6dadb9e11831cb47959fbb0bab2dd427edfe",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.5.0",
+      "direct_ref_object_sha": "1a3021f98e55a274217b3bbf92b2d449bae843c3",
+      "git_cat_file_command": "git cat-file -t 1a3021f98e55a274217b3bbf92b2d449bae843c3",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "1a3021f98e55a274217b3bbf92b2d449bae843c3",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.6.0",
+      "direct_ref_object_sha": "a5bc9013ab13f7b186cf154d396036b1d7c23370",
+      "git_cat_file_command": "git cat-file -t a5bc9013ab13f7b186cf154d396036b1d7c23370",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "a5bc9013ab13f7b186cf154d396036b1d7c23370",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.6.1",
+      "direct_ref_object_sha": "dac66e47e32ffedf083d4508c0bfe599dfb65a9b",
+      "git_cat_file_command": "git cat-file -t dac66e47e32ffedf083d4508c0bfe599dfb65a9b",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "dac66e47e32ffedf083d4508c0bfe599dfb65a9b",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.7.0",
+      "direct_ref_object_sha": "6fce8f7d5cd18a4419bca7fd51780c71c9b1cc5a",
+      "git_cat_file_command": "git cat-file -t 6fce8f7d5cd18a4419bca7fd51780c71c9b1cc5a",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "6fce8f7d5cd18a4419bca7fd51780c71c9b1cc5a",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.8.0",
+      "direct_ref_object_sha": "df668f00e6c08cb63661aacc43d0e83388e2c60d",
+      "git_cat_file_command": "git cat-file -t df668f00e6c08cb63661aacc43d0e83388e2c60d",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "df668f00e6c08cb63661aacc43d0e83388e2c60d",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.9.0",
+      "direct_ref_object_sha": "8f9843a4a5fe1b0c2f24c74097f296e2818771ee",
+      "git_cat_file_command": "git cat-file -t 8f9843a4a5fe1b0c2f24c74097f296e2818771ee",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "8f9843a4a5fe1b0c2f24c74097f296e2818771ee",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.9.1",
+      "direct_ref_object_sha": "1b78cb4836cf626007bd38872956a6fab8910993",
+      "git_cat_file_command": "git cat-file -t 1b78cb4836cf626007bd38872956a6fab8910993",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "1b78cb4836cf626007bd38872956a6fab8910993",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.10.0",
+      "direct_ref_object_sha": "c375e19f6b656fcd594cdca3a38b8578634df8cd",
+      "git_cat_file_command": "git cat-file -t c375e19f6b656fcd594cdca3a38b8578634df8cd",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "c375e19f6b656fcd594cdca3a38b8578634df8cd",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.11.0",
+      "direct_ref_object_sha": "ec3042d94bd11a42430f9e14d39e26b1f880f99b",
+      "git_cat_file_command": "git cat-file -t ec3042d94bd11a42430f9e14d39e26b1f880f99b",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "ec3042d94bd11a42430f9e14d39e26b1f880f99b",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.12.0",
+      "direct_ref_object_sha": "dc2533473114eb8656439ff2b9335209784aa640",
+      "git_cat_file_command": "git cat-file -t dc2533473114eb8656439ff2b9335209784aa640",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "dc2533473114eb8656439ff2b9335209784aa640",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.13.0",
+      "direct_ref_object_sha": "6d22e0e5cc5a4392466e3d6dd8522486d1fd038b",
+      "git_cat_file_command": "git cat-file -t 6d22e0e5cc5a4392466e3d6dd8522486d1fd038b",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "6d22e0e5cc5a4392466e3d6dd8522486d1fd038b",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.14.0",
+      "direct_ref_object_sha": "410fab7284703f41660ca2454218dcca9b2ec896",
+      "git_cat_file_command": "git cat-file -t 410fab7284703f41660ca2454218dcca9b2ec896",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "410fab7284703f41660ca2454218dcca9b2ec896",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.15.0",
+      "direct_ref_object_sha": "11651562caae0a0b3973811508db2ab8903d3854",
+      "git_cat_file_command": "git cat-file -t 11651562caae0a0b3973811508db2ab8903d3854",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "11651562caae0a0b3973811508db2ab8903d3854",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.16.0",
+      "direct_ref_object_sha": "128a1e6b0a82718382f9c39c79be44ff3284547c",
+      "git_cat_file_command": "git cat-file -t 128a1e6b0a82718382f9c39c79be44ff3284547c",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "128a1e6b0a82718382f9c39c79be44ff3284547c",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.17.0",
+      "direct_ref_object_sha": "306f36116535cd226329f562b4675b8b6dbf948c",
+      "git_cat_file_command": "git cat-file -t 306f36116535cd226329f562b4675b8b6dbf948c",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "306f36116535cd226329f562b4675b8b6dbf948c",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.18.0",
+      "direct_ref_object_sha": "11ccbced796476be020459a83c599b301a765d3e",
+      "git_cat_file_command": "git cat-file -t 11ccbced796476be020459a83c599b301a765d3e",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "11ccbced796476be020459a83c599b301a765d3e",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.19.0",
+      "direct_ref_object_sha": "6caaee842e9495688c1567e78c0e68dbb96942aa",
+      "git_cat_file_command": "git cat-file -t 6caaee842e9495688c1567e78c0e68dbb96942aa",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "6caaee842e9495688c1567e78c0e68dbb96942aa",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.20.0",
+      "direct_ref_object_sha": "77cfc4d1a4f6ef6651792b781eaa6676b4f3f060",
+      "git_cat_file_command": "git cat-file -t 77cfc4d1a4f6ef6651792b781eaa6676b4f3f060",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "77cfc4d1a4f6ef6651792b781eaa6676b4f3f060",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.20.1",
+      "direct_ref_object_sha": "b02228b03f655c0cd051d82280ad5758359ec8ba",
+      "git_cat_file_command": "git cat-file -t b02228b03f655c0cd051d82280ad5758359ec8ba",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "b02228b03f655c0cd051d82280ad5758359ec8ba",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.21.0",
+      "direct_ref_object_sha": "6741444a63eec253a7eae7a83f1beb3de015023d",
+      "git_cat_file_command": "git cat-file -t 6741444a63eec253a7eae7a83f1beb3de015023d",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "6741444a63eec253a7eae7a83f1beb3de015023d",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.22.0",
+      "direct_ref_object_sha": "ba2cbbf09d4978f416e0ebd1fceeebc2c4138c05",
+      "git_cat_file_command": "git cat-file -t ba2cbbf09d4978f416e0ebd1fceeebc2c4138c05",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "ba2cbbf09d4978f416e0ebd1fceeebc2c4138c05",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.23.0",
+      "direct_ref_object_sha": "50aaf682e9b74ab92880292a25c68baa1cc81c87",
+      "git_cat_file_command": "git cat-file -t 50aaf682e9b74ab92880292a25c68baa1cc81c87",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "50aaf682e9b74ab92880292a25c68baa1cc81c87",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.24.0",
+      "direct_ref_object_sha": "797c613eb9b6d4ec95db23e3e00af9ac6657f24b",
+      "git_cat_file_command": "git cat-file -t 797c613eb9b6d4ec95db23e3e00af9ac6657f24b",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "797c613eb9b6d4ec95db23e3e00af9ac6657f24b",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.24.1",
+      "direct_ref_object_sha": "329484a64d36e72f095ae9ce7cf32ad12cac23ec",
+      "git_cat_file_command": "git cat-file -t 329484a64d36e72f095ae9ce7cf32ad12cac23ec",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "329484a64d36e72f095ae9ce7cf32ad12cac23ec",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.25.0",
+      "direct_ref_object_sha": "cdd38ac5115bdeec5f609e9126cce00f51ae88b3",
+      "git_cat_file_command": "git cat-file -t cdd38ac5115bdeec5f609e9126cce00f51ae88b3",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "cdd38ac5115bdeec5f609e9126cce00f51ae88b3",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.25.1",
+      "direct_ref_object_sha": "e82306f6ad9413331bb24a7b5881cd9e9cc39657",
+      "git_cat_file_command": "git cat-file -t e82306f6ad9413331bb24a7b5881cd9e9cc39657",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "e82306f6ad9413331bb24a7b5881cd9e9cc39657",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.25.2",
+      "direct_ref_object_sha": "b86e2e5824bcdbfa0e8d02dd97b4c48792a385d1",
+      "git_cat_file_command": "git cat-file -t b86e2e5824bcdbfa0e8d02dd97b4c48792a385d1",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "b86e2e5824bcdbfa0e8d02dd97b4c48792a385d1",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.26.0",
+      "direct_ref_object_sha": "d8204c9fd894f91bbb2cdfec5912ec8196fd8562",
+      "git_cat_file_command": "git cat-file -t d8204c9fd894f91bbb2cdfec5912ec8196fd8562",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "d8204c9fd894f91bbb2cdfec5912ec8196fd8562",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.27.0",
+      "direct_ref_object_sha": "db93fe1608548721853390a10cd40580fe7d22ae",
+      "git_cat_file_command": "git cat-file -t db93fe1608548721853390a10cd40580fe7d22ae",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "db93fe1608548721853390a10cd40580fe7d22ae",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.28.0",
+      "direct_ref_object_sha": "7e01a1bf5c70fc6167d49c345d3bf80596e9a79b",
+      "git_cat_file_command": "git cat-file -t 7e01a1bf5c70fc6167d49c345d3bf80596e9a79b",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "7e01a1bf5c70fc6167d49c345d3bf80596e9a79b",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.28.1",
+      "direct_ref_object_sha": "978f81d363eabdc49c5720726faa53a6007fcee8",
+      "git_cat_file_command": "git cat-file -t 978f81d363eabdc49c5720726faa53a6007fcee8",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "978f81d363eabdc49c5720726faa53a6007fcee8",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.29.0",
+      "direct_ref_object_sha": "98dc76e3c0a9b856c9b98726b713fb04fab16740",
+      "git_cat_file_command": "git cat-file -t 98dc76e3c0a9b856c9b98726b713fb04fab16740",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "98dc76e3c0a9b856c9b98726b713fb04fab16740",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.29.1",
+      "direct_ref_object_sha": "f72c35b3f637c8c6571d353742168ab66cc22c00",
+      "git_cat_file_command": "git cat-file -t f72c35b3f637c8c6571d353742168ab66cc22c00",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "f72c35b3f637c8c6571d353742168ab66cc22c00",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.30.0",
+      "direct_ref_object_sha": "d024af099ca4bf2c86f649261ebf59565dc8c622",
+      "git_cat_file_command": "git cat-file -t d024af099ca4bf2c86f649261ebf59565dc8c622",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "d024af099ca4bf2c86f649261ebf59565dc8c622",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.31.0",
+      "direct_ref_object_sha": "68218e876d2a38b1985b8590fff244a83c321783",
+      "git_cat_file_command": "git cat-file -t 68218e876d2a38b1985b8590fff244a83c321783",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "68218e876d2a38b1985b8590fff244a83c321783",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.32.0",
+      "direct_ref_object_sha": "8c9756b28d64dab099da31a4c09229a9e6a2ef35",
+      "git_cat_file_command": "git cat-file -t 8c9756b28d64dab099da31a4c09229a9e6a2ef35",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "8c9756b28d64dab099da31a4c09229a9e6a2ef35",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.32.1",
+      "direct_ref_object_sha": "f054605aea4b840552cca2e725580bffd1e1b704",
+      "git_cat_file_command": "git cat-file -t f054605aea4b840552cca2e725580bffd1e1b704",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "f054605aea4b840552cca2e725580bffd1e1b704",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.32.2",
+      "direct_ref_object_sha": "f3b06c705e6c85f5314019d5d3baab0fec5b580c",
+      "git_cat_file_command": "git cat-file -t f3b06c705e6c85f5314019d5d3baab0fec5b580c",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "f3b06c705e6c85f5314019d5d3baab0fec5b580c",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.33.0",
+      "direct_ref_object_sha": "d8b18978322de05a8f3dba51ef03cf5461676c17",
+      "git_cat_file_command": "git cat-file -t d8b18978322de05a8f3dba51ef03cf5461676c17",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "d8b18978322de05a8f3dba51ef03cf5461676c17",
+      "exit_code": 0
+    },
+    {
+      "tag": "v4.33.1",
+      "direct_ref_object_sha": "819816b2e0a3bf405af45ae5c7af2491d8f5bee6",
+      "git_cat_file_command": "git cat-file -t 819816b2e0a3bf405af45ae5c7af2491d8f5bee6",
+      "measured_object_type": "commit",
+      "resolved_commit_sha": "819816b2e0a3bf405af45ae5c7af2491d8f5bee6",
+      "exit_code": 0
+    }
+  ]
+}

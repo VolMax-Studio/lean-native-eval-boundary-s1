@@ -1,6 +1,6 @@
 # Governance and conflict disclosure register
 
-Current repository base for this refactor: c08c9504746dca3b68ba9476815212df59e7525d (PR #1 merged). Historical sections below describe their own earlier states; the latest recorded formal Gate result remains FIXES-PENDING (F-N), independent of merge state.
+Current repository base for this freeze-candidate: ae40c018081ccb0a85617549251074fd3e0d89d5 (PR #2 merged). Historical sections below describe their own earlier states; the latest recorded formal Gate result remains FIXES-PENDING (F-N), independent of merge state.
 
 ## Current role assignments
 
@@ -8,10 +8,10 @@ The scientific and normative layer uses Creator, Gate, Executor, Operator and fi
 
 | Role | Current holder | Appointment / status |
 | --- | --- | --- |
-| Creator | Drafting assistant identified in the supplied discussion as Astra / Codex | Authors the package and performs disclosed self-checks; not the formal Gate. Exact model/runtime version is not pinned here. |
-| Gate | Claude | Operator-confirmed formal Gate for T-A/T-B, including the draft-1 pasted-text review; exact model version is not established here. |
-| Executor | Ananke, proposed | Operator confirmation and exposure disclosure remain pending. |
-| Operator | Ivan | Scope, assignments and workflow decisions; performs PR merge. |
+| Creator | Sol (research lead / Creator-side participant); drafting history: Astra / Codex (draft 1/2) | Authors the package and performs disclosed self-checks; not the formal Gate. Does not assign independence to self. |
+| Gate | Claude | Designated formal Gate for T-A/T-B. Does not grant self-independence; Operator determines conflict acceptability. |
+| Executor | Ananke (Ops custodian + confirmed Executor) | Confirmed by explicit Operator appointment. Execution authority is active only after freeze; grants no Gate or verdict authority. Operational continuity across model/session runtime is maintained without private account identifiers. |
+| Operator | Ivan | Scope, assignments, conflict acceptability and workflow decisions; performs PR merge. |
 | final Ratifier | Ivan | Final ratification, distinct from Creator and Gate. |
 
 Repository coordination account: VolMax-Studio. The repository coordinate is retained in manifests and URLs as an address, not an assignment of scientific authority.
@@ -28,11 +28,11 @@ This record carries scope rationale, authority provenance and role disclosures. 
 
 The Operator excluded T-C: the Anthropic FLT artifact and every claim about its validity, dependencies, or exposure to the disclosed bug. The instance body must not name or evaluate that artifact. Immutable source bytes can contain such references without making them adjudicated claims.
 
-The Operator designated Claude as Gate and has now explicitly confirmed: “Potvrđujem Claudeov formalni Gate nad tekstom”. Ivan remains final Ratifier. The current assistant is Creator of draft 1 and draft 2. Ananke appears as proposed Executor in earlier supplied correspondence; explicit confirmation is pending. Do not infer that any external task has received instructions or executed work.
+The Operator designated Claude as Gate and has explicitly confirmed: “Potvrđujem Claudeov formalni Gate nad tekstom”. Ivan remains final Ratifier. In earlier correspondence Ananke appeared as proposed Executor; explicit confirmation as Executor for the eventual frozen execution is now granted by Operator decision. Do not infer that any external task has received instructions or executed work.
 
 Conflict acceptability is an Operator decision, not a Gate self-certification. The supplied correspondence states acceptance of Claude as Gate for T-A/T-B with the strict scope boundary. Claude must disclose exposure; model-family identity alone does not establish independence. The issue and blog report GPT-5.6 involvement in discovery, which is recorded as a claimant self-report, not independently verified discovery provenance.
 
-Authority is reported as “VolMax Observatory — Operating Rules (P10, v2026-08)”. It has not been retrieved. The local versioned INSTANCE_RULES adopts the Operator-supplied decisions; it does not assert that this is a verbatim or complete canonical copy. No canonical file SHA is invented. Operator confirmation of this adopted authority or a pinned original remains necessary before freeze.
+Authority is reported as “VolMax Observatory — Operating Rules (P10, v2026-08)”. The original document has not been retrieved, and its location and SHA-256 remain an unresolved provenance note. By explicit Operator decision, the locally versioned INSTANCE_RULES is operative and adopted as governing authority for this instance; locating or SHA-pinning the historical canonical document is not a freeze prerequisite or blocker. No canonical file SHA is invented.
 
 ## Verification attempts
 
@@ -53,7 +53,7 @@ The ZIP comment identifies a local commit but is not by itself proof of Git-tree
 
 T-B1 is explicitly designated “Deskriptivno merenje T-B1”. Report per-member syntactic outcomes and coverage, with no Verified/Not Verified scientific verdict. This change is an Operator-authorized scope-of-interpretation decision, not an outcome-driven modification.
 
-Executor confirmation, complete participant disclosure and canonical-original pin or explicit adoption of the local authority chain remain pending. These are separate from N-1/N-2 repairs.
+Executor confirmation is now complete via Operator appointment of Ananke as Executor for the eventual frozen run. Authority status: The original canonical authority document (“VolMax Observatory — Operating Rules (P10, v2026-08)”) location and SHA-256 remain UNRESOLVED; this instance explicitly operates under locally versioned, Operator-adopted authority.
 
 ## Repository transition and latest Gate
 
@@ -67,7 +67,7 @@ Claude's formal review targets c8f10c960a87c12eb645366e2e64c9c98893c17d and ZIP 
 
 All further changes, including freeze, proceed by PR; Ivan performs merge/ratification. The current task prepares and opens the repair PR, never merges it or directly updates main. The Operator selected a public version without raw data and no history rewrite. Raw-source snapshots and original supplied text artifacts are externalized to a local evidence ZIP. This does not remove bytes from earlier public commits or from current main before merge.
 
-Branch-protection read via mcp__codex_apps__github_fetch of /repos/VolMax-Studio/lean-native-eval-boundary-s1/branches/main/protection returned HTTP 403, “Resource not accessible by integration”. Alternative rulesets collection read succeeded and returned []. This does not establish absence of classic protection; its configuration remains UNVERIFIED through the available connector. No branch-protection setting was changed. PR-only operation here is an explicit process constraint, not a claim about enforced server settings.
+Branch-protection status: OBSERVED_DISABLED (`protected: false`) measured via GitHub API `/repos/VolMax-Studio/lean-native-eval-boundary-s1/branches/main`. Automated configuration via API is unavailable due to absence of administrative credentials in execution environment. Procedural constraint `NO_DIRECT_PUSH_TO_MAIN` is established by the Operator; all changes proceed strictly through pull requests.
 
 ## Formal Gate on PR #1 head ae4ae63 — FIXES-PENDING (F-N)
 

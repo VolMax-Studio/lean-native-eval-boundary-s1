@@ -25,3 +25,14 @@ Remaining preparation includes Executor/disclosure/authority requirements, compl
 Only documentation and the public manifest change in this F-N revision. The recorded 59/59 fixture and 43/43 mutation results belong to the unchanged instrument/test artifacts; no new test or Lean run is claimed.
 
 Role-based refactor: operative documents name roles only; concrete holders, source-author attribution and conflicts are centralized in external/GOVERNANCE.md. Neutral evidence-path aliases preserve historical lookup without changing payload bytes. FAILURES.md, instrument code, fixtures and literal validation records remain byte-identical to the merged base. This revision claims no new scientific result or validation run.
+
+## Freeze candidate preparation self-check
+
+- **Denominator resolution (T-B1):** All 45 denominator tags are resolved to commit objects in `TAG_MANIFEST.json`; `object_type="commit"`, verified against snapshot `sources/lsremote_tags.txt` (SHA-256 `565d84d4...`) and live Git wire protocol ref advertisement.
+- **Behavioral toolchains pinned (T-A):** Pinned Lean v4.32.2, v4.33.1, and v4.34.0-rc1 Linux x86_64 distribution asset URLs, byte sizes, and stream-verified SHA-256 digests in `EXECUTION_SPEC.md`.
+- **Environment & harness pinned:** Target OS, architecture, libc/userland requirements, shell, required environment variables, literal invocation command, binary stream capture, deterministic byte-for-byte recreation sequence, and cleanup allowlist pinned in `EXECUTION_SPEC.md`.
+- **Resource limits pinned:** Process timeout (60s), sequential concurrency (1), memory cap (4096 MB RSS), and workspace disk cap (2048 MB) pinned in `RESOURCE_PLAN.md` and `EXECUTION_SPEC.md`.
+- **Participant governance:** Explicit Operator confirmation of Ananke as Executor recorded in `external/GOVERNANCE.md`; Sol recorded as advisory participant without normative/Gate authority; `CLAIM_OF_RECORD.md` restored Marc Ilunga / Trail of Bits source attribution per Gate B-1 finding.
+- **Branch protection & process boundary:** Queried GitHub API for `main`; recorded `OBSERVED_DISABLED` (`protected: false`) with procedural constraint `NO_DIRECT_PUSH_TO_MAIN`.
+- **Authority document status (Unresolved Item):** Location and SHA pin of original canonical document (“VolMax Observatory — Operating Rules (P10, v2026-08)”) remain UNRESOLVED; instance operates under locally versioned, Operator-adopted authority.
+- **Absolute pre-freeze prohibitions:** `LEAN_RUNS=0`; no T-B1 denominator source scan; no invocation of target Lean versions on test artifact; no observation of scientific outcomes.
