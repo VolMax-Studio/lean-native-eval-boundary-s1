@@ -325,5 +325,5 @@
     "v4.33.1": "819816b2e0a3bf405af45ae5c7af2491d8f5bee6",
     "v4.34.0-rc1": "3447a668783dbce1a8fdb97101dd067687b2b418"
   },
-  "resolution_provenance": "Resolved against snapshot sources/lsremote_tags.txt (SHA-256 565d84d4c16b3db514dc46935c8c60cb7a96af6ec45a68adb0bd50af1fa70414) and verified byte-identical to live git ls-remote advertisement from https://github.com/leanprover/lean4.git. All 45 tags are git lightweight tags pointing directly to commit objects."
+  "resolution_provenance": "Resolved against snapshot sources/lsremote_tags.txt (SHA-256 565d84d4c16b3db514dc46935c8c60cb7a96af6ec45a68adb0bd50af1fa70414) and confirmed byte-for-byte by direct git cat-file -t inspection across all 45 direct object SHAs. Full per-tag measurement log recorded in harness/tag_resolution_provenance.json."
 }

@@ -3,9 +3,9 @@
 # Strictly executed POST-FREEZE; no Lean execution permitted before ratified freeze.
 set -euo pipefail
 
-TOOLCHAIN_DIR="${1:?Usage: $0 <toolchain_dir> [poc_file] [output_dir]}"
-POC_FILE="${2:-PoC.lean}"
-OUTPUT_DIR="${3:-evidence/behavioral/run}"
+TOOLCHAIN_DIR="$(realpath "$1")"
+POC_FILE="$(realpath "${2:-PoC.lean}")"
+OUTPUT_DIR="$(realpath -m "${3:-evidence/behavioral/run}")"
 
 LEAN_BIN="${TOOLCHAIN_DIR}/bin/lean"
 if [ ! -x "${LEAN_BIN}" ]; then
@@ -25,11 +25,16 @@ cd "${OUTPUT_DIR}"
 git rev-parse HEAD > git_commit.txt 2>/dev/null || echo "GIT_NOT_AVAILABLE" > git_commit.txt
 env | sort > env.txt
 
-# 2. Write literal execution command script
-cat << 'CMD_EOF' > command.sh
+# 2. Write literal execution command script containing exact absolute paths and enforcement
+cat << CMD_EOF > command.sh
 #!/usr/bin/env bash
 set -euo pipefail
-timeout --kill-after=5s 60s "${LEAN_BIN}" -D printMessageEndPos=false -D maxErrors=0 "${POC_FILE}" > stdout.bin 2> stderr.bin || echo $? > exit-code.txt
+export LANG="C.UTF-8"
+export LC_ALL="C.UTF-8"
+export LEAN_PATH=""
+export PATH="${TOOLCHAIN_DIR}/bin:/usr/bin:/bin"
+
+unshare --net -- prlimit --as=4294967296 timeout --kill-after=5s 60s "${LEAN_BIN}" -D printMessageEndPos=false -D maxErrors=0 "${POC_FILE}" > stdout.bin 2> stderr.bin || echo \$? > exit-code.txt
 if [ ! -s exit-code.txt ]; then
   echo 0 > exit-code.txt
 fi
@@ -43,7 +48,7 @@ START_TIME_UTC="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 
 # 4. Archive First Run
 mkdir -p first-run
-mv stdout.bin stderr.bin exit-code.txt first-run/
+cp stdout.bin stderr.bin exit-code.txt first-run/
 
 # 5. Between-Run Cleanup (PRESERVING first-run/)
 rm -rf .lake build *.olean *.ilean *.c stdout.bin stderr.bin exit-code.txt

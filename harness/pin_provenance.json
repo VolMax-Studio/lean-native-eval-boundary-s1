@@ -12,6 +12,13 @@
       "conclusion": "All 45 denominator tags are git lightweight tags pointing directly to commit objects; peeled lines count is 0 for all 45 tags."
     },
     {
+      "operation": "git_cat_file_object_type_measurement_all_45_tags",
+      "method": "direct Git object database inspection via git cat-file -t in metadata repository",
+      "measured_members": 45,
+      "all_objects_are_commits": true,
+      "provenance_file": "harness/tag_resolution_provenance.json"
+    },
+    {
       "operation": "toolchain_digest_verification_v4_32_2",
       "asset": "lean-4.32.2-linux.tar.zst",
       "url": "https://github.com/leanprover/lean4/releases/download/v4.32.2/lean-4.32.2-linux.tar.zst",
