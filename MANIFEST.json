@@ -1,6 +1,6 @@
 {
   "status": "pre-freeze candidate; pre-gate; HALT; not frozen; TARGET_LEAN_RUNS=0; scientific verdict null",
-  "manifest_created_at_utc": "2026-09-11T20:03:13.251198+00:00",
+  "manifest_created_at_utc": "2026-09-11T20:07:07.373060+00:00",
   "previous_review_commit": "c1398ede5d044d8b457faa50a429a34c6790ef57",
   "previous_review_zip_sha256": "3b3cde7f78f3f37752798f458bd38c6c878230b9b5d88c4372bb99d8ace2d1fd",
   "repository": "VolMax-Studio/lean-native-eval-boundary-s1",
@@ -38,8 +38,8 @@
     },
     {
       "path": "FAILURES.md",
-      "bytes": 11754,
-      "sha256": "565f481df2102f90f2ea484f0495fc93188cc0762c5f87a5649ee3ec82ef5cc0"
+      "bytes": 12166,
+      "sha256": "c042fbd653943844dcbdcc449116b752e6d4d350d8c01a174b02eb776a253d17"
     },
     {
       "path": "INSTANCE_RULES.md",
@@ -88,8 +88,8 @@
     },
     {
       "path": "external/GOVERNANCE.md",
-      "bytes": 11676,
-      "sha256": "f9e51678f8c2cbb21ad17eddb02ff4779ec808629fcdaa75922643ad96fa1cc2"
+      "bytes": 12000,
+      "sha256": "fe2ed41c168a59a76d3b09d8fd36400dc1506a0e16718f3326950866b6f0e42c"
     },
     {
       "path": "harness/pin_provenance.json",

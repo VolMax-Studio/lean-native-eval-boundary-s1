@@ -82,7 +82,11 @@ Claude identified that the prior remaining-work wording allowed a repair-package
 
 ## F-015 — PR #3 merged before Gate verdict without freeze ratification
 
-PR #3 (head `c1398ede5d044d8b457faa50a429a34c6790ef57`) was merged into `main` by the Operator as merge commit `f8495385750d9931d86d63d64fe282713f36fe28` prior to the conclusion of the formal Gate review. Per instance rules and explicit Operator confirmation, this merge was an administrative repository branch synchronization and DOES NOT constitute ratification of the preregistration freeze. The repository preregistration status remains unratified (`prereg_frozen: false`), execution state remains HALT, and `LEAN_RUNS=0`. All repairs proceed via a new candidate pull request against current `main`.
+PR #3 (head `c1398ede5d044d8b457faa50a429a34c6790ef57`) was merged into `main` by the Operator as merge commit `f8495385750d9931d86d63d64fe282713f36fe28` prior to the conclusion of the formal Gate review. Per instance rules and explicit Operator declaration:
+
+> “Kao Operator potvrđujem da merge PR #3 nije predstavljao ratifikaciju niti freeze instance. `prereg_frozen` ostaje false. Za ovu instancu GitHub merge sam po sebi ne predstavlja ratifikaciju; ratifikacija zahteva zasebnu eksplicitnu Operator/final Ratifier izjavu koja navodi exact reviewed SHA i formalni Gate rezultat. Potvrđujem Ananke kao Executora nakon freeze-a i potvrđujem lokalni versioned `INSTANCE_RULES.md` kao operativni authority ove instance.”
+
+The repository preregistration status remains unratified (`prereg_frozen: false`), execution state remains HALT, and `LEAN_RUNS=0`. All repairs proceed via a new candidate pull request against current `main`. Freeze identity is established strictly by the exact reviewed candidate SHA.
 
 ## F-016 — Lean v4.33.1 archive hash pinned from truncated download stream (B-2)
 

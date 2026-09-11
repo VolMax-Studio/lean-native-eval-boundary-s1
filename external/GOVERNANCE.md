@@ -32,7 +32,11 @@ The Operator designated Claude as Gate and has explicitly confirmed: “Potvrđu
 
 Conflict acceptability is an Operator decision, not a Gate self-certification. The supplied correspondence states acceptance of Claude as Gate for T-A/T-B with the strict scope boundary. Claude must disclose exposure; model-family identity alone does not establish independence. The issue and blog report GPT-5.6 involvement in discovery, which is recorded as a claimant self-report, not independently verified discovery provenance.
 
-Authority is reported as “VolMax Observatory — Operating Rules (P10, v2026-08)”. The original document has not been retrieved, and its location and SHA-256 remain an unresolved provenance note. By explicit Operator decision (“ako ti usvajaš lokalni INSTANCE_RULES kao authority za ovu instancu, originalni P10 dokument ostaje UNRESOLVED provenance, ne freeze blocker”), the locally versioned INSTANCE_RULES is operative and adopted as governing authority for this instance; locating or SHA-pinning the historical canonical document is not a freeze prerequisite or blocker. No canonical file SHA is invented.
+Authority is reported as “VolMax Observatory — Operating Rules (P10, v2026-08)”. The original document has not been retrieved, and its location and SHA-256 remain an unresolved provenance note. By explicit Operator declaration:
+
+> “Kao Operator potvrđujem da merge PR #3 nije predstavljao ratifikaciju niti freeze instance. `prereg_frozen` ostaje false. Za ovu instancu GitHub merge sam po sebi ne predstavlja ratifikaciju; ratifikacija zahteva zasebnu eksplicitnu Operator/final Ratifier izjavu koja navodi exact reviewed SHA i formalni Gate rezultat. Potvrđujem Ananke kao Executora nakon freeze-a i potvrđujem lokalni versioned `INSTANCE_RULES.md` kao operativni authority ove instance.”
+
+The locally versioned INSTANCE_RULES is operative and adopted as governing authority for this instance; locating or SHA-pinning the historical canonical document is not a freeze prerequisite or blocker. No canonical file SHA is invented.
 
 ## Verification attempts
 
