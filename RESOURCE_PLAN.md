@@ -7,7 +7,7 @@ DERIVED: The two captured reference-source representations total 228,341 bytes. 
 The behavioral matrix evaluates three pinned versions (Lean v4.32.2, v4.33.1, v4.34.0-rc1) across six fresh Lean process invocations (first-run and recreation for each version).
 
 Frozen runtime and resource bounds:
-- **Per-invocation timeout:** 60 seconds (enforced via `timeout --kill-after=5s 60s`). A bounded run that times out produces TIMEOUT_BLOCKER, never successful rejection.
+- **Per-invocation timeout:** 60 seconds (enforced via `timeout --kill-after=5s 60s`). A bounded run that times out produces `EXTERNAL_EXECUTION_BLOCKER`, never successful rejection.
 - **Concurrency limit:** 1 (strictly sequential execution; no parallel Lean invocations).
 - **Process memory limit:** 4096 MB virtual address space enforced via `prlimit --as=4294967296`.
 - **Process isolation:** Network namespace isolation enforced via `unshare --net --`.

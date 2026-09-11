@@ -63,6 +63,41 @@ for m in members:
     retrieval_failed = False
     failure_type = None
 
+    def check_tree_for_path(target_path):
+        # Verify if target_path is absent in commit git tree
+        tree_url = f'https://api.github.com/repos/leanprover/lean4/git/trees/{commit}?recursive=1'
+        tree_req = urllib.request.Request(tree_url, headers={'User-Agent': 'VolMax-P10-Scan'})
+        try:
+            with urllib.request.urlopen(tree_req, timeout=30) as tr:
+                tree_data = json.load(tr)
+                tree_paths = {x['path'] for x in tree_data.get('tree', [])}
+                if target_path not in tree_paths:
+                    return 'PATH_PROVEN_ABSENT'
+                else:
+                    return 'PATH_EXISTS_IN_TREE'
+        except Exception as te:
+            return f'TREE_VERIFICATION_FAILED: {str(te)}'
+
+    def classify_failure(exc, target_rel_path):
+        if isinstance(exc, urllib.error.HTTPError):
+            code = exc.code
+            if code in (401, 403, 429) or (500 <= code <= 599):
+                return 'EXTERNAL_EXECUTION_BLOCKER'
+            elif code == 404:
+                # Raw-source 404 requires tree/path evidence
+                tree_status = check_tree_for_path(target_rel_path)
+                if tree_status == 'PATH_PROVEN_ABSENT':
+                    return 'EVIDENCE_INSUFFICIENT'
+                else:
+                    # Tree could not prove absence, or file exists in tree but raw 404'd (distribution failure)
+                    return 'EXTERNAL_EXECUTION_BLOCKER'
+            else:
+                # Other HTTP failures (e.g. 400, 410) default to EVIDENCE_INSUFFICIENT
+                return 'EVIDENCE_INSUFFICIENT'
+        else:
+            # DNS, TLS, connection failure, timeout, socket errors
+            return 'EXTERNAL_EXECUTION_BLOCKER'
+
     try:
         with urllib.request.urlopen(req_b, timeout=30) as rb:
             entry['basic_http_status'] = rb.getcode()
@@ -70,11 +105,11 @@ for m in members:
     except urllib.error.HTTPError as e:
         entry['basic_http_status'] = e.code
         retrieval_failed = True
-        failure_type = 'EVIDENCE_INSUFFICIENT' if e.code == 404 else 'EXTERNAL_EXECUTION_BLOCKER'
-        entry['retrieval_error'] = f'Basic.lean HTTP {e.code}'
+        failure_type = classify_failure(e, 'src/Init/Data/String/Basic.lean')
+        entry['retrieval_error'] = f'Basic.lean HTTP {e.code} (classified as {failure_type})'
     except Exception as e:
         retrieval_failed = True
-        failure_type = 'EXTERNAL_EXECUTION_BLOCKER'
+        failure_type = classify_failure(e, 'src/Init/Data/String/Basic.lean')
         entry['retrieval_error'] = f'Basic.lean connection error: {str(e)}'
 
     if not retrieval_failed:
@@ -85,11 +120,11 @@ for m in members:
         except urllib.error.HTTPError as e:
             entry['object_http_status'] = e.code
             retrieval_failed = True
-            failure_type = 'EVIDENCE_INSUFFICIENT' if e.code == 404 else 'EXTERNAL_EXECUTION_BLOCKER'
-            entry['retrieval_error'] = f'object.cpp HTTP {e.code}'
+            failure_type = classify_failure(e, 'src/runtime/object.cpp')
+            entry['retrieval_error'] = f'object.cpp HTTP {e.code} (classified as {failure_type})'
         except Exception as e:
             retrieval_failed = True
-            failure_type = 'EXTERNAL_EXECUTION_BLOCKER'
+            failure_type = classify_failure(e, 'src/runtime/object.cpp')
             entry['retrieval_error'] = f'object.cpp connection error: {str(e)}'
 
     if retrieval_failed:

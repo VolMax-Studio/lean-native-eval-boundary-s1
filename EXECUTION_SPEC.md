@@ -49,10 +49,20 @@ The execution environment is pinned to a single, concrete reference platform:
 
 ## 3. Exact Execution Harness & Command
 
-### Literal Invocation Command
-Per `INSTANCE_RULES.md#behavioral-criteria-and-recreation` and `DIAGNOSTIC_PROFILE.json`, with timeout and memory enforcement:
+### Literal Invocation Script (`command.sh`)
+Per `INSTANCE_RULES.md#behavioral-criteria-and-recreation` and `DIAGNOSTIC_PROFILE.json`, with network namespace isolation, virtual address space limit (4096 MB), per-invocation timeout (60s), and environment enforcement:
 ```bash
-timeout --kill-after=5s 60s "${LEAN_BIN}" -D printMessageEndPos=false -D maxErrors=0 PoC.lean > stdout.bin 2> stderr.bin || echo $? > exit-code.txt
+#!/usr/bin/env bash
+set -euo pipefail
+export LANG="C.UTF-8"
+export LC_ALL="C.UTF-8"
+export LEAN_PATH=""
+export PATH="${TOOLCHAIN_DIR}/bin:/usr/bin:/bin"
+
+# Capture the exact execution environment variables
+env | sort > env.txt
+
+unshare --net -- prlimit --as=4294967296 timeout --kill-after=5s 60s "${LEAN_BIN}" -D printMessageEndPos=false -D maxErrors=0 "${POC_FILE}" > stdout.bin 2> stderr.bin || echo $? > exit-code.txt
 if [ ! -s exit-code.txt ]; then
   echo 0 > exit-code.txt
 fi
@@ -63,17 +73,18 @@ fi
 - Output binary stream 1: `stdout.bin` (raw binary stream; literal UTF-8 bytes).
 - Output binary stream 2: `stderr.bin` (raw binary stream; literal UTF-8 bytes).
 - Exit code: `exit-code.txt` (ASCII decimal integer followed by newline).
+- Environment capture: `env.txt` (sorted snapshot of active environment variables during invocation).
 
 ---
 
 ## 4. Deterministic Recreation Sequence
 
 For each of the three pinned toolchain versions:
-1. **Preserve clean environment:** Prepare clean isolated workspace. Place `PoC.lean`. Record `env.txt` and `git_commit.txt`.
-2. **First Run:** Execute the literal invocation command. Capture `stdout.bin`, `stderr.bin`, `exit-code.txt`.
-3. **Archive First Run:** Create directory `first-run/` and move `stdout.bin`, `stderr.bin`, `exit-code.txt` into `first-run/`.
+1. **Preserve clean environment:** Prepare clean isolated workspace. Place `PoC.lean`. Record `git_commit.txt`. Generate and execute `command.sh` (which writes active `env.txt`).
+2. **First Run:** Execute `command.sh`. Capture `stdout.bin`, `stderr.bin`, `exit-code.txt`.
+3. **Archive First Run:** Create directory `first-run/` and copy `stdout.bin`, `stderr.bin`, `exit-code.txt` into `first-run/`.
 4. **Between-Run Cleanup:** Execute cleanup removing strictly items on the Between-Run Allowlist. `first-run/` is preserved and must never be deleted.
-5. **Second Run (Recreation):** Re-execute the identical invocation command with identical inputs and environment in directory `second-run/`.
+5. **Second Run (Recreation):** Re-execute `command.sh` with identical inputs and environment in directory `second-run/`. Move outputs into `second-run/`.
 6. **Byte-for-Byte Comparison:**
    ```bash
    cmp -s first-run/stdout.bin second-run/stdout.bin
