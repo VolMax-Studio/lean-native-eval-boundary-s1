@@ -4,7 +4,7 @@ Evidence status: OBSERVED publication content; underlying scientific assertions 
 
 ## R-A: semantic discrepancy report
 
-Author: MarcIlunga (issue account). Repository: leanprover/lean4. Source: https://github.com/leanprover/lean4/issues/14684 . Issue updated_at: 2026-08-10T07:40:26Z (source update time, not local retrieval time). Full referenced commit: f3b06c705e6c85f5314019d5d3baab0fec5b580c.
+Author attribution: R-A publisher identity in external/GOVERNANCE.md. Repository: leanprover/lean4. Source: https://github.com/leanprover/lean4/issues/14684 . Issue updated_at: 2026-08-10T07:40:26Z (source update time, not local retrieval time). Full referenced commit: f3b06c705e6c85f5314019d5d3baab0fec5b580c.
 
 Verbatim first Description sentence, including its original Markdown links:
 
@@ -14,7 +14,7 @@ Source: sources/issue-14684.connector.json, SHA-256 `2b66fc0b1f9123e93e22cbf9772
 
 ## R-B: version scope and incorporation report
 
-Author: Marc Ilunga, Trail of Bits. Published date reported on page: 2026-09-09. Source: https://blog.trailofbits.com/2026/09/09/a-proof-of-fermats-last-theorem-that-fits-the-margin/ .
+Author/publisher attribution: R-B identities in external/GOVERNANCE.md. Published date reported on page: 2026-09-09. Source: https://blog.trailofbits.com/2026/09/09/a-proof-of-fermats-last-theorem-that-fits-the-margin/ .
 
 > The issue affects all stable versions of Lean up to 4.33.1, and the patch is incorporated in v4.34.0-rc1.
 

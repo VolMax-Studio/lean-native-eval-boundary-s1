@@ -1,6 +1,6 @@
 {
-  "status": "F-N documentation repair on PR #1; pre-gate; HALT; not frozen; scientific verdict null",
-  "manifest_created_at_utc": "2026-09-11T17:01:10.064327+00:00",
+  "status": "role-based governance refactor; pre-gate; HALT; not frozen; scientific verdict null",
+  "manifest_created_at_utc": "2026-09-11T17:27:27.802613+00:00",
   "previous_review_commit": "ae4ae63d630bfc1aaf47381c286fcc5243d3ee1d",
   "previous_review_zip_sha256": "8ed9d0e685f343a8d03bfc522958b39a3787132e2ae9929aa15465c1cbc6d051",
   "repository": "VolMax-Studio/lean-native-eval-boundary-s1",
@@ -13,13 +13,13 @@
     },
     {
       "path": "CLAIM_OF_RECORD.md",
-      "bytes": 4083,
-      "sha256": "d9c8190fdb448b85e748db03b67e7588c6d53fbb4d7f2bebbc03050c48bd2a72"
+      "bytes": 4153,
+      "sha256": "690059e04f03bdf84129c71a1caff8374aaf42b1bc4af7dc7573d85e9748c97b"
     },
     {
       "path": "DATA_ACCESS.md",
-      "bytes": 2107,
-      "sha256": "0904b197ad05172ca9eb8ca50a224df58d0a27edb04f4b2b28bc77d7ead1e2e3"
+      "bytes": 2277,
+      "sha256": "54de658f8582ed77b4fbc052f3e6cf7063a409d43b941412e453ae4e000f19b8"
     },
     {
       "path": "DIAGNOSTIC_PROFILE.json",
@@ -38,18 +38,18 @@
     },
     {
       "path": "INSTANCE_RULES.md",
-      "bytes": 15082,
-      "sha256": "45ef7f53a6ecc976c93fc1a242a0a2f10228ee7856a3a2e8280027b24b612481"
+      "bytes": 15217,
+      "sha256": "97b116277bb45db5ffd1fd3e4ae3b0fc94ac77210fa8c53ccad8ee78d9e350b6"
     },
     {
       "path": "PRE_GATE_CLOSURE.md",
-      "bytes": 3298,
-      "sha256": "e735737f2ce90ac68c821eb914035807e67839963ca6599402c822d66634e8c0"
+      "bytes": 3880,
+      "sha256": "28b18899315a98db5a7982fa0dd3f01576c7a3e9b0f244a0378282cb5cf84c33"
     },
     {
       "path": "README.md",
-      "bytes": 5834,
-      "sha256": "a5da4d9bd4d71ab83b907d6d764227af42127b6af1588083922ee8d53d15ee11"
+      "bytes": 6117,
+      "sha256": "cc2ff3025e59141f7255ffe5968209dd344cddb245abccd12805f8a2c102a372"
     },
     {
       "path": "RESOURCE_PLAN.md",
@@ -58,8 +58,8 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 1303,
-      "sha256": "1147b7f5d14b18587e1409436f8ca949242b433b202401e4f4ce28e472c0d09f"
+      "bytes": 1600,
+      "sha256": "d3edd917b892c36151b4e9fda649e97c55ef9781c70b64b1b76ddce76891f09c"
     },
     {
       "path": "TAG_MANIFEST.json",
@@ -68,23 +68,23 @@
     },
     {
       "path": "data_manifest.json",
-      "bytes": 12761,
-      "sha256": "3b7fbf7e67f7339613cdbaea31b3abe6a807315b6f8aafb5790d769f9ac20adf"
+      "bytes": 12977,
+      "sha256": "86030720b107ebac88d7298b4278f1e69d12a1ce83301e657023d3d36a3ac043"
     },
     {
       "path": "external/DISTRIBUTION.md",
-      "bytes": 1438,
-      "sha256": "34b279e6ca697675d89e4a86ec897598417fb426e11b456a1752debc20b9903c"
+      "bytes": 1766,
+      "sha256": "9ae71a38eec0d042741d233996492e46958229a30ce2b52f70a08e3ca2b73d37"
     },
     {
       "path": "external/EXPOSURE_LEDGER.md",
-      "bytes": 10476,
-      "sha256": "82d60d84090f29d71d1cf14c4c30b4140c9de5ded7cd39bbc04b388552907638"
+      "bytes": 11052,
+      "sha256": "b05244a84e3cedb4f147d124c07360d80b008be71a742a32680ea43e48504393"
     },
     {
       "path": "external/GOVERNANCE.md",
-      "bytes": 7712,
-      "sha256": "76b8760f6e2e2161617927deb6f421903641881ee66d22cc19ce8f9bff09468e"
+      "bytes": 11143,
+      "sha256": "001b3dcd2ef36dbe0c87cca2e88fcdeb5060f418905610b00df6009df49fd19a"
     },
     {
       "path": "scripts/behavior_matcher.py",
@@ -118,8 +118,8 @@
     },
     {
       "path": "tests/README.md",
-      "bytes": 3496,
-      "sha256": "d5f56a439893513721987548ea3d9001d86aa4c55078c93f5e91c45691f3321b"
+      "bytes": 3519,
+      "sha256": "f95ccb6ce95b1de2a54dc8d45d290c621ddce6e7dd9ed3cb5fac837807d58f63"
     },
     {
       "path": "tests/command.sh",
@@ -191,5 +191,6 @@
       "bytes": 5299,
       "sha256": "0d2332ca7d2a6a3f87b3deab668547bfe5ffd24e52137e6a248e81f9b243b003"
     }
-  ]
+  ],
+  "refactor_base_commit": "c08c9504746dca3b68ba9476815212df59e7525d"
 }

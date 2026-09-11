@@ -1,4 +1,28 @@
-# External governance — not part of the claim-bearing instance
+# Governance and conflict disclosure register
+
+Current repository base for this refactor: c08c9504746dca3b68ba9476815212df59e7525d (PR #1 merged). Historical sections below describe their own earlier states; the latest recorded formal Gate result remains FIXES-PENDING (F-N), independent of merge state.
+
+## Current role assignments
+
+The scientific and normative layer uses Creator, Gate, Executor, Operator and final Ratifier only. This register maps those roles to current holders and preserves appointment/COI provenance. Assignment changes are governance changes, not changes to scientific claims, executable predicates or frozen review objects.
+
+| Role | Current holder | Appointment / status |
+| --- | --- | --- |
+| Creator | Drafting assistant identified in the supplied discussion as Astra / Codex | Authors the package and performs disclosed self-checks; not the formal Gate. Exact model/runtime version is not pinned here. |
+| Gate | Claude | Operator-confirmed formal Gate for T-A/T-B, including the draft-1 pasted-text review; exact model version is not established here. |
+| Executor | Ananke, proposed | Operator confirmation and exposure disclosure remain pending. |
+| Operator | Ivan | Scope, assignments and workflow decisions; performs PR merge. |
+| final Ratifier | Ivan | Final ratification, distinct from Creator and Gate. |
+
+Repository coordination account: VolMax-Studio. The repository coordinate is retained in manifests and URLs as an address, not an assignment of scientific authority.
+
+## Source attribution and discovery disclosure
+
+R-A author/account: MarcIlunga, issue #14684 in leanprover/lean4. R-B author/publisher: Marc Ilunga / Trail of Bits. Their issue/blog links and byte hashes remain in CLAIM_OF_RECORD.md; source identity is not replaced or anonymized by role-based research governance.
+
+The source reports GPT-5.6 involvement in discovery. This is claimant-reported provenance, not an independent observation of the discovery process. No exact Claude version (including 3.7) is inferred from the role name. The prior attribution of a formal Claude review to Astra was erroneous; the correction and original evidence are retained below and in immutable FAILURES.md.
+
+# Historical governance decisions — outside the claim-bearing instance
 
 This record carries scope rationale, authority provenance and role disclosures. It is not a scientific appendix and supplies no scientific verdict.
 
@@ -17,9 +41,9 @@ Authority is reported as “VolMax Observatory — Operating Rules (P10, v2026-0
 
 ## Review provenance — corrected by explicit Operator confirmation
 
-supplied-review-2.txt was issued by Claude and is his formal draft-1 Gate over pasted INSTANCE_RULES text. The Operator explicitly confirmed that status in this task. It did not review local commit 5e48b587c24e685db25524b0102114187c03e69b or FAILURES.md. Do not transfer its text-only scope to commit bytes. supplied-review-1.txt misattributed that reviewer to Astra and proposed an incorrect pre-gate reclassification; it is retained unchanged as historical correspondence, not operative provenance.
+gate-round-01.txt was issued by Claude and is his formal draft-1 Gate over pasted INSTANCE_RULES text. The Operator explicitly confirmed that status in this task. It did not review local commit 5e48b587c24e685db25524b0102114187c03e69b or FAILURES.md. Do not transfer its text-only scope to commit bytes. supplied-review-1.txt misattributed that reviewer to Astra and proposed an incorrect pre-gate reclassification; it is retained unchanged as historical correspondence, not operative provenance.
 
-The latest formal Gate is external/claude-gate-validation-supplement.txt, targeting ZIP SHA-256 d52989959cbbfe28f7e84efe378f53659b6a10d21002fc4be0672ec60c672b9a (97022 bytes, 36 ZIP entries). It records BLOCKED for N-1/N-2. Its replay claims are Gate-reported observations; the current assistant independently checked the local ZIP size/hash and issue-body hash but does not turn that into independent reproduction of every Gate action.
+The latest formal Gate is external/gate-581b0a4c70aac1cf4f74ca284af003034ca4b80d.txt, targeting ZIP SHA-256 d52989959cbbfe28f7e84efe378f53659b6a10d21002fc4be0672ec60c672b9a (97022 bytes, 36 ZIP entries). It records BLOCKED for N-1/N-2. Its replay claims are Gate-reported observations; the current assistant independently checked the local ZIP size/hash and issue-body hash but does not turn that into independent reproduction of every Gate action.
 
 Use one formal Gate vocabulary: BLOCKED / FIXES-PENDING / SURVIVES-REVIEW, as specified in the supplied correction. Scientific outcome vocabulary is separate. The Creator's repair checklist is a self-check, never a formal Gate result. The last recorded formal verdict remains BLOCKED until Claude reviews the repaired concrete object.
 
@@ -33,7 +57,7 @@ Executor confirmation, complete participant disclosure and canonical-original pi
 
 ## Repository transition and latest Gate
 
-The latest supplied Claude Gate, external/claude-gate-n1-n2-repair.txt, closes N-1 and records BLOCKED for N-3 over ZIP SHA-256 5b293daef542caefcb275990f424d05124883b658fc33b249c9f5119a2d162cc. It does not yet review the present repair commit. The Operator now requires the existing history to be pushed to VolMax-Studio/lean-native-eval-boundary-s1 and the exact remote commit to become the primary review object. No history rewrite or new copied-file root is permitted.
+The latest supplied Claude Gate, external/gate-e599d55343ab0b1168cb9edc61a4355f928499b0.txt, closes N-1 and records BLOCKED for N-3 over ZIP SHA-256 5b293daef542caefcb275990f424d05124883b658fc33b249c9f5119a2d162cc. It does not yet review the present repair commit. The Operator now requires the existing history to be pushed to VolMax-Studio/lean-native-eval-boundary-s1 and the exact remote commit to become the primary review object. No history rewrite or new copied-file root is permitted.
 
 STATUS.md records pre-gate, HALT and null scientific verdict. The Operator's requested GATE_PASS means a passing formal review; the active canonical-style vocabulary remains BLOCKED / FIXES-PENDING / SURVIVES-REVIEW, with SURVIVES-REVIEW as the passing result. Any prereg freeze must be a later separate commit after the passing review and remaining freeze requirements.
 
@@ -50,3 +74,16 @@ Branch-protection read via mcp__codex_apps__github_fetch of /repos/VolMax-Studio
 The supplied Claude result reviews ae4ae63d630bfc1aaf47381c286fcc5243d3ee1d and the matching public/private ZIPs. It reports N-4 closed, all technical blockers N-1 through N-4 closed, F-L and G-2 closed, and G-1 partially resolved according to the Operator's no-history-rewrite decision. Its formal result is FIXES-PENDING (F-N), not authorization to freeze or execute.
 
 F-N requires the final candidate freeze commit with all execution pins to receive its own exact-SHA formal Gate; the operative rule is INSTANCE_RULES.md#freeze-boundary. This repair only makes that boundary explicit. It does not invent a review of missing pins, perform an Operator merge, or produce a freeze commit. The Gate's note concerning attribution of source-derived snippets remains an Operator consideration; this documentation-only change makes no new license claim.
+
+## Evidence path aliases
+
+Canonical evidence names identify the reviewed object or review round, not the reviewer identity. The following aliases preserve resolution of paths appearing in immutable FAILURES.md, earlier manifests, commits and original review text. File payload byte sizes and SHA-256 values are unchanged. Old ZIPs remain preserved. Only the new container paths and its RAW_EVIDENCE_MANIFEST differ.
+
+| Historical path | Canonical evidence path |
+| --- | --- |
+| `external/claude-gate-validation-supplement.txt` | `external/gate-581b0a4c70aac1cf4f74ca284af003034ca4b80d.txt` |
+| `external/claude-gate-n1-n2-repair.txt` | `external/gate-e599d55343ab0b1168cb9edc61a4355f928499b0.txt` |
+| `external/claude-gate-n3-readme.txt` | `external/gate-c8f10c960a87c12eb645366e2e64c9c98893c17d.txt` |
+| `external/supplied-review-2.txt` | `external/gate-round-01.txt` |
+
+The round-01 artifact reviewed pasted draft-1 text, so its name does not assert a reviewed commit SHA. Other names identify the commit-associated package as specified by the review text; they do not enlarge the review's original scope. FAILURES.md, raw review/source payloads and Git history are not rewritten.

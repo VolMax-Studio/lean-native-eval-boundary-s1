@@ -4,21 +4,21 @@
   "created_at_utc": "2026-09-10T20:36:01.876792+00:00",
   "entries": [
     {
-      "path": "external/claude-gate-n1-n2-repair.txt",
+      "path": "external/gate-e599d55343ab0b1168cb9edc61a4355f928499b0.txt",
       "bytes": 5110,
       "sha256": "59821074f4b443d6d21c996ebf5e7e661ff2e830f378d087c2458080950e2303",
       "kind": "original supplied review/correspondence",
       "distribution": "separate non-repository evidence bundle"
     },
     {
-      "path": "external/claude-gate-n3-readme.txt",
+      "path": "external/gate-c8f10c960a87c12eb645366e2e64c9c98893c17d.txt",
       "bytes": 6633,
       "sha256": "bc476e9af8763d1abf2275dc3b05acf19d61a527b4cc8c9782286fb04f31da9f",
       "kind": "original supplied review/correspondence",
       "distribution": "separate non-repository evidence bundle"
     },
     {
-      "path": "external/claude-gate-validation-supplement.txt",
+      "path": "external/gate-581b0a4c70aac1cf4f74ca284af003034ca4b80d.txt",
       "bytes": 7217,
       "sha256": "54de05841028fb6a322828547ce75ac6ab0bd5e97cddcd1f6bf01840717292fd",
       "kind": "original supplied review/correspondence",
@@ -32,7 +32,7 @@
       "distribution": "separate non-repository evidence bundle"
     },
     {
-      "path": "external/supplied-review-2.txt",
+      "path": "external/gate-round-01.txt",
       "bytes": 7396,
       "sha256": "51c1321f6b4454769f48c89e1c0f863e617a4d7e8f9fcb2d8f389f5c016de41f",
       "kind": "original supplied review/correspondence",
@@ -299,10 +299,12 @@
     }
   ],
   "bundle": {
-    "filename": "lean-native-eval-boundary-s1-raw-evidence-private.zip",
-    "bytes": 218770,
-    "sha256": "dd626b822347766a53a86ecbab8e5140d9dbdbe0d84047a968a43358717b74ab",
-    "availability": "supplied locally to Operator/Gate; not committed or publicly uploaded by this task"
+    "filename": "lean-native-eval-boundary-s1-role-based-raw-evidence.zip",
+    "bytes": 218958,
+    "sha256": "90407481c8b511fa7c0ba9bef16b08b175f71a551fd3d757d956aebbc423e2a5",
+    "availability": "local Operator/Gate evidence handoff; not committed or publicly uploaded"
   },
-  "history_notice": "Historical commits retain raw bytes. No history rewrite, deletion from prior commits, or removal from main is claimed. This PR changes proposed HEAD only."
+  "history_notice": "Historical commits retain raw bytes. No history rewrite, deletion from prior commits, or removal from main is claimed. This PR changes proposed HEAD only.",
+  "previous_bundle_sha256": "dd626b822347766a53a86ecbab8e5140d9dbdbe0d84047a968a43358717b74ab",
+  "path_alias_authority": "external/GOVERNANCE.md#evidence-path-aliases"
 }
