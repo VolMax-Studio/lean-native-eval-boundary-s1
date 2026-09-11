@@ -17,7 +17,7 @@ The first nine mutants cover the Gate's nine reported mutations, including the c
 
 validation/stdout.log, stderr.log and exit-code.txt preserve the new fixture run. validation/mutation-stdout.log, mutation-stderr.log and mutation-exit-code.txt preserve the new mutation run. validation/run.json records commands, UTC intervals, interpreter identity and input/output hashes. Fresh replay must reproduce both commands' literal stdout/stderr and exit codes; time metadata is separate. The earlier nine-case record remains in the preserved prior commit/archive and is not overwritten historically.
 
-This is Creator self-check evidence. Claude's BLOCKED finding applies to the prior reviewed ZIP; only Claude may issue the next formal Gate result over the repaired bytes. No scientific run, behavioral evidence or independence is inferred from these tests.
+This is Creator self-check evidence. The formal Gate's recorded finding applies to the prior reviewed ZIP; only the designated Gate may issue the next formal Gate result over the repaired bytes. No scientific run, behavioral evidence or independence is inferred from these tests.
 
 N-3 adds dedicated U1/U6/U8 fixtures and two inventory fixtures for wrong-theorem axiom records and absolute input paths. The code-derived inventory and conservative/equivalent exclusions are in INSTRUMENT_INVENTORY.md/json. Additional declared transformation mutants reuse existing fixtures where possible.
 
