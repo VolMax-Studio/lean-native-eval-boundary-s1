@@ -2,7 +2,7 @@
 phase: closed
 execution_state: COMPLETED
 verdict: Deferred
-verdict_rule_basis: "INSTANCE_RULES.md:67 (solely listed external blocker leads to Deferred)"
+verdict_rule_basis: "INSTANCE_RULES.md:65 -> :67 (resource limit exhaustion as EXTERNAL_EXECUTION_BLOCKER leads to Deferred)"
 t_a: Deferred
 t_a_basis: "INSTANCE_RULES.md:65 (resource limit exhaustion classified as EXTERNAL_EXECUTION_BLOCKER)"
 t_b1: "descriptive — 13 MISMATCH / 32 PREDICATE_INAPPLICABLE / 0 NO_MISMATCH"
