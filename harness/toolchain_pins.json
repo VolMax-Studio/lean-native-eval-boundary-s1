@@ -5,22 +5,28 @@
       "archive_asset": "lean-4.32.2-linux.tar.zst",
       "archive_sha256": "5f2069e6f5db73780f374ccb49ce8ea649aa20a0cebf0116816744c999ce72aa",
       "archive_bytes": 563991635,
-      "bin_lean_sha256": null,
-      "bin_lean_bytes": null
+      "bin_lean_sha256": "e8baaa71855a616dc351028f3ad2200051b0671f423a1696a100e809302d5550",
+      "bin_lean_bytes": 9024,
+      "libleanshared_so_sha256": "d7768b88d8162736da4305777cd6f147676038fd885bd8a265c958b0ecea00b4",
+      "libleanshared_so_bytes": 158401256
     },
     "v4.33.1": {
       "archive_asset": "lean-4.33.1-linux.tar.zst",
       "archive_sha256": "890afd185370f85666025b883914ab4f4b339136f8c96167b69cfb62aecaf235",
       "archive_bytes": 570405234,
-      "bin_lean_sha256": null,
-      "bin_lean_bytes": null
+      "bin_lean_sha256": "e8baaa71855a616dc351028f3ad2200051b0671f423a1696a100e809302d5550",
+      "bin_lean_bytes": 9024,
+      "libleanshared_so_sha256": "23d636cac1cadcba37beac30eff9b9b20d66cee726cf5defb4ae39f1284a3e5a",
+      "libleanshared_so_bytes": 230925168
     },
     "v4.34.0-rc1": {
       "archive_asset": "lean-4.34.0-rc1-linux.tar.zst",
       "archive_sha256": "41dc6a6ec143ece8ed4ba4c4c6978c91f21ad5cbe3c4e7728ad31b869961dc17",
       "archive_bytes": 575410932,
-      "bin_lean_sha256": null,
-      "bin_lean_bytes": null
+      "bin_lean_sha256": "e8baaa71855a616dc351028f3ad2200051b0671f423a1696a100e809302d5550",
+      "bin_lean_bytes": 9024,
+      "libleanshared_so_sha256": "5b0640af7f6fcc7bf47e3bd7d1f3b68d5100da50c2f55968b340ac28f4e07bdd",
+      "libleanshared_so_bytes": 231819744
     }
   }
 }

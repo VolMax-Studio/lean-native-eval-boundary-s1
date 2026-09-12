@@ -18,11 +18,11 @@ The behavioral evaluation tests three specific Lean 4 release distribution archi
 
 Retrieval, extraction, and invocation provenance:
 - Assets retrieved directly from official GitHub releases of repository `leanprover/lean4`.
-- Exact full-archive verified SHA-256 digests and content lengths established and recorded in `harness/pin_provenance.json`.
-- Pre-invocation integrity check: Prior to extraction and execution, the archive file SHA-256 digest is verified against the pinned digest; any mismatch produces `EXTERNAL_EXECUTION_BLOCKER`.
-- Unpacking mechanism: `tar --zstd -xf <archive> -C <toolchain_dir>`.
+- Exact full-archive verified SHA-256 digests, runner binary (`bin/lean`), and version-distinguishing shared library (`lib/lean/libleanshared.so`) digests and content lengths established and recorded in `harness/toolchain_pins.json`.
+- Pre-invocation integrity check: Prior to extraction and execution, the archive file SHA-256 digest, unpacked `bin/lean` binary digest, and unpacked `lib/lean/libleanshared.so` digest are strictly verified against the pinned registry; any mismatch produces `EXTERNAL_EXECUTION_BLOCKER`.
+- Unpacking mechanism: `tar --strip-components=1 --zstd -xf <archive> -C <toolchain_dir>`.
 - Lean executable path: literal absolute path `<toolchain_dir>/bin/lean`.
-- Invariant: Invocation occurs strictly through the direct unpacked binary path; elan proxies and dynamic toolchain dispatch wrappers are prohibited.
+- Invariant: Invocation occurs strictly through the direct unpacked binary path; elan proxies and dynamic toolchain dispatch wrappers are prohibited. Version differentiation is enforced via `libleanshared.so` verification.
 
 ---
 

@@ -30,11 +30,16 @@ declare -A TOOLCHAIN_SHA256=(
   ["v4.34.0-rc1"]="41dc6a6ec143ece8ed4ba4c4c6978c91f21ad5cbe3c4e7728ad31b869961dc17"
 )
 
-# Optional PoC extraction if private evidence bundle is provided
+# PoC verification: verify existing sources/PoC.lean or extract from private evidence bundle
 PINNED_EVIDENCE_SHA256="90407481c8b511fa7c0ba9bef16b08b175f71a551fd3d757d956aebbc423e2a5"
 PINNED_POC_SHA256="ed8e65ccf56fc10509b59a047101bb1c76426ae1fd8ee4d501fb29781e54049b"
+POC_PATH="${REPO_ROOT}/sources/PoC.lean"
 
-if [ -n "${EVIDENCE_ZIP}" ] && [ -f "${EVIDENCE_ZIP}" ]; then
+if [ -n "${EVIDENCE_ZIP}" ]; then
+  if [ ! -f "${EVIDENCE_ZIP}" ]; then
+    echo "Error: Specified evidence bundle does not exist: ${EVIDENCE_ZIP}" >&2
+    exit 1
+  fi
   echo "Verifying external evidence bundle..."
   actual_ev_sha="$(sha256sum "${EVIDENCE_ZIP}" | awk '{print $1}')"
   if [ "${actual_ev_sha}" != "${PINNED_EVIDENCE_SHA256}" ]; then
@@ -42,14 +47,21 @@ if [ -n "${EVIDENCE_ZIP}" ] && [ -f "${EVIDENCE_ZIP}" ]; then
     exit 1
   fi
   mkdir -p "${REPO_ROOT}/sources"
-  unzip -p "${EVIDENCE_ZIP}" sources/PoC.lean > "${REPO_ROOT}/sources/PoC.lean"
-  actual_poc_sha="$(sha256sum "${REPO_ROOT}/sources/PoC.lean" | awk '{print $1}')"
-  if [ "${actual_poc_sha}" != "${PINNED_POC_SHA256}" ]; then
-    echo "Error: Extracted PoC SHA-256 mismatch: expected ${PINNED_POC_SHA256}, got ${actual_poc_sha}" >&2
-    exit 1
-  fi
-  echo "Successfully extracted and verified sources/PoC.lean from private evidence bundle."
+  unzip -p "${EVIDENCE_ZIP}" sources/PoC.lean > "${POC_PATH}"
+  echo "Successfully extracted sources/PoC.lean from private evidence bundle."
 fi
+
+if [ ! -f "${POC_PATH}" ]; then
+  echo "Error: Mandatory PoC artifact not found at ${POC_PATH}. Provide path to verified evidence zip as second argument." >&2
+  exit 1
+fi
+
+actual_poc_sha="$(sha256sum "${POC_PATH}" | awk '{print $1}')"
+if [ "${actual_poc_sha}" != "${PINNED_POC_SHA256}" ]; then
+  echo "Error: PoC SHA-256 mismatch at ${POC_PATH}: expected ${PINNED_POC_SHA256}, got ${actual_poc_sha}" >&2
+  exit 1
+fi
+echo "Verified sources/PoC.lean integrity (SHA-256: ${actual_poc_sha})."
 
 echo "Starting toolchain acquisition for 3 pinned versions..."
 
@@ -83,7 +95,7 @@ for ver in "v4.32.2" "v4.33.1" "v4.34.0-rc1"; do
   
   # Extract toolchain without executing lean binary
   echo "[${ver}] Extracting toolchain..."
-  tar --zstd -xf "${archive_file}" -C "${ver_dir}"
+  tar --strip-components=1 --zstd -xf "${archive_file}" -C "${ver_dir}"
   
   # Locate lean executable
   lean_bin=""
@@ -103,18 +115,40 @@ for ver in "v4.32.2" "v4.33.1" "v4.34.0-rc1"; do
   
   bin_sha="$(sha256sum "${lean_bin}" | awk '{print $1}')"
   bin_bytes="$(stat -c%s "${lean_bin}")"
-  echo "[${ver}] Verified bin/lean at ${lean_bin}: ${bin_bytes} bytes, SHA-256: ${bin_sha}"
+  echo "[${ver}] Measured bin/lean: ${bin_bytes} bytes, SHA-256: ${bin_sha}"
 
-  # Record measured bin_lean_sha256 and bytes into toolchain_pins.json
+  # Locate and verify libleanshared.so (B-13)
+  shared_so="${ver_dir}/lib/lean/libleanshared.so"
+  if [ ! -f "${shared_so}" ]; then
+    echo "Error: Could not locate libleanshared.so for ${ver} at ${shared_so}" >&2
+    exit 1
+  fi
+  so_sha="$(sha256sum "${shared_so}" | awk '{print $1}')"
+  so_bytes="$(stat -c%s "${shared_so}")"
+  echo "[${ver}] Measured libleanshared.so: ${so_bytes} bytes, SHA-256: ${so_sha}"
+
+  # Verify against immutable pins in toolchain_pins.json (F-24)
   python3 -c "
-import json
+import json, sys
 with open('${PINS_JSON}', 'r') as f:
     d = json.load(f)
-d['toolchains']['${ver}']['bin_lean_sha256'] = '${bin_sha}'
-d['toolchains']['${ver}']['bin_lean_bytes'] = int('${bin_bytes}')
-with open('${PINS_JSON}', 'w') as f:
-    json.dump(d, f, indent=2)
+tc = d.get('toolchains', {}).get('${ver}', {})
+
+exp_bin_sha = tc.get('bin_lean_sha256')
+exp_bin_bytes = tc.get('bin_lean_bytes')
+exp_so_sha = tc.get('libleanshared_so_sha256')
+exp_so_bytes = tc.get('libleanshared_so_bytes')
+
+if '${bin_sha}' != exp_bin_sha:
+    sys.exit(f'Error: bin_lean SHA mismatch for ${ver}: expected {exp_bin_sha}, got ${bin_sha}')
+if int('${bin_bytes}') != exp_bin_bytes:
+    sys.exit(f'Error: bin_lean bytes mismatch for ${ver}: expected {exp_bin_bytes}, got ${bin_bytes}')
+if '${so_sha}' != exp_so_sha:
+    sys.exit(f'Error: libleanshared.so SHA mismatch for ${ver}: expected {exp_so_sha}, got ${so_sha}')
+if int('${so_bytes}') != exp_so_bytes:
+    sys.exit(f'Error: libleanshared.so bytes mismatch for ${ver}: expected {exp_so_bytes}, got ${so_bytes}')
+print(f'[${ver}] All toolchain binary and library pins verified successfully.')
 "
 done
 
-echo "Toolchain acquisition and verification complete. Measured bin/lean digests recorded in harness/toolchain_pins.json."
+echo "Toolchain acquisition and verification complete. All binaries and shared libraries match pinned registry."

@@ -100,6 +100,28 @@ print(d.get('toolchains', {}).get('${TOOLCHAIN_VER}', {}).get('bin_lean_sha256')
     write_preflight_blocker_metadata "lean_bin_sha256_mismatch"
     exit 2
   fi
+
+  # Verify libleanshared.so against pinned toolchain_pins.json (B-13)
+  SHARED_SO="${TOOLCHAIN_DIR}/lib/lean/libleanshared.so"
+  if [ ! -f "${SHARED_SO}" ]; then
+    echo "Error: Toolchain shared library not found at ${SHARED_SO}" >&2
+    write_preflight_blocker_metadata "libleanshared_so_missing"
+    exit 2
+  fi
+
+  ACTUAL_SO_SHA="$(sha256sum "${SHARED_SO}" | awk '{print $1}')"
+  EXPECTED_SO_SHA="$(python3 -c "
+import json
+with open('${PINS_JSON}') as f:
+    d = json.load(f)
+print(d.get('toolchains', {}).get('${TOOLCHAIN_VER}', {}).get('libleanshared_so_sha256') or '')
+" 2>/dev/null || echo '')"
+
+  if [ -z "${EXPECTED_SO_SHA}" ] || [ "${ACTUAL_SO_SHA}" != "${EXPECTED_SO_SHA}" ]; then
+    echo "Error: Toolchain shared library SHA-256 mismatch for ${TOOLCHAIN_VER}: expected '${EXPECTED_SO_SHA}', got '${ACTUAL_SO_SHA}'" >&2
+    write_preflight_blocker_metadata "libleanshared_so_sha256_mismatch"
+    exit 2
+  fi
 fi
 
 # 3. Capture git commit from REPO_ROOT

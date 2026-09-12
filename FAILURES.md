@@ -134,6 +134,57 @@ A standard ZIP digest is not a reproducible git object identifier. In `MANIFEST.
 
 Can this instance still carry a verdict? Yes; tree object SHAs are fully deterministic, intrinsic Git invariants that guarantee byte-for-byte tree identity across all environments.
 
+## F-020 — pre-freeze toolchain acquisition, bin/lean pin population, mandatory PoC verification, and execution spec harmonization (F-21, F-22, F-23)
 
+In formal Gate review of candidate `ea0e1a5`, the Gate found that:
+1. `harness/toolchain_pins.json` contained `null` values for `bin_lean_sha256` and `bin_lean_bytes`, preventing post-freeze execution without repo mutation (F-21).
+2. `harness/acquire_toolchains.sh` treated PoC verification as optional, failing to guarantee PoC presence prior to execution runs (F-22).
+3. `EXECUTION_SPEC.md:21` referenced `harness/pin_provenance.json` instead of `harness/toolchain_pins.json` as the authoritative pin registry (F-23).
 
+Correction:
+1. Conducted pre-freeze toolchain acquisition under explicit Operator allowlist item 5: downloaded distribution archives for all 3 pinned versions (`v4.32.2`, `v4.33.1`, `v4.34.0-rc1`), verified byte sizes and SHA-256 digests against pinned archive records, extracted without invoking Lean, measured exact `bin/lean` binary bytes (`9024`) and SHA-256 digests (`e8baaa71855a616dc351028f3ad2200051b0671f423a1696a100e809302d5550`), and recorded them directly into `harness/toolchain_pins.json`.
+2. Updated `harness/acquire_toolchains.sh` to enforce mandatory `sources/PoC.lean` verification against pinned SHA-256 `ed8e65ccf56fc10509b59a047101bb1c76426ae1fd8ee4d501fb29781e54049b`, failing with exit code 1 if missing or mismatched.
+3. Updated `EXECUTION_SPEC.md:21` to establish `harness/toolchain_pins.json` as the single authoritative register for full-archive and binary digests.
 
+Can this instance still carry a verdict? Yes; zero Lean binaries were executed against test artifacts (`LEAN_RUNS=0`), all measurements were recorded directly from verified distribution artifacts, and the correction guarantees post-freeze execution repeatability without modifying tracked files.
+
+## F-021 — non-distinct runner binary pins, version differentiation via libleanshared.so, and acquisition verification mode (B-13, F-24)
+
+In formal Gate review of candidate `0822d3c`, the Gate identified:
+1. `bin/lean` has identical byte length (`9024`) and identical SHA-256 digest (`e8baaa71855a616dc351028f3ad2200051b0671f423a1696a100e809302d5550`) across all three pinned Lean versions (`v4.32.2`, `v4.33.1`, `v4.34.0-rc1`). Because `bin/lean` is a small launcher binary, verifying `bin/lean` alone did not prevent cross-version library substitution (B-13).
+2. `harness/acquire_toolchains.sh` contained Python code writing back to `harness/toolchain_pins.json`, which would mutate the repository if executed post-freeze (F-24).
+
+Correction:
+1. Pinned the version-distinguishing core library `lib/lean/libleanshared.so` for all three versions in `harness/toolchain_pins.json`:
+   - `v4.32.2`: `158401256` bytes, SHA-256 `d7768b88d8162736da4305777cd6f147676038fd885bd8a265c958b0ecea00b4`
+   - `v4.33.1`: `230925168` bytes, SHA-256 `23d636cac1cadcba37beac30eff9b9b20d66cee726cf5defb4ae39f1284a3e5a`
+   - `v4.34.0-rc1`: `231819744` bytes, SHA-256 `5b0640af7f6fcc7bf47e3bd7d1f3b68d5100da50c2f55968b340ac28f4e07bdd`
+2. Updated `harness/run_behavioral.sh` preflight verification to check both `bin/lean` and `lib/lean/libleanshared.so` against `harness/toolchain_pins.json`, mapping library absence to blocker reason `libleanshared_so_missing` and digest mismatch to `libleanshared_so_sha256_mismatch`.
+3. Converted `harness/acquire_toolchains.sh` from writing pins to strictly verifying extracted files against immutable pins in `harness/toolchain_pins.json`, ensuring zero repository mutation upon post-freeze execution.
+4. Harmonized `EXECUTION_SPEC.md:21-25` to record both binary and library verification requirements and `--strip-components=1` unpacking mechanism.
+
+Can this instance still carry a verdict? Yes; zero Lean binaries were executed against test artifacts (`LEAN_RUNS=0`), all measurements were recorded directly from verified distribution artifacts, and the correction establishes complete cryptographic toolchain version distinction.
+
+## F-022 — realization of resource limit exhaustion during behavioral execution (F-14, Deferred)
+
+During the authorized execution run of frozen candidate `f11a44a31cf014e73212b73234645ee489bd53e4`, Lean 4 process invocations across all three pinned versions (`v4.32.2`, `v4.33.1`, `v4.34.0-rc1`) aborted at process startup without completing PoC elaboration:
+- `v4.32.2`: Exit 134, stderr `libc++abi: terminating due to uncaught exception of type lean::exception: failed to create thread`
+- `v4.33.1`: Exit 1, stderr `failed to create thread`
+- `v4.34.0-rc1`: Exit 1, stderr `failed to create thread: Resource temporarily unavailable`
+
+The failure occurred because Lean 4 initializes worker thread pools proportional to available CPU cores, and glibc virtual thread stack allocations exceeded the pre-frozen virtual memory address-space limit (`prlimit --as=4294967296`).
+
+Taxonomic disposition:
+- In the execution harness (`harness/run_behavioral.sh`), only exit code 124 was mapped to EEB, causing the behavioral matcher to emit `EVIDENCE_INSUFFICIENT` based purely on empty stdout.
+- Authoritative rule `INSTANCE_RULES.md:65` explicitly governs: failure due to expiry or exhaustion of a pre-frozen time/resource limit is classified as `EXTERNAL_EXECUTION_BLOCKER`.
+- Under `INSTANCE_RULES.md:67`, an external blocker as the sole failure class maps the behavioral evaluation (T-A) strictly to **`Deferred`**.
+- This materializes finding F-014. No post-hoc modification of `--as` is permitted within instance `s1`. Any evaluation under adjusted memory parameters must occur in a distinct, separate pre-registered instance (`s2`).
+
+## F-023 — execution gatekeeping checks must record measured evidence into run artifacts
+
+In candidate `f11a44a3`, verification of `lib/lean/libleanshared.so` against `harness/toolchain_pins.json` was implemented in preflight checks of `harness/run_behavioral.sh`, correctly guarding execution by aborting with exit code 2 if missing or mismatched.
+
+However, the harness recorded only `lean_bin_sha256` into `hashes.json` and `run_metadata.json`, leaving the verified digest of `libleanshared.so` unrecorded in the executed evidence files. As a result, the post-run formal Gate review of the evidence package could verify the check structurally via harness logic and clean preflight status, but could not independently inspect the measured library digest from the run artifacts alone.
+
+Correction for future instances:
+All checks that decide execution admissibility must explicitly record their measured values and verification outcomes into the persistent run evidence files (`hashes.json` / `run_metadata.json`), rather than relying solely on preflight exit-code interception.
