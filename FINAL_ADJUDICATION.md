@@ -41,7 +41,7 @@ Operator Ratification Date: 2026-09-12
 
 ### Track A: Behavioral Evaluation (T-A)
 - **Execution Environment:** Linux 7.0.0-31-generic x86_64, glibc 2.39, user `volmax-studio` (1000:1000).
-- **Execution Execution State:** All runs executed strictly against `f11a44a3` (`git_commit.txt` matches across all 3 toolchains; `test_stub_mode: false`).
+- **Execution State:** All runs executed strictly against `f11a44a3` (`git_commit.txt` matches across all 3 toolchains; `test_stub_mode: false`).
 - **Observed Behavior:**
   - `v4.32.2`: Exit 134/134, stdout 0 B, stderr `libc++abi: terminating due to uncaught exception of type lean::exception: failed to create thread`
   - `v4.33.1`: Exit 1/1, stdout 0 B, stderr `failed to create thread`
@@ -54,7 +54,7 @@ Operator Ratification Date: 2026-09-12
 
 ### Track B1: Descriptive Denominator Source Scan (T-B1)
 - **Denominator Members:** 45 resolved Git tag commits.
-- **Aggregate Measurement Status:** **`COMPLETE`** (`INSTANCE_RULES.md:45`).
+- **Aggregate Measurement Status:** **`COMPLETE`** (`INSTANCE_RULES.md:63`).
 - **Detailed Counts:**
   - `MISMATCH`: **13** members (`v4.26.0` through `v4.33.1`).
   - `PREDICATE_INAPPLICABLE`: **32** members (`v4.0.0` through `v4.25.2`).
