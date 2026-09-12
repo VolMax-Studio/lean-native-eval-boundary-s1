@@ -164,3 +164,27 @@ Correction:
 4. Harmonized `EXECUTION_SPEC.md:21-25` to record both binary and library verification requirements and `--strip-components=1` unpacking mechanism.
 
 Can this instance still carry a verdict? Yes; zero Lean binaries were executed against test artifacts (`LEAN_RUNS=0`), all measurements were recorded directly from verified distribution artifacts, and the correction establishes complete cryptographic toolchain version distinction.
+
+## F-022 — realization of resource limit exhaustion during behavioral execution (F-14, Deferred)
+
+During the authorized execution run of frozen candidate `f11a44a31cf014e73212b73234645ee489bd53e4`, Lean 4 process invocations across all three pinned versions (`v4.32.2`, `v4.33.1`, `v4.34.0-rc1`) aborted at process startup without completing PoC elaboration:
+- `v4.32.2`: Exit 134, stderr `libc++abi: terminating due to uncaught exception of type lean::exception: failed to create thread`
+- `v4.33.1`: Exit 1, stderr `failed to create thread`
+- `v4.34.0-rc1`: Exit 1, stderr `failed to create thread: Resource temporarily unavailable`
+
+The failure occurred because Lean 4 initializes worker thread pools proportional to available CPU cores, and glibc virtual thread stack allocations exceeded the pre-frozen virtual memory address-space limit (`prlimit --as=4294967296`).
+
+Taxonomic disposition:
+- In the execution harness (`harness/run_behavioral.sh`), only exit code 124 was mapped to EEB, causing the behavioral matcher to emit `EVIDENCE_INSUFFICIENT` based purely on empty stdout.
+- Authoritative rule `INSTANCE_RULES.md:65` explicitly governs: failure due to expiry or exhaustion of a pre-frozen time/resource limit is classified as `EXTERNAL_EXECUTION_BLOCKER`.
+- Under `INSTANCE_RULES.md:67`, an external blocker as the sole failure class maps the behavioral evaluation (T-A) strictly to **`Deferred`**.
+- This materializes finding F-014. No post-hoc modification of `--as` is permitted within instance `s1`. Any evaluation under adjusted memory parameters must occur in a distinct, separate pre-registered instance (`s2`).
+
+## F-023 — execution gatekeeping checks must record measured evidence into run artifacts
+
+In candidate `f11a44a3`, verification of `lib/lean/libleanshared.so` against `harness/toolchain_pins.json` was implemented in preflight checks of `harness/run_behavioral.sh`, correctly guarding execution by aborting with exit code 2 if missing or mismatched.
+
+However, the harness recorded only `lean_bin_sha256` into `hashes.json` and `run_metadata.json`, leaving the verified digest of `libleanshared.so` unrecorded in the executed evidence files. As a result, the post-run formal Gate review of the evidence package could verify the check structurally via harness logic and clean preflight status, but could not independently inspect the measured library digest from the run artifacts alone.
+
+Correction for future instances:
+All checks that decide execution admissibility must explicitly record their measured values and verification outcomes into the persistent run evidence files (`hashes.json` / `run_metadata.json`), rather than relying solely on preflight exit-code interception.
